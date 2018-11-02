@@ -82,9 +82,6 @@ $conn = null;
                     <a href="images/placeholder.png">
                         <img class="card-img" src="images/placeholder.png" alt="<?php echo $stock_name; ?>">
                     </a>
-                    <!--                    <div class="card-body text-center text-white py-2">-->
-                    <!--                        <a href="https://t45.nl/3/--><?php //echo $img_name; ?><!--.png" class="btn btn-dark">View Image</a>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         <?php } ?>
