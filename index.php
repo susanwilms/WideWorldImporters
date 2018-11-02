@@ -12,8 +12,8 @@ print_r($result);
 $conn = null;
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Wide World Importers</title>
     <meta charset="utf-8">
@@ -93,4 +93,3 @@ $conn = null;
 
 </body>
 
-<?php
