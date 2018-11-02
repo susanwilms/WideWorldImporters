@@ -5,15 +5,15 @@ $password = "";
 $dbname = "wideworldimporters";
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems WHERE StockItemID IN (23, 43);");
 $stmt->execute();
 $result = $stmt->fetchAll();
-print_r($result);
+
 $conn = null;
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Wide World Importers</title>
     <meta charset="utf-8">
@@ -67,30 +67,8 @@ $conn = null;
 
 <div class="container pt-4">
     <div class="row">
-        <?php
-        foreach($result as $r){
-            $stock_id = $r[0];
-            $stock_name = $r[1];
-            $stock_price = $r[2];
-            ?>
-            <div class="col-md-4 pb-2">
-                <div class="card mb-4 text-center" style="background-color:rgb(155, 155, 155);">
-                    <div class="card-body text-center text-white">
-                        <p class="text-left card-text"><span style="float:right;"><?php echo $stock_name; ?></span></p>
-                        <p class="text-left card-text">Prijs:<span style="float:right;"><?php echo $stock_price; ?></span></p>
-                    </div>
-                    <a href="images/placeholder.png">
-                        <img class="card-img" src="images/placeholder.png" alt="<?php echo $stock_name; ?>">
-                    </a>
-                    <!--                    <div class="card-body text-center text-white py-2">-->
-                    <!--                        <a href="https://t45.nl/3/--><?php //echo $img_name; ?><!--.png" class="btn btn-dark">View Image</a>-->
-                    <!--                    </div>-->
-                </div>
-            </div>
-        <?php } ?>
+
     </div>
 </div>
 
 </body>
-
-<?php
