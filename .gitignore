@@ -2,4 +2,5 @@
 .idea/jsLibraryMappings.xml
 .idea/WideWorldImporters.iml
 .idea/workspace.xml
+.connection.php
 *.iml
