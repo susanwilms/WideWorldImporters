@@ -24,9 +24,16 @@
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">categorie 1</a>
-                <a class="dropdown-item" href="#">categorie 2</a>
-                <a class="dropdown-item" href="#">categorie 3</a>
+                <a class="dropdown-item" href="#">Novelty Items</a>
+                <a class="dropdown-item" href="#">Clothing</a>
+                <a class="dropdown-item" href="#">Mugs</a>
+                <a class="dropdown-item" href="#">T-Shirs</a>
+                <a class="dropdown-item" href="#">Airline Novelties</a>
+                <a class="dropdown-item" href="#">Computing Novelties</a>
+                <a class="dropdown-item" href="#">USB Novelties</a>
+                <a class="dropdown-item" href="#">Furry Footwear</a>
+                <a class="dropdown-item" href="#">Toys</a>
+                <a class="dropdown-item" href="#">Packaging Materials</a>
             </div>
         </li>
         <!--        <li class="nav-item">-->
