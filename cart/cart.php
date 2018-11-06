@@ -11,7 +11,6 @@ $totaal = 0;
 
 ?>
 
-
     <div class="container pt-5 col-md-10">
         <h2 class="py-3">Je winkelmand</h2>
 
@@ -30,7 +29,7 @@ $totaal = 0;
 
                 </div>
                 <div class="col-md-2">
-                    <h6 style="float:left">Aantal:</h6> <input type="number" value="<?php echo $_SESSION[$id]?>">
+                    <h6 style="float:left"> Aantal:</h6> <input class="aantal" type="number" value="<?php echo $_SESSION[$id]?>">
                 </div>
                 <div class="col-md-2">
                     <h6> <?php echo $result[$id2]["RecommendedRetailPrice"]?> </h6>
