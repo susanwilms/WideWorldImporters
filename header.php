@@ -39,16 +39,16 @@ $productgroup="";
                 <a class="dropdown-item" href="<?php $productgroup=10; print("Categories.php?Productgroup=".$productgroup); ?>">Packaging Materials</a>
             </div>
         </li>
-        <!--        <li class="nav-item">-->
-        <!--        <form class="form-inline px-5" action="/action_page.php">-->
-        <!--            <div class="input-group input-group-sm">-->
-        <!--                <input type="text" name="search" class="form-control">-->
-        <!--            </div>-->
-        <!--            <div class="input-group-append">-->
-        <!--                <button class="btn-sm btn-secondary" type="submit">Zoeken</button>-->
-        <!--            </div>-->
-        <!--        </form>-->
-        <!--        </li>-->
+<!--                <li class="nav-item">-->
+<!--                <form class="form-inline px-5" action="/action_page.php">-->
+<!--                    <div class="input-group input-group-sm">-->
+<!--                        <input type="text" name="search" class="form-control">-->
+<!--                    </div>-->
+<!--                    <div class="input-group-append">-->
+<!--                        <button class="btn-sm btn-secondary" type="submit">Zoeken</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--                </li>-->
 
     </ul>
     <ul class="navbar-nav">
