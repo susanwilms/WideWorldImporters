@@ -14,8 +14,8 @@
 <body>
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="/">WWI</a>
-    <a href="/"><i class="pr-5 fas fa-home fa-lg"></i></a>
+    <a class="navbar-brand" href="index.php">WWI</a>
+    <a href="index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
@@ -24,7 +24,7 @@
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Novelty Items</a>
+                <a class="dropdown-item" href="NoveltyItems.php">Novelty Items</a>
                 <a class="dropdown-item" href="#">Clothing</a>
                 <a class="dropdown-item" href="#">Mugs</a>
                 <a class="dropdown-item" href="#">T-Shirs</a>
