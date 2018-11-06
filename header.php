@@ -17,8 +17,8 @@ $productgroup="";
 <body>
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="index.php">WWI</a>
-    <a href="/index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
+    <a class="navbar-brand" href="/WideWorldImporters/index.php">WWI</a>
+    <a href="/WideWorldImporters/index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
@@ -27,16 +27,16 @@ $productgroup="";
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="<?php $productgroup=1; print("Categories.php?Productgroup=".$productgroup); ?>">Novelty Items</a>
-                <a class="dropdown-item" href="<?php $productgroup=2; print("Categories.php?Productgroup=".$productgroup); ?>">Clothing</a>
-                <a class="dropdown-item" href="<?php $productgroup=3; print("Categories.php?Productgroup=".$productgroup); ?>">Mugs</a>
-                <a class="dropdown-item" href="<?php $productgroup=4; print("Categories.php?Productgroup=".$productgroup); ?>">T-Shirs</a>
-                <a class="dropdown-item" href="<?php $productgroup=5; print("Categories.php?Productgroup=".$productgroup); ?>">Airline Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=6; print("Categories.php?Productgroup=".$productgroup); ?>">Computing Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=7; print("Categories.php?Productgroup=".$productgroup); ?>">USB Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=8; print("Categories.php?Productgroup=".$productgroup); ?>">Furry Footwear</a>
-                <a class="dropdown-item" href="<?php $productgroup=9; print("Categories.php?Productgroup=".$productgroup); ?>">Toys</a>
-                <a class="dropdown-item" href="<?php $productgroup=10; print("Categories.php?Productgroup=".$productgroup); ?>">Packaging Materials</a>
+                <a class="dropdown-item" href="<?php $productgroup=1; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Novelty Items</a>
+                <a class="dropdown-item" href="<?php $productgroup=2; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Clothing</a>
+                <a class="dropdown-item" href="<?php $productgroup=3; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Mugs</a>
+                <a class="dropdown-item" href="<?php $productgroup=4; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">T-Shirs</a>
+                <a class="dropdown-item" href="<?php $productgroup=5; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Airline Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=6; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Computing Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=7; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">USB Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=8; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Furry Footwear</a>
+                <a class="dropdown-item" href="<?php $productgroup=9; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Toys</a>
+                <a class="dropdown-item" href="<?php $productgroup=10; print("/WorldWideImporters/Categories.php?Productgroup=".$productgroup); ?>">Packaging Materials</a>
             </div>
         </li>
 <!--                <li class="nav-item">-->
@@ -53,7 +53,7 @@ $productgroup="";
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="/cart"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
+            <a href="/WideWorldImporters/cart/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
         </li>
         <li class="nav-item">
             <i class="px-3 fas fa-user fa-lg"></i>
