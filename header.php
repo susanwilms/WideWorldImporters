@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="shadow-m navbar navbar-expand-sm bg-light navbar-light fixed-top">
+<nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="/">WWI</a>
     <a href="/"><i class="pr-5 fas fa-home fa-lg"></i></a>
