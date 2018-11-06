@@ -2,7 +2,8 @@
 
 require_once '../connection.php';
 require_once '../header.php';
-require_once '../footer.php';
+
+//test sessie
 $_SESSION['_' . 43] = 2;
 $_SESSION['_' . 23] = 20;
 print_r($_SESSION);
@@ -10,7 +11,7 @@ print_r($_SESSION);
 ?>
 
 
-<div class="container pt-4 col-md-10">
+<div class="container pt-5 col-md-10">
     <h2 class="py-3">Je winkelmand</h2>
 
     <?php
