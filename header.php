@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="shadow-m navbar navbar-expand-sm bg-light navbar-light fixed-top">
+<nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="/">WWI</a>
     <a href="/"><i class="pr-5 fas fa-home fa-lg"></i></a>
@@ -23,9 +24,16 @@
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">categorie 1</a>
-                <a class="dropdown-item" href="#">categorie 2</a>
-                <a class="dropdown-item" href="#">categorie 3</a>
+                <a class="dropdown-item" href="#">Novelty Items</a>
+                <a class="dropdown-item" href="#">Clothing</a>
+                <a class="dropdown-item" href="#">Mugs</a>
+                <a class="dropdown-item" href="#">T-Shirs</a>
+                <a class="dropdown-item" href="#">Airline Novelties</a>
+                <a class="dropdown-item" href="#">Computing Novelties</a>
+                <a class="dropdown-item" href="#">USB Novelties</a>
+                <a class="dropdown-item" href="#">Furry Footwear</a>
+                <a class="dropdown-item" href="#">Toys</a>
+                <a class="dropdown-item" href="#">Packaging Materials</a>
             </div>
         </li>
         <!--        <li class="nav-item">-->
