@@ -37,7 +37,7 @@ $totaal = 0;
 
                 </div>
                 <div class="col-md-2">
-                    <h6 style="float:left">Aantal:</h6> <input type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                    <h6 style="float:left">Aantal:</h6> <input class="aantal" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
                 </div>
                 <div class="col-md-2">
                     <h6> € <?php echo $result[$id2]["RecommendedRetailPrice"]?> </h6>
