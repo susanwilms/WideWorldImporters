@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php session_start();
+
+$productgroup="";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,16 +27,16 @@
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="NoveltyItems.php">Novelty Items</a>
-                <a class="dropdown-item" href="#">Clothing</a>
-                <a class="dropdown-item" href="#">Mugs</a>
-                <a class="dropdown-item" href="#">T-Shirs</a>
-                <a class="dropdown-item" href="#">Airline Novelties</a>
-                <a class="dropdown-item" href="#">Computing Novelties</a>
-                <a class="dropdown-item" href="#">USB Novelties</a>
-                <a class="dropdown-item" href="#">Furry Footwear</a>
-                <a class="dropdown-item" href="#">Toys</a>
-                <a class="dropdown-item" href="#">Packaging Materials</a>
+                <a class="dropdown-item" href="<?php $productgroup=1; print("Categories.php?Productgroup=".$productgroup); ?>">Novelty Items</a>
+                <a class="dropdown-item" href="<?php $productgroup=2; print("Categories.php?Productgroup=".$productgroup); ?>">Clothing</a>
+                <a class="dropdown-item" href="<?php $productgroup=3; print("Categories.php?Productgroup=".$productgroup); ?>">Mugs</a>
+                <a class="dropdown-item" href="<?php $productgroup=4; print("Categories.php?Productgroup=".$productgroup); ?>">T-Shirs</a>
+                <a class="dropdown-item" href="<?php $productgroup=5; print("Categories.php?Productgroup=".$productgroup); ?>">Airline Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=6; print("Categories.php?Productgroup=".$productgroup); ?>">Computing Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=7; print("Categories.php?Productgroup=".$productgroup); ?>">USB Novelties</a>
+                <a class="dropdown-item" href="<?php $productgroup=8; print("Categories.php?Productgroup=".$productgroup); ?>">Furry Footwear</a>
+                <a class="dropdown-item" href="<?php $productgroup=9; print("Categories.php?Productgroup=".$productgroup); ?>">Toys</a>
+                <a class="dropdown-item" href="<?php $productgroup=10; print("Categories.php?Productgroup=".$productgroup); ?>">Packaging Materials</a>
             </div>
         </li>
         <!--        <li class="nav-item">-->
