@@ -3,27 +3,40 @@
 require_once '../connection.php';
 require_once '../header.php';
 require_once '../footer.php';
+$_SESSION['_' . 43] = 2;
+$_SESSION['_' . 23] = 20;
+print_r($_SESSION);
+
 ?>
 
 
 <div class="container pt-4 col-md-10">
-    <p>Producten:</p>
+    <h2 class="py-3">Je winkelmand</h2>
 
-    <div class="row" style="">
-        <div class="col-md-2">
-            <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje"
-                  width="100" height="100">
-        </div>
-        <div class="col-md-4">
-             <h4>Naam van het product</h4>
-            <h7>*aantal* Op voorraad.</h7>
+    <?php
+    foreach ($_SESSION as $id => $aantal) {
+        $id2 = substr($id, 1);
+        ?>
+        <div class="row py-2" style="">
+            <div class="col-md-2">
+                <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje"
+                     width="100" height="100">
+            </div>
+            <div class="col-md-4">
+                <h5><?php echo $result[$id2]['StockItemName']?></h5>
+                <h6>*aantal* Op voorraad.</h6>
+
+            </div>
+            <div class="col-md-4">
+                <h8>Aantal:</h8> <input type="number" value="<?php echo $_SESSION[$id]?>">
+            </div>
 
         </div>
-        <div class="col-md-4">
-            <h8> Aantal:</h8> <input type="number" value="6">
-        </div>
+        <?php
+    }
+    ?>
 
-    </div>
+
 
 </div>
 
