@@ -22,12 +22,22 @@ print_r($_SESSION);
                 <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje"
                      width="100" height="100">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-7">
                 <h5><?php echo $result[$id2]['StockItemName']?></h5>
-                <h6>*aantal* Op voorraad.</h6>
+
+
+                    <p>Math.floor(Math.random() * 100)) returns a random integer between 0 and 99
+                        (both included):</p>
+
+                    <p id="demo"></p>
+
+                    <script>
+                        document.getElementById("demo").innerHTML =
+                            Math.floor(Math.random() * 100);
+                    </script> Op voorraad.</h6>
 
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h8>Aantal:</h8> <input type="number" value="<?php echo $_SESSION[$id]?>">
             </div>
 
