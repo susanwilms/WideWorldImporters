@@ -10,7 +10,7 @@ $productgroup="";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../includes/default.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./includes/default.css" media="screen" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -54,7 +54,7 @@ $productgroup="";
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="/WideWorldImporters/cart/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
+            <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
         </li>
         <li class="nav-item">
             <i class="px-3 fas fa-user fa-lg"></i>

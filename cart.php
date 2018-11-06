@@ -1,7 +1,7 @@
 <?php
 
-require_once '../connection.php';
-require_once '../header.php';
+require_once './connection.php';
+require_once './header.php';
 
 
 if(!isset($_SESSION['cart'])) {
@@ -66,5 +66,5 @@ $totaal = 0;
 
 
 <?php
-require_once '../footer.php';
+require_once './footer.php';
 ?>
