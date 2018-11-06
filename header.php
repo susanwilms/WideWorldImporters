@@ -15,7 +15,7 @@
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="index.php">WWI</a>
-    <a href="index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
+    <a href="/index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
