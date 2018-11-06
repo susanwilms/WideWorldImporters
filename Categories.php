@@ -2,8 +2,9 @@
 
 require_once 'connection.php';
 require_once 'header.php';
+$groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = 1;");
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid;");
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;
