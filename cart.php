@@ -34,8 +34,6 @@ if (filter_has_var(INPUT_GET, "verlaag")) {
         $_SESSION['cart'][$id3]--;
     }
 
-
-
 }
 
 // checked of verhoog een value heeft, en er dus een artikel in aantal verhoogd moet worden
@@ -66,12 +64,12 @@ if (filter_has_var(INPUT_GET, "verhoog")) {
 
                 <div class="row py-2" style="">
                     <div class="col-md-1">
-                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail plaatje" alt="Plaatje" width="100" height="100">
+                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje" width="100" height="100">
                     </div>
 
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <!--    print de naam van het artikel   -->
-                        <h5><?php echo $result[$id2]['StockItemName']?></h5>
+                        <h5 class="plaatje"><?php echo $result[$id2]['StockItemName']?></h5>
                         <h6> Op voorraad.</h6>
                     </div>
 
@@ -87,7 +85,7 @@ if (filter_has_var(INPUT_GET, "verhoog")) {
                         </form>
 
                         <!--    print het aantal van het artikel    -->
-                        <input class="aantal" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                        <input class="aantal form-control col-md-4" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
 
                         <!--    verhogen van aantal -->
                         <form method="get" action="">
