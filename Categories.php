@@ -112,7 +112,6 @@ $array = array($driester, $vierster, $vijfster);
     <div class="container pt-4">
         <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
-
         <div id="test">
                 <div id="Element">
                     Pagina  << < 1 van 2 > >>
