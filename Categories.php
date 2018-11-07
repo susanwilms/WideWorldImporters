@@ -11,12 +11,23 @@ $conn = null;
 ?>
 <style>
     #main_container div{
-        top: 50%;
+        top: 10%
+    }
+    #img_productgroup{
+        margin-top: 5%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 </style>
-<div class="container pt-5" id="main_container"">
+<div id="main_container">
+<div class="container pt-5">
+<img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
+    <button onclick="sorteerfunctie()">Sorteer op prijs</button>
 
     <div class="row">
+
         <?php
         foreach($resultcat1 as $r){
             $stock_id = $r[0];
@@ -36,6 +47,7 @@ $conn = null;
             </div>
         <?php } ?>
     </div>
+</div>
 </div>
 
 </body>
