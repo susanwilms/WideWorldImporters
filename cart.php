@@ -97,7 +97,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                         <div class="col-md-12">
                             <!--    print het aantal van het artikel    -->
-                            <input class="form-control col-md-3" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                            <input class="form-control col-md-3 aantalproducten" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
 
 
                             <!--    verlagen van aantal -->
