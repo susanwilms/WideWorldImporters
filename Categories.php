@@ -21,10 +21,10 @@ $conn = null;
                 <div class="card mb-4 text-center" style="background-color:rgb(155, 155, 155);">
                     <div class="card-body text-center text-white">
                         <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
-                        <p class="text-left card-text">Prijs:<span style="float:right;"><?php echo $stock_price; ?></span></p>
+                        <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
                     </div>
-                    <a href="images/placeholder.png">
-                        <img class="card-img" src="images/placeholder.png" alt="<?php echo $stock_name; ?>">
+                    <a href="/WideWorldImporters\single_item_page\single.php?ProductID=<?php echo $stock_id?>">
+                        <img class="card-img" src="images/<?php print("PicProduct".$stock_id)?>.png" alt="<?php echo $stock_name?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
                     </a>
                 </div>
             </div>
