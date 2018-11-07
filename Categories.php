@@ -62,7 +62,7 @@ $conn = null;
             </button>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?php $productgroup=$groupid; print('/WideWorldImporters/Categories.php?Productgroup='.$productgroup.'&sort=UnitPrice ASC')?>">Van laag naar hoog</a>
-                <a class="dropdown-item" href="<?php print('?p=' . $_GET['p'] . '&sort=si.UnitPrice DESC')?>">Van hoog naar laag</a>
+                <a class="dropdown-item" href="<?php $productgroup=$groupid; print('/WideWorldImporters/Categories.php?Productgroup='.$productgroup.'&sort=UnitPrice DESC')?>">Van hoog naar laag</a>
             </div>
         </div>
 
