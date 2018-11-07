@@ -55,11 +55,11 @@ $productgroup="";
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-<<<<<<< HEAD
+
             <a href="/cart/index.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
-=======
+
             <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
->>>>>>> 0b63b9c61c0cb808daa7f49e678a2135d5743f57
+
         </li>
         <li class="nav-item">
             <i class="px-3 fas fa-user fa-lg"></i>
