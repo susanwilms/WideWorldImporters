@@ -6,10 +6,13 @@ require_once 'header.php';
 
 $groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit=filter_input(INPUT_GET, "LIMIT", FILTER_SANITIZE_STRING);
+if(empty($limit)){
+    $limit=24;
+}
 $productgroup=$groupid;
 $generalURL= "/WideWorldImporters/Categories.php?Productgroup=". $productgroup;
 $gesorteerd=FALSE;
-$gesorteerd = false;
 if(isset($_GET['gesorteerd'])){
     $gesorteerd = (boolean)$_GET['gesorteerd'];
 }
@@ -20,7 +23,7 @@ if(empty($sort)){
 }
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY $sort LIMIT");
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY $sort LIMIT $limit;");
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;
@@ -55,7 +58,9 @@ $conn = null;
     .btn-group a:active {
 
     }
-
+    #test{
+        display: inline;
+    }
 
 
 </style>
@@ -64,8 +69,8 @@ $conn = null;
 <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
 
 
-    <div id="test">
-        <div class="dropdown">
+    <div>
+        <div id="test">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                 Sort by
             </button>
@@ -81,11 +86,12 @@ $conn = null;
                 }
                 ?>
             </div>
+            <div id="btnContainer">
+                <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+                <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+            </div>
         </div>
-        <div id="btnContainer">
-            <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
-            <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
-        </div>
+
         <script>
 
             function listView(){
