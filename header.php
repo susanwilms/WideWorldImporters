@@ -28,16 +28,17 @@ $productgroup="";
                 Categorieën
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="<?php $productgroup=1; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Novelty Items</a>
-                <a class="dropdown-item" href="<?php $productgroup=2; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Clothing</a>
-                <a class="dropdown-item" href="<?php $productgroup=3; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Mugs</a>
-                <a class="dropdown-item" href="<?php $productgroup=4; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">T-Shirs</a>
-                <a class="dropdown-item" href="<?php $productgroup=5; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Airline Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=6; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Computing Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=7; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">USB Novelties</a>
-                <a class="dropdown-item" href="<?php $productgroup=8; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Furry Footwear</a>
-                <a class="dropdown-item" href="<?php $productgroup=9; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Toys</a>
-                <a class="dropdown-item" href="<?php $productgroup=10; print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>">Packaging Materials</a>
+                <?php
+                $categorien = array("Novelty Items","Clothing","Mugs","T-Shirs","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
+                $productgroup=0;
+
+                for($i=0;$i<count($categorien);$i++){
+                    $productgroup++;
+                ?>
+                <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
+                <?php
+                }
+                ?>
             </div>
         </li>
 <!--                <li class="nav-item">-->
