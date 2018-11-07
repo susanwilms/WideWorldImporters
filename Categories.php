@@ -3,7 +3,7 @@
 require_once 'connection.php';
 require_once 'header.php';
 
-$sort="";
+
 $groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
 
