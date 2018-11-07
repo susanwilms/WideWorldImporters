@@ -111,7 +111,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                     <div class="col-md-6">
                         <!--    print de naam van het artikel   -->
-                        <h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5>
+                        <a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5></a>
                         <h6> Op voorraad.</h6>
                     </div>
 
