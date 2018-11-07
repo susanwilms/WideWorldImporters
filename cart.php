@@ -63,13 +63,13 @@ if (filter_has_var(INPUT_GET, "verhoog")) {
                 // haalt underscores weg zodat de query werkt
                 $id2 = substr($id, 1);
                 ?>
+
                 <div class="row py-2" style="">
                     <div class="col-md-1">
-                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje"
-                             width="100" height="100">
+                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail plaatje" alt="Plaatje" width="100" height="100">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <!--    print de naam van het artikel   -->
                         <h5><?php echo $result[$id2]['StockItemName']?></h5>
                         <h6> Op voorraad.</h6>
