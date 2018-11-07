@@ -8,6 +8,8 @@ $stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPr
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;
+if(isset($_POST['nw_update']))
+    "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice"
 ?>
 <style>
     #main_container div{
@@ -24,7 +26,14 @@ $conn = null;
 <div id="main_container">
 <div class="container pt-5">
 <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
-    <button onclick="sorteerfunctie()">Sorteer op prijs</button>
+    <form method="POST" action="Categories.php">
+        <input type="submit" name="Sorteer op prijs van laag naar hoog" value="Sorteer op prijs van laag naar hoog"/>
+    </form>
+    <script>
+        function Sort_Function2(){
+            document.getElementById("HnL").statement = "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice DESC";
+        }
+    </script>
 
     <div class="row">
 
