@@ -53,7 +53,7 @@ $productgroup="";
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a href="/cart"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
+            <a href="/cart/index.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
         </li>
         <li class="nav-item">
             <i class="px-3 fas fa-user fa-lg"></i>
