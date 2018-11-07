@@ -55,7 +55,7 @@ $array = array($driester, $vierster, $vijfster);
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
+        width: 80%;
     }
     .btn-group button {
         padding: 0px 10px;  /*Some padding */
@@ -110,7 +110,7 @@ $array = array($driester, $vierster, $vijfster);
 
 <div id="main_container">
     <div class="container pt-4">
-        <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
+        <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
 
         <div id="test">
