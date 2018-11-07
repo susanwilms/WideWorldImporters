@@ -2,14 +2,23 @@
 
 require_once 'connection.php';
 require_once 'header.php';
+
+$sort="";
 $groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
+$sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+
+
+if(empty($sort)){
+    $sort="sisg.StockItemID";
+}
+
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid;");
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY $sort;");
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;
-if(isset($_POST['nw_update']))
-    "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice"
+
+
 ?>
 <style>
     #main_container div{
@@ -37,18 +46,26 @@ if(isset($_POST['nw_update']))
 <div id="main_container">
 <div class="container pt-4">
 <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
-<<<<<<< HEAD
-    <form method="POST" action="Categories.php">
-        <input type="submit" name="Sorteer op prijs van laag naar hoog" value="Sorteer op prijs van laag naar hoog"/>
-    </form>
-    <script>
-        function Sort_Function2(){
-            document.getElementById("HnL").statement = "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice DESC";
-        }
-    </script>
-=======
+
+
+
+<!--    <script>-->
+<!--        function Sort_Function2(){-->
+<!--            document.getElementById("HnL").statement = "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice DESC";-->
+<!--        }-->
+<!--    </script>-->
+
     <div id="test">
-        <button onclick="sorteerfunctie()">Sorteer op prijs</button>
+        <div class="dropdown">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                Sort by
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="<?php $productgroup=$groupid; print('/WideWorldImporters/Categories.php?Productgroup='.$productgroup.'&sort=UnitPrice ASC')?>">Van laag naar hoog</a>
+                <a class="dropdown-item" href="<?php print('?p=' . $_GET['p'] . '&sort=si.UnitPrice DESC')?>">Van hoog naar laag</a>
+            </div>
+        </div>
+
         <div class="btn-group">
             Aantal:
             <button type="button" class="btn btn-secondary" onclick>24</button>
@@ -56,7 +73,7 @@ if(isset($_POST['nw_update']))
             <button type="button" class="btn btn-secondary">96</button>
         </div>
     </div>
->>>>>>> e48174f2d943d85eba4b528b0c19e095e752017e
+
 
     <div class="row">
 
