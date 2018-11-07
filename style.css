@@ -101,3 +101,8 @@ button.btn.btn-secondary {
     margin-top: -39px;
     margin-left: 3px;
 }
+.form-delete-button{
+    float: right;
+    margin-top: -39px;
+    margin-left: 25px;
+}
