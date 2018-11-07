@@ -77,6 +77,11 @@ $array = array($driester, $vierster, $vijfster);
 
     #Element {
         margin-right: 10%;
+
+    }
+
+    #lol {
+    
     }
 
 </style>
