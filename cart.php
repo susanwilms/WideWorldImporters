@@ -95,23 +95,23 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                         <h6 class="aantal" style="float:left">Aantal:</h6>
 
-                        <div class="col-md-8 ">
-                            <!--    verlagen van aantal -->
-                            <form method="post" action="">
-                                <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
-                                <input name="id3" type="hidden" value="<?php echo $id?>">
-                                <button type="submit" name="verlaag" value="1" class="btn btn-secondary">-</button>
-                            </form>
-
+                        <div class="col-md-12">
                             <!--    print het aantal van het artikel    -->
                             <input class="form-control col-md-3" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
 
-                            <!--    verhogen van aantal -->
-                            <form method="post" action="">
-                                <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
-                                <input name="id3" type="hidden" value="<?php echo $id?>">
-                                <button type="submit" name="verhoog" value="1" class="btn btn-secondary">+</button>
-                            </form>
+
+                            <!--    verlagen van aantal -->
+                                <form method="post" action="" class="form-button">
+                                    <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
+                                    <input name="id3" type="hidden" value="<?php echo $id?>">
+                                    <button type="submit" name="verlaag" value="1" class="btn btn-secondary">-</button>
+                                </form>
+                                <!--    verhogen van aantal -->
+                                <form method="post" action="" class="form-button">
+                                    <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
+                                    <input name="id3" type="hidden" value="<?php echo $id?>">
+                                    <button type="submit" name="verhoog" value="1" class="btn btn-secondary">+</button>
+                                </form>
                         </div>
 
                     </div>
