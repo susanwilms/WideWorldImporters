@@ -195,7 +195,7 @@ $array = array($driester, $vierster, $vijfster);
                 ?>
                 <div class="col-md-3 col-12 pb-2">
                     <div class="card mb-4 text-center" style="background-color:rgb(155, 155, 155);">
-                        <a href="/WideWorldImporters\single.php?ProductID=<?php echo $stock_id?>">
+                        <a href="/WideWorldImporters/single.php?ProductID=<?php echo $stock_id?>">
                             <img class="card-img" src="images/<?php print("PicProduct".$stock_id)?>.png" alt="<?php echo $stock_name?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
                         </a>
                         <div class="card-body text-center text-white">
