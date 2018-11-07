@@ -49,6 +49,21 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
     $_SESSION['cart'][$id3]++;
 }
 
+
+if (filter_has_var(INPUT_POST, "productID")) {
+    $ProductID = filter_input(INPUT_POST, "productID", FILTER_SANITIZE_STRING);
+    $add_aantal = filter_input(INPUT_POST, "Aantal", FILTER_SANITIZE_STRING);
+
+    if ($_SESSION['cart'] == 0) {
+        unset($_SESSION['cart']);
+    }
+    if (!isset($_SESSION['cart']['_' . $ProductID])) {
+        $_SESSION['cart']['_' . $ProductID] = $add_aantal;
+    } elseif (isset($_SESSION['cart']['_' . $ProductID])) {
+        $_SESSION['cart']['_' . $ProductID]+= $add_aantal;
+    }
+}
+
 ?>
 
 
@@ -72,15 +87,15 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
 
                     <div class="col-md-6">
                         <!--    print de naam van het artikel   -->
-                        <h5 class="plaatje"><?php echo $result[$id2]['StockItemName']?></h5>
+                        <h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5>
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
 
                         <h6 class="aantal" style="float:left">Aantal:</h6>
 
-                        <div class="col-md-7 ">
+                        <div class="col-md-8 ">
                             <!--    verlagen van aantal -->
                             <form method="post" action="">
                                 <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
@@ -89,7 +104,7 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
                             </form>
 
                             <!--    print het aantal van het artikel    -->
-                            <input class="form-control col-md-3" type="text" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                            <input class="form-control col-md-3" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
 
                             <!--    verhogen van aantal -->
                             <form method="post" action="">
@@ -103,13 +118,13 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
 
                     <div class="col-md-1">
                         <!--    print de prijs van het artikel   -->
-                        <h6> € <?php echo $result[$id2]["RecommendedRetailPrice"]?> </h6>
+                        <h6> € <?php echo $result[$id2 - 1]["RecommendedRetailPrice"]?> </h6>
                     </div>
 
                 </div>
                 <?php
                 // berekend het totaal van de winkelmand
-                $totaal+= ($_SESSION['cart'][$id] * $result[$id2]["RecommendedRetailPrice"]);
+                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
             ?>
