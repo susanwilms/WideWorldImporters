@@ -76,6 +76,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
     // hoe veel er toegevoegd moet worden
     $add_aantal = filter_input(INPUT_POST, "Aantal", FILTER_SANITIZE_STRING);
 
+    // het toegevoegde aantal moet altijd 1 of hoger zijn
+    if ($add_aantal < 1) {
+        $add_aantal = 1;
+    }
+
     // als cart eerst leeg was, unset cart
     if ($_SESSION['cart'] == 0) {
         unset($_SESSION['cart']);
