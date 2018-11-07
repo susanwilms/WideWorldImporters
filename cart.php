@@ -12,11 +12,46 @@ $totaal = 0;
 
 //session_destroy();
 
+// checked of verlaag een value heeft, en er dus een artikel in aantal verlaagd moet worden
+if (filter_has_var(INPUT_GET, "verlaag")) {
+    // haalt het id uit het hidden veld
+    $id3 = filter_input(INPUT_GET, "id3", FILTER_SANITIZE_STRING);
+    $verlaag = filter_input(INPUT_GET, "verlaag", FILTER_SANITIZE_STRING);
+
+    // als het aantal al 1 is, moet het niet lager, maar moet het hele artikel uit de mand
+    if ($_SESSION['cart'][$id3] == 1) {
+        // unset het artikel zodat het uit de mand is
+        unset($_SESSION['cart'][$id3]);
+
+        // checked of er nog meer artikelen in de mand zitten of niet
+        if (count($_SESSION['cart']) == 0) {
+            // als er niks meer in de mand zit, mag de hele mand sessie weg, en op 0 gezet worden
+            unset($_SESSION['cart']);
+            $_SESSION['cart'] = 0;
+        }
+    } else {
+        // anders gaat het aantal gewoon 1 omlaag
+        $_SESSION['cart'][$id3]--;
+    }
+
+
+
+}
+
+// checked of verhoog een value heeft, en er dus een artikel in aantal verhoogd moet worden
+if (filter_has_var(INPUT_GET, "verhoog")) {
+    // haalt het id uit het hidden veld
+    $id3 = filter_input(INPUT_GET, "id3", FILTER_SANITIZE_STRING);
+    $verhoog = filter_input(INPUT_GET, "verhoog", FILTER_SANITIZE_STRING);
+
+    // verhoogd het artikel met $id3 met 1
+    $_SESSION['cart'][$id3]++;
+}
 
 ?>
 
 
-    <div class="container pt-5 col-md-10">
+    <div class="container pt-5 col-md-8">
         <h2 class="pt-5 pb-4">Je winkelmand</h2>
 
         <?php
@@ -29,7 +64,7 @@ $totaal = 0;
                 $id2 = substr($id, 1);
                 ?>
                 <div class="row py-2" style="">
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje"
                              width="100" height="100">
                     </div>
@@ -41,11 +76,30 @@ $totaal = 0;
                     </div>
 
                     <div class="col-md-2">
+
+                        <h6 style="float:left">Aantal:</h6>
+
+                        <!--    verlagen van aantal -->
+                        <form method="get" action="">
+                            <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
+                            <input name="id3" type="hidden" value="<?php echo $id?>">
+                            <button type="submit" name="verlaag" value="1" class="btn-sm btn-primary">-</button>
+                        </form>
+
                         <!--    print het aantal van het artikel    -->
-                        <h6 style="float:left">Aantal:</h6> <input class="aantal" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                        <input class="aantal" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+
+                        <!--    verhogen van aantal -->
+                        <form method="get" action="">
+                            <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
+                            <input name="id3" type="hidden" value="<?php echo $id?>">
+                            <button type="submit" name="verhoog" value="1" class="btn-sm btn-primary">+</button>
+                        </form>
+
+
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <!--    print de prijs van het artikel   -->
                         <h6> € <?php echo $result[$id2]["RecommendedRetailPrice"]?> </h6>
                     </div>
