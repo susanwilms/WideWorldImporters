@@ -164,7 +164,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
             ?>
                 <!--    Afreken button en totaalprijs   -->
-                <button style="float:right" type="submit" class="btn btn-primary">Afrekenen</button>
+                <button style="float:right" type="submit" class="btn checkout-button">Afrekenen</button>
                 <h4 style="float:right" class="col-md-2">Totaal: € <?php echo $totaal?> </h4>
                 <?php
             }
