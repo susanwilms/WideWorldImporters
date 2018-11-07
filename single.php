@@ -34,13 +34,13 @@ $colorName =        $colorresult[0]["ColorName"];
 
     <div class="info col-md-6 pt-4 right" id="productinfo">
         <form action="cart.php" method="post">
-            <input type="hidden" value="<?php print($productid); ?>">
+            <input type="hidden" name="productID" value="<?php print($productid); ?>">
 
             <p><?php print($productName); ?></p>
             <p>Prijs: €<?php print($productPrice); ?></p>
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
             <p><?php print($productInStock); ?> items op voorraad</p>
-            <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur</span><br>
+            <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur: <?php echo $colorName; ?></span><br>
             <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" placeholder="1">
             <input class="submitbutton" type="submit" name="verzenden" value="Voeg toe">
         </form>
