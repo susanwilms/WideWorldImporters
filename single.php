@@ -41,7 +41,7 @@ $colorName =        $colorresult[0]["ColorName"];
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
             <p><?php print($productInStock); ?> items op voorraad</p>
             <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur: <?php echo $colorName; ?></span><br>
-            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" value="1">
+            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" value="1">
             <input class="submitbutton" type="submit" name="verzenden" value="Voeg toe">
         </form>
 

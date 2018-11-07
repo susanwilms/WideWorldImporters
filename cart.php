@@ -88,9 +88,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
         $_SESSION['cart']['_' . $ProductID]+= $add_aantal;
     }
 }
-
 ?>
-
     <div class="container pt-5 col-md-8">
         <h2 class="pt-5 pb-4">Je winkelmand</h2>
 
@@ -169,7 +167,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 <?php
             }
         else {
-            //wanneer ['cart'] dus 0 is is de winkelmand leeg
+            // wanneer ['cart'] dus 0 is is de winkelmand leeg
             echo 'Je winkelmand is leeg';
             echo '<br>';
 
@@ -177,7 +175,6 @@ if (filter_has_var(INPUT_POST, "productID")) {
         ?>
 
     </div>
-
 
 <?php
 require_once './footer.php';
