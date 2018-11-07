@@ -57,18 +57,22 @@ $array = array($driester, $vierster, $vijfster);
         margin-right: auto;
         width: 50%;
     }
-    .btn-group a {
-        padding: 5px 10px; /* Some padding *
-        float: left; /* Float the buttons side by side */
+    .btn-group button {
+        padding: 0px 10px;  /*Some padding */
+        float: right; /* Float the buttons side by side */
     }
-    .btn-group a:active {
 
-    }
     #test{
-        margin-top: 10px;
+        margin-top: 5%;
+        text-align: center;
+
     }
     #test #Element {
     display: inline-block;
+    }
+    #test #Element:first-child {
+        display: inline-block;
+        margin-left: 3%;
     }
 
     #Element {
@@ -106,7 +110,7 @@ $array = array($driester, $vierster, $vijfster);
 
         <div id="test">
                 <div id="Element">
-                    Pagina << < 1 > >>
+                    Pagina  << < 1 van 2 > >>
                 </div>
                 <div id="Element">
                     Sorteert op:
@@ -128,9 +132,9 @@ $array = array($driester, $vierster, $vijfster);
                 </div>
 
 
-
-                <div id="Element" class="btn-group">
+                <div id="Element">
                     Aantal:
+                <div class="btn-group">
                     <button class="btn btn-secondary" onclick="location.href='<?php
                     if(!$gesorteerd){
                         $temporyURL2=$generalURL;
@@ -162,6 +166,7 @@ $array = array($driester, $vierster, $vijfster);
                     }
 
                     ?>'" >96</button>
+                </div>
                 </div>
                 <div id="Element">
                     <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
