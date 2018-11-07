@@ -12,11 +12,12 @@ $totaal = 0;
 
 //session_destroy();
 
+
 // checked of verlaag een value heeft, en er dus een artikel in aantal verlaagd moet worden
-if (filter_has_var(INPUT_GET, "verlaag")) {
+if (filter_has_var(INPUT_POST, "verlaag")) {
     // haalt het id uit het hidden veld
-    $id3 = filter_input(INPUT_GET, "id3", FILTER_SANITIZE_STRING);
-    $verlaag = filter_input(INPUT_GET, "verlaag", FILTER_SANITIZE_STRING);
+    $id3 = filter_input(INPUT_POST, "id3", FILTER_SANITIZE_STRING);
+    $verlaag = filter_input(INPUT_POST, "verlaag", FILTER_SANITIZE_STRING);
 
     // als het aantal al 1 is, moet het niet lager, maar moet het hele artikel uit de mand
     if ($_SESSION['cart'][$id3] == 1) {
@@ -29,20 +30,20 @@ if (filter_has_var(INPUT_GET, "verlaag")) {
             unset($_SESSION['cart']);
             $_SESSION['cart'] = 0;
         }
-    } else {
+
+    } elseif (isset($_SESSION['cart'][$id3])) {
+        if ($_SESSION['cart'][$id3] > 1)
         // anders gaat het aantal gewoon 1 omlaag
         $_SESSION['cart'][$id3]--;
     }
 
-
-
 }
 
 // checked of verhoog een value heeft, en er dus een artikel in aantal verhoogd moet worden
-if (filter_has_var(INPUT_GET, "verhoog")) {
+if (filter_has_var(INPUT_POST, "verhoog")) {
     // haalt het id uit het hidden veld
-    $id3 = filter_input(INPUT_GET, "id3", FILTER_SANITIZE_STRING);
-    $verhoog = filter_input(INPUT_GET, "verhoog", FILTER_SANITIZE_STRING);
+    $id3 = filter_input(INPUT_POST, "id3", FILTER_SANITIZE_STRING);
+    $verhoog = filter_input(INPUT_POST, "verhoog", FILTER_SANITIZE_STRING);
 
     // verhoogd het artikel met $id3 met 1
     $_SESSION['cart'][$id3]++;
@@ -64,38 +65,39 @@ if (filter_has_var(INPUT_GET, "verhoog")) {
                 $id2 = substr($id, 1);
                 ?>
 
-                <div class="row py-2" style="">
+                <div class="row py-2">
                     <div class="col-md-1">
-                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail plaatje" alt="Plaatje" width="100" height="100">
+                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje" width="100" height="100">
                     </div>
 
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <!--    print de naam van het artikel   -->
-                        <h5><?php echo $result[$id2]['StockItemName']?></h5>
+                        <h5 class="plaatje"><?php echo $result[$id2]['StockItemName']?></h5>
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
 
-                        <h6 style="float:left">Aantal:</h6>
+                        <h6 class="aantal" style="float:left">Aantal:</h6>
 
-                        <!--    verlagen van aantal -->
-                        <form method="get" action="">
-                            <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
-                            <input name="id3" type="hidden" value="<?php echo $id?>">
-                            <button type="submit" name="verlaag" value="1" class="btn-sm btn-primary">-</button>
-                        </form>
+                        <div class="col-md-7 ">
+                            <!--    verlagen van aantal -->
+                            <form method="post" action="">
+                                <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
+                                <input name="id3" type="hidden" value="<?php echo $id?>">
+                                <button type="submit" name="verlaag" value="1" class="btn btn-secondary">-</button>
+                            </form>
 
-                        <!--    print het aantal van het artikel    -->
-                        <input class="aantal" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                            <!--    print het aantal van het artikel    -->
+                            <input class="form-control col-md-3" type="text" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
 
-                        <!--    verhogen van aantal -->
-                        <form method="get" action="">
-                            <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
-                            <input name="id3" type="hidden" value="<?php echo $id?>">
-                            <button type="submit" name="verhoog" value="1" class="btn-sm btn-primary">+</button>
-                        </form>
-
+                            <!--    verhogen van aantal -->
+                            <form method="post" action="">
+                                <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
+                                <input name="id3" type="hidden" value="<?php echo $id?>">
+                                <button type="submit" name="verhoog" value="1" class="btn btn-secondary">+</button>
+                            </form>
+                        </div>
 
                     </div>
 
