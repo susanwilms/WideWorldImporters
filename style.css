@@ -69,4 +69,5 @@
 .videoplayer{
     width: 47.5vw;
     height:25vw;
+    max-height: 300px;
 }
