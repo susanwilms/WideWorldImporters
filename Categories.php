@@ -21,8 +21,13 @@ $conn = null;
 
 ?>
 <style>
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
     #main_container div{
-        top: 10%
+        top: 10%;
     }
     #img_productgroup{
 
@@ -47,14 +52,6 @@ $conn = null;
 <div class="container pt-4">
 <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
 
-
-
-<!--    <script>-->
-<!--        function Sort_Function2(){-->
-<!--            document.getElementById("HnL").statement = "SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY si.UnitPrice DESC";-->
-<!--        }-->
-<!--    </script>-->
-
     <div id="test">
         <div class="dropdown">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -65,6 +62,32 @@ $conn = null;
                 <a class="dropdown-item" href="<?php $productgroup=$groupid; print('/WideWorldImporters/Categories.php?Productgroup='.$productgroup.'&sort=UnitPrice DESC')?>">Van hoog naar laag</a>
             </div>
         </div>
+        <div id="btnContainer">
+            <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+            <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+        </div>
+        <script>
+
+            function listView(){
+                $('#categorieen > div').removeClass('col-md-3').addClass('col-md-12');
+            }
+
+            function gridView(){
+                $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
+            }
+
+            /* Optional: Add active class to the current button (highlight it) */
+            var container = document.getElementById("btnContainer");
+            var btns = container.getElementsByClassName("btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function(){
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
+            }
+        </script>
+
 
         <div class="btn-group">
             Aantal:
@@ -75,7 +98,7 @@ $conn = null;
     </div>
 
 
-    <div class="row">
+    <div class="row" id="categorieen">
 
         <?php
         foreach($resultcat1 as $r){
@@ -83,7 +106,7 @@ $conn = null;
             $stock_name = $r[1];
             $stock_price = $r[2];
             ?>
-            <div class="col-md-3 pb-2">
+            <div class="col-md-3 col-12 pb-2">
                 <div class="card mb-4 text-center" style="background-color:rgb(155, 155, 155);">
                     <a href="/WideWorldImporters\single_item_page\single.php?ProductID=<?php echo $stock_id?>">
                         <img class="card-img" src="images/<?php print("PicProduct".$stock_id)?>.png" alt="<?php echo $stock_name?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
