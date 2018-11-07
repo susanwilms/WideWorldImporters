@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "root";
+$username = "susan";
 $password = "";
 $dbname = "wideworldimporters";
 
