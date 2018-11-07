@@ -15,12 +15,12 @@ $totaal = 0;
 
 // checked of verwijder een value heeft en dus een artikel gedelete moet worden
 if (filter_has_var(INPUT_POST, "verwijder")) {
-    $id3 = filter_input(INPUT_POST, "id3", FILTER_SANITIZE_STRING);
+    $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verwijder = filter_input(INPUT_POST, "verwijder", FILTER_SANITIZE_STRING);
 
     // checked of het product in de mand zit, als dat zo is, verwijder het
-    if (isset($_SESSION['cart'][$id3])) {
-        unset($_SESSION['cart'][$id3]);
+    if (isset($_SESSION['cart'][$post_id])) {
+        unset($_SESSION['cart'][$post_id]);
     }
 
     // checked of er nog meer artikelen in de mand zitten of niet
@@ -35,13 +35,13 @@ if (filter_has_var(INPUT_POST, "verwijder")) {
 // checked of verlaag een value heeft, en er dus een artikel in aantal verlaagd moet worden
 if (filter_has_var(INPUT_POST, "verlaag")) {
     // haalt het id uit het hidden veld
-    $id3 = filter_input(INPUT_POST, "id3", FILTER_SANITIZE_STRING);
+    $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verlaag = filter_input(INPUT_POST, "verlaag", FILTER_SANITIZE_STRING);
 
     // als het aantal al 1 is, moet het niet lager, maar moet het hele artikel uit de mand
-    if ($_SESSION['cart'][$id3] == 1) {
+    if ($_SESSION['cart'][$post_id] == 1) {
         // unset het artikel zodat het uit de mand is
-        unset($_SESSION['cart'][$id3]);
+        unset($_SESSION['cart'][$post_id]);
 
         // checked of er nog meer artikelen in de mand zitten of niet
         if (count($_SESSION['cart']) == 0) {
@@ -50,10 +50,10 @@ if (filter_has_var(INPUT_POST, "verlaag")) {
             $_SESSION['cart'] = 0;
         }
 
-    } elseif (isset($_SESSION['cart'][$id3])) {
-        if ($_SESSION['cart'][$id3] > 1)
+    } elseif (isset($_SESSION['cart'][$post_id])) {
+        if ($_SESSION['cart'][$post_id] > 1)
         // anders gaat het aantal gewoon 1 omlaag
-        $_SESSION['cart'][$id3]--;
+        $_SESSION['cart'][$post_id]--;
     }
 
 }
@@ -62,11 +62,11 @@ if (filter_has_var(INPUT_POST, "verlaag")) {
 // checked of verhoog een value heeft, en er dus een artikel in aantal verhoogd moet worden
 if (filter_has_var(INPUT_POST, "verhoog")) {
     // haalt het id uit het hidden veld
-    $id3 = filter_input(INPUT_POST, "id3", FILTER_SANITIZE_STRING);
+    $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verhoog = filter_input(INPUT_POST, "verhoog", FILTER_SANITIZE_STRING);
 
-    // verhoogd het artikel met $id3 met 1
-    $_SESSION['cart'][$id3]++;
+    // verhoogd het artikel met $post_id met 1
+    $_SESSION['cart'][$post_id]++;
 }
 
 
@@ -127,21 +127,21 @@ if (filter_has_var(INPUT_POST, "productID")) {
                                 <!--    deleten uit cart   -->
                                 <form method="post" action=""  class="form-delete-button">
                                     <!--    stuurt een hidden veld mee met het id van het product dat verwijderd moet worden-->
-                                    <input name="id3" type="hidden" value="<?php echo $id?>">
+                                    <input name="post_id" type="hidden" value="<?php echo $id?>">
                                     <button type="submit" name="verwijder" value="1" class="btn btn-secondary">x</button>
                                 </form>
 
                                 <!--    verlagen van aantal      -->
                                 <form method="post" action="" class="form-button">
                                     <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
-                                    <input name="id3" type="hidden" value="<?php echo $id?>">
+                                    <input name="post_id" type="hidden" value="<?php echo $id?>">
                                     <button type="submit" name="verlaag" value="1" class="btn btn-secondary">-</button>
                                 </form>
 
                                 <!--    verhogen van aantal     -->
                                 <form method="post" action="" class="form-button">
                                     <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
-                                    <input name="id3" type="hidden" value="<?php echo $id?>">
+                                    <input name="post_id" type="hidden" value="<?php echo $id?>">
                                     <button type="submit" name="verhoog" value="1" class="btn btn-secondary">+</button>
                                 </form>
 
@@ -172,7 +172,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
             //wanneer ['cart'] dus 0 is is de winkelmand leeg
             echo 'Je winkelmand is leeg';
             echo '<br>';
-            
+
             }
         ?>
 
