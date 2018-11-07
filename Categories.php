@@ -14,17 +14,36 @@ $conn = null;
         top: 10%
     }
     #img_productgroup{
+
         margin-top: 5%;
         display: block;
         margin-left: auto;
         margin-right: auto;
         width: 50%;
     }
+    .btn-group button {
+        border: 1px solid rbg(155, 255, 155);
+        color: white; /* White text */
+        padding: 5px 10px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        float: left; /* Float the buttons side by side */
+    }
+
+
+
 </style>
 <div id="main_container">
-<div class="container pt-5">
+<div class="container pt-4">
 <img id="img_productgroup" src="/WideWorldImporters/images/productgroup1.jpg">
-    <button onclick="sorteerfunctie()">Sorteer op prijs</button>
+    <div id="test">
+        <button onclick="sorteerfunctie()">Sorteer op prijs</button>
+        <div class="btn-group">
+            Aantal:
+            <button type="button" class="btn btn-secondary" onclick>24</button>
+            <button type="button" class="btn btn-secondary">48</button>
+            <button type="button" class="btn btn-secondary">96</button>
+        </div>
+    </div>
 
     <div class="row">
 
