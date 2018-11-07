@@ -1,4 +1,15 @@
-
+p{
+    font-size: 13px;
+}
+input{
+    font-size: 13px;
+}
+span{
+    font-size: 13px;
+}
+label{
+    font-size: 13px;
+}
 #product_img {
     height: 100vh;
     background-image: url('images/top_placeholder.png');
@@ -25,6 +36,11 @@
 }
 .carousel-indicators li{
     background-color: grey;
+}
+
+.carouselitem{
+    max-width: 20%;
+    max-height: 20%;
 }
 
 .carousel-indicators{
@@ -56,7 +72,7 @@
 
 .submitbutton{
     background-color: #1DAFEC;
-    border: 0px;
+    border: 1px solid #1DAFEC;
     color: white;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -66,8 +82,22 @@
     margin-right: 10px;
 }
 
+
 .videoplayer{
     width: 47.5vw;
     height:25vw;
     max-height: 300px;
+}
+
+button.btn.btn-secondary {
+    background-color: #1DAFEC;
+    border: 0px;
+    border-radius: 0;
+    width: 40px;
+    height: 40px;
+}
+.form-button{
+    float: right;
+    margin-top: -39px;
+    margin-left: 3px;
 }
