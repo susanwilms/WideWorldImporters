@@ -55,9 +55,6 @@ $productgroup="";
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-
-            <a href="/cart/index.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
-
             <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
 
         </li>
