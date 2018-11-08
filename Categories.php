@@ -3,6 +3,7 @@
 require_once 'connection.php';
 require_once 'header.php';
 
+##<--!ALl variables used in this document-->
 
 $groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
@@ -22,18 +23,30 @@ if(empty($sort)){
     $sort="sisg.StockItemID";
 }
 
+##<----------------------------------------------->
+
+
+##<-- SQL querry en connection configuration -->
+
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY $sort LIMIT $limit;");
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;
 
+##<------------------------------------------------->
+
+
+
+##<-- Generation of random review stars-->
 
 $driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
 $vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
 $vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 $rating = rand($driester, $vierster, $vijfster);
 $array = array($driester, $vierster, $vijfster);
+
+##<---------------------------------------->
 
 ?>
 
@@ -55,7 +68,7 @@ $array = array($driester, $vierster, $vijfster);
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 80%;
+        width: 70%;
     }
     .btn-group button {
         padding: 0px 10px;  /*Some padding */
@@ -110,8 +123,10 @@ $array = array($driester, $vierster, $vijfster);
 
 <div id="main_container">
     <div class="container pt-4">
+        <--! This is the category photo -->
         <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
+        <--! This is the different sorting element above the items -->
         <div id="test">
                 <div id="Element">
                     Pagina  << < 1 van 2 > >>
@@ -179,14 +194,18 @@ $array = array($driester, $vierster, $vijfster);
 
         </div>
 
+        <--! End of Sorting Elements -->
+
         <?php
 
 
         ?>
 
+        <--! This are the items -->
         <div class="row" id="categorieen">
 
             <?php
+            if(!empty($resultcat1)){
             foreach($resultcat1 as $r){
                 $stock_id = $r[0];
                 $stock_name = $r[1];
@@ -204,8 +223,12 @@ $array = array($driester, $vierster, $vijfster);
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php } }else{
+                echo "This category is empty.";
+            }?>
         </div>
+
+        <--! End of items -->
     </div>
 </div>
 
