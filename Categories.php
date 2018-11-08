@@ -43,7 +43,7 @@ $conn = null;
 $driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
 $vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
 $vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
-$rating = rand($driester, $vierster, $vijfster);
+
 $array = array($driester, $vierster, $vijfster);
 
 ##<---------------------------------------->
