@@ -123,10 +123,10 @@ $array = array($driester, $vierster, $vijfster);
 
 <div id="main_container">
     <div class="container pt-4">
-        <--! This is the category photo -->
+        <!-- This is the category photo -->
         <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
-        <--! This is the different sorting element above the items -->
+        <!-- This is the different sorting element above the items -->
         <div id="test">
                 <div id="Element">
                     Pagina  << < 1 van 2 > >>
@@ -194,14 +194,14 @@ $array = array($driester, $vierster, $vijfster);
 
         </div>
 
-        <--! End of Sorting Elements -->
+        <!-- End of Sorting Elements -->
 
         <?php
 
 
         ?>
 
-        <--! This are the items -->
+        <!-- This are the items -->
         <div class="row" id="categorieen">
 
             <?php
@@ -228,7 +228,7 @@ $array = array($driester, $vierster, $vijfster);
             }?>
         </div>
 
-        <--! End of items -->
+        <!-- End of items -->
     </div>
 </div>
 
