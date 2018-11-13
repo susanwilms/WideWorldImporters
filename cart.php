@@ -70,6 +70,17 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
 }
 
 
+// checked of verander een value heeft, en er dus een artikel in aantal veranderd moet worden
+if (filter_has_var(INPUT_POST, "verander")) {
+    // haalt het id uit het hidden veld
+    $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
+    $verander = filter_input(INPUT_POST, "verander", FILTER_SANITIZE_STRING);
+
+    // verhoogd het artikel met $post_id met 1
+    $_SESSION['cart'][$post_id] = $verander;
+}
+
+
 // haalt dingen uit post van productpagina en zet het in cart array
 if (filter_has_var(INPUT_POST, "productID")) {
     $ProductID = filter_input(INPUT_POST, "productID", FILTER_SANITIZE_STRING);
@@ -124,7 +135,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                         <div class="col-md-12">
                             <!--    print het aantal van het artikel    -->
-                            <input class="form-control col-md-3 aantalproducten" type="number" min="1" value="<?php echo $_SESSION['cart'][$id]?>">
+                            <form method="POST">
+                                <input class="form-control col-md-3 aantalproducten" type="number" min="1" name="verander" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input type="hidden" name="post_id" value="<?php echo $id?>">
+
+                            </form>
 
 
                                 <!--    deleten uit cart   -->
