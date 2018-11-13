@@ -55,6 +55,10 @@ $productgroup="";
 
     </ul>
     <ul class="navbar-nav">
+        <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <a href="/WideWorldImporters/index.php"><i class="fa fa-search"></i></button>
+        </form>
         <li class="nav-item">
             <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
 
