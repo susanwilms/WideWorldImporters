@@ -29,7 +29,10 @@ if(empty($sort)){
 ##<-- SQL querry en connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $groupid ORDER BY $sort LIMIT $limit;");
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY :sort LIMIT :limit;");
+$stmtcat1->bindParam(':groupid', $groupid);
+$stmtcat1->bindParam(':sort', $sort);
+$stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
 $conn = null;

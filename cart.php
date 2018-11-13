@@ -3,6 +3,10 @@
 require_once './connection.php';
 require_once './header.php';
 
+// SQL query voor id, naam, prijs
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
+$stmt->execute();
+$result = $stmt->fetchAll();
 
 // checked of er iets in de cart staat, als dat niet zo is wordt cart = 0.
 if(!isset($_SESSION['cart'])) {
