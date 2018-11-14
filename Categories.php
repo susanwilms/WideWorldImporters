@@ -186,6 +186,7 @@ $array = array($driester, $vierster, $vijfster);
                 </button>
                     <div class="dropdown-menu">
                     <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+
                     <!-- TODO: onthoud limit bij veranderen sortering -->
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
