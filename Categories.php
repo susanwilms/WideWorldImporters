@@ -19,19 +19,20 @@ if(isset($_GET['gesorteerd'])){
 }
 
 
-if(empty($sort)){
-    $sort="sisg.StockItemID";
+if(!isset($sort)){
+    $sort = 2;
 }
 
 ##<----------------------------------------------->
 
+$sort_options = array (0 => "UnitPrice ASC", 1 => "UnitPrice DESC", 2 => "sisg.StockItemID ASC");
+$sorted = $sort_options[$sort];
 
 ##<-- SQL querry en connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY :sort LIMIT :limit;");
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :limit;");
 $stmtcat1->bindParam(':groupid', $groupid);
-$stmtcat1->bindParam(':sort', $sort);
 $stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
@@ -96,9 +97,6 @@ $array = array($driester, $vierster, $vijfster);
 
     }
 
-    #lol {
-    
-    }
 
 </style>
 
@@ -135,17 +133,18 @@ $array = array($driester, $vierster, $vijfster);
                     Pagina  << < 1 van 2 > >>
                 </div>
                 <div id="Element">
-                    Sorteert op:
+                    Sorteer op:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                 </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'ASC'); ?>">Van laag naar hoog</a>
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'DESC'); ?>">Van hoog naar laag</a>
+                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 0); ?>">Van laag naar hoog</a>
+                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 1); ?>">Van hoog naar laag</a>
+                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 2); ?>">itemid (standaard)</a>
                         <?php
                         function makeUrl($theUrl, $sortby){
                             global $temporyURL;
-                            $temporyURL = "$theUrl&sort=UnitPrice $sortby&gesorteerd=1";
+                            $temporyURL = "$theUrl&sort=$sortby&gesorteerd=1";
 
                             print($temporyURL);
                         }
