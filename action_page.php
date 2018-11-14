@@ -20,6 +20,7 @@ $array = array($driester, $vierster, $vijfster);
 ##<!-- Search bar input -->
 $description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
 ?>
+<!-- Style for page -->
 <style xmlns="http://www.w3.org/1999/html">
 
     <style>
@@ -68,6 +69,7 @@ $description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
     }
 
 </style>
+<!-- Script for list or grid view -->
 <script>
 
     function listView(){
@@ -192,7 +194,8 @@ $resultcat1 = $stmtcat1->fetchAll();
                     </div>
                 </div>
             </div>
-        <?php } }else{
+        <?php } }
+        else{
         echo "This category is empty.";
     }?>
 </div>
