@@ -3,7 +3,7 @@
 require_once 'connection.php';
 require_once 'header.php';
 
-##<--!ALl variables used in this document-->
+##<--!All variables used in this document-->
 
 $groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
@@ -203,7 +203,7 @@ $array = array($driester, $vierster, $vijfster);
 
         ?>
 
-        <!-- This are the items -->
+        <!-- These are the items -->
         <div class="row" id="categorieen">
 
             <?php
