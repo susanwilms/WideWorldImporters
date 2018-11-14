@@ -48,81 +48,19 @@ $colorName =        $colorresult[0]["ColorName"];
         <div class="images">
             <div class="container">
                 <div class="row blog">
-                    <div class="col-md-12">
-                        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="col-sm-12">
+                        <?php
+                            foreach{
+                                
+                            }
 
-
-
-                            <!-- Carousel items -->
-                            <div class="carousel-inner">
-
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--.row-->
-                                </div>
-                                <!--.item-->
-
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--.row-->
-                                </div>
-                                <!--.item-->
-
-                            </div>
-                            <!--.carousel-inner-->
-                            <ol class="carousel-indicators">
-                                <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#blogCarousel" data-slide-to="1"></li>
-                            </ol>
-                        </div>
-                        <!--.Carousel-->
-
+                        ?>
+                        <img src="images/usbkabel-2.jpeg">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <iframe class="videoplayer"
                 src="https://www.youtube.com/embed/ixkoVwKQaJg">

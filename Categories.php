@@ -40,7 +40,6 @@ $conn = null;
 ##<------------------------------------------------->
 
 
-
 ##<-- Generation of random review stars-->
 
 $driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
