@@ -51,14 +51,7 @@ $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $producti
             <div class="container">
                 <div class="row blog">
                     <div class="col-sm-12">
-<<<<<<< HEAD
-=======
-                        <?php
-                            // foreach{
-                                
-                          //  }
->>>>>>> 21447ea70ea3ecd89ca62c9226762e4bef084c43
-
+                        
                         <img src="images/usbkabel-2.jpeg">
                     </div>
                 </div>
