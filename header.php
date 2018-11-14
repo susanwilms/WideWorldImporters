@@ -19,8 +19,13 @@ $productgroup="";
 <body>
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
+<<<<<<< HEAD
+
+    <a href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
+=======
     <a class="navbar-brand" href="/WideWorldImporters/index.php">WWI</a>
     <a href="/WideWorldImporters/index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
+>>>>>>> 286630876bb5e8024ba092cd62b5e3cca735cd87
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">

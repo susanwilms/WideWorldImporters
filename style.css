@@ -1,3 +1,38 @@
+<<<<<<< HEAD
+/* fonts */
+@import url('https://fonts.googleapis.com/css?family=Rochester');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600');
+
+nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
+    height: 80px;
+    box-shadow: none !important;
+}
+
+#logo{
+    width: 15%;
+}
+#logo-img{
+    width: 100%;
+}
+a#brand {
+    position: absolute;
+    left: 40%;
+    font-family: rochester;
+    font-size: 30px;
+    padding-top: 0px;
+}
+
+a#navbardrop {
+    font-family: raleway;
+    font-weight: 300;
+}
+.dropdown-menu.show {
+    font-family: raleway;
+    font-weight: 300;
+}
+
+=======
+>>>>>>> 286630876bb5e8024ba092cd62b5e3cca735cd87
 p{
     font-size: 13px;
 }
