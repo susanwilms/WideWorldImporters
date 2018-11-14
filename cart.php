@@ -69,8 +69,27 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verhoog = filter_input(INPUT_POST, "verhoog", FILTER_SANITIZE_STRING);
 
-    // verhoogd het artikel met $post_id met 1
-    $_SESSION['cart'][$post_id]++;
+    if ($_SESSION['cart'][$post_id] >= 100) {
+        // kan niet hoger dan 100, dus doe niks.
+
+        ?>
+        <br>
+        <br>
+        <div class="container col-sm-8 mt-5 mb-0">
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
+            </div>
+        </div>
+
+
+        <?php
+        // TODO: melding over aantal hoger dan 100
+    } else {
+        // verhoogd het artikel met $post_id met 1
+        $_SESSION['cart'][$post_id]++;
+    }
+
 }
 
 
@@ -79,6 +98,11 @@ if (filter_has_var(INPUT_POST, "verander")) {
     // haalt het id uit het hidden veld
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verander = filter_input(INPUT_POST, "verander", FILTER_SANITIZE_STRING);
+
+    // het toegevoegde aantal moet altijd 100 of lager zijn
+    if ($verander > 100) {
+        $verander = 100;
+    }
 
     // verhoogd het artikel met $post_id met 1
     $_SESSION['cart'][$post_id] = $verander;
@@ -96,16 +120,26 @@ if (filter_has_var(INPUT_POST, "productID")) {
         $add_aantal = 1;
     }
 
+    // het toegevoegde aantal moet altijd 100 of lager zijn
+    if ($add_aantal > 100) {
+        $add_aantal = 100;
+    }
+
     // als cart eerst leeg was, unset cart
     if ($_SESSION['cart'] == 0) {
         unset($_SESSION['cart']);
     }
-    // als er nog niet al een product met zelfde is is, set aantal op doorgegeven aantal
+    // als er nog niet al een product met zelfde ID is, set aantal op doorgegeven aantal
     if (!isset($_SESSION['cart']['_' . $ProductID])) {
         $_SESSION['cart']['_' . $ProductID] = $add_aantal;
         //als dat er al wel is, tel bestaande aantal op bij nieuwe aantal
     } elseif (isset($_SESSION['cart']['_' . $ProductID])) {
-        $_SESSION['cart']['_' . $ProductID]+= $add_aantal;
+        // maar kan weer niet hoger dan 100, dus dan wordt het gewoon 100
+        if ($_SESSION['cart']['_' . $ProductID] + $add_aantal >= 100) {
+            $_SESSION['cart']['_' . $ProductID] = 100;
+        } else {
+            $_SESSION['cart']['_' . $ProductID]+= $add_aantal;
+        }
     }
 }
 ?>
@@ -140,7 +174,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <div class="col-md-12">
                             <!--    print het aantal van het artikel    -->
                             <form method="POST">
-                                <input class="form-control col-md-3 aantalproducten" type="number" min="1" name="verander" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-md-3 aantalproducten" type="number" min="1" max="100" name="verander" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
 
                             </form>
