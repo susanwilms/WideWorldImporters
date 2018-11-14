@@ -3,6 +3,10 @@
 require_once './connection.php';
 require_once './header.php';
 
+// SQL query voor id, naam, prijs
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
+$stmt->execute();
+$result = $stmt->fetchAll();
 
 // checked of er iets in de cart staat, als dat niet zo is wordt cart = 0.
 if(!isset($_SESSION['cart'])) {
@@ -182,7 +186,10 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
             ?>
                 <!--    Afreken button en totaalprijs   -->
+            <form method="get" action="/WideWorldImporters/afrekenen.php">
                 <button style="float:right" type="submit" class="btn checkout-button">Afrekenen</button>
+            </form>
+                
                 <h4 style="float:right" class="col-md-2">Totaal: € <?php echo $totaal?> </h4>
                 <?php
             }
