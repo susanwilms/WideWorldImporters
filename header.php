@@ -8,14 +8,14 @@ $productgroup="";
     <title>Wide World Importers</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./includes/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./includes/default.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="./includes/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
@@ -45,16 +45,6 @@ $productgroup="";
         </li>
 
         <a class="navbar-brand" id="brand" href="/WideWorldImporters/index.php">Wide World Importers</a>
-<!--                <li class="nav-item">-->
-<!--                <form class="form-inline px-5" action="/action_page.php">-->
-<!--                    <div class="input-group input-group-sm">-->
-<!--                        <input type="text" name="search" class="form-control">-->
-<!--                    </div>-->
-<!--                    <div class="input-group-append">-->
-<!--                        <button class="btn-sm btn-secondary" type="submit">Zoeken</button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--                </li>-->
 
     </ul>
     <ul class="navbar-nav">

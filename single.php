@@ -27,7 +27,7 @@ $colorName =        $colorresult[0]["ColorName"];
 
 ?>
 
-<div class="container col-md-12 pt-8" st>
+<div class="container col-md-12 pt-8">
 
     <div class="img col-md-6 left" id="product_img">
     </div>
@@ -41,88 +41,26 @@ $colorName =        $colorresult[0]["ColorName"];
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
             <p><?php print($productInStock); ?> items op voorraad</p>
             <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur: <?php echo $colorName; ?></span><br>
-            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" value="1">
+            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" max="100" value="1">
             <input class="submitbutton" type="submit" name="verzenden" value="Voeg toe">
         </form>
 
         <div class="images">
             <div class="container">
                 <div class="row blog">
-                    <div class="col-md-12">
-                        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="col-sm-12">
+                        <?php
+                            // foreach{
+                                
+                          //  }
 
-
-
-                            <!-- Carousel items -->
-                            <div class="carousel-inner">
-
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--.row-->
-                                </div>
-                                <!--.item-->
-
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 carouselitem">
-                                            <a href="#">
-                                                <img src="http://placehold.it/250x250" alt="Image" style="max-width:100%;">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!--.row-->
-                                </div>
-                                <!--.item-->
-
-                            </div>
-                            <!--.carousel-inner-->
-                            <ol class="carousel-indicators">
-                                <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#blogCarousel" data-slide-to="1"></li>
-                            </ol>
-                        </div>
-                        <!--.Carousel-->
-
+                        ?>
+                        <img src="images/usbkabel-2.jpeg">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <iframe class="videoplayer"
                 src="https://www.youtube.com/embed/ixkoVwKQaJg">
