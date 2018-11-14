@@ -4,11 +4,13 @@ require_once 'header.php';
 
 ##<--!All variables used in this document-->
 
-$productgroup=filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
-$sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit=filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$productgroup= (int)filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
+$sort= (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit= (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
 $generalURL= "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
+
 
 // zet limit standaard op 24, de default waarde
 if(empty($limit)){
@@ -16,8 +18,15 @@ if(empty($limit)){
 }
 
 // zet sorteer standaard op 0 wanneer deze niet geset is (de default sort dus)
-if(!isset($sort)){
+if(empty($sort)){
     $sort = 0;
+}
+
+// Standard moet page 0, ook moet page 0 zijn wanneer ze op page 1 drukken.
+if(empty($page) || $page==1){
+    $page=0;
+}else{
+    $page=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
 }
 
 // array met alle mogelijke sorteer opties
@@ -30,11 +39,20 @@ $sorted = $sort_options[$sort];
 ##<-- SQL querry en connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :limit;");
-$stmtcat1->bindParam(':groupid', $productgroup);
-$stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmtcat1->execute();
-$resultcat1 = $stmtcat1->fetchAll();
+$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmtcat->bindParam(':groupid', $productgroup);
+$stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmtcat->bindParam(':page', $page, PDO::PARAM_INT);
+$stmtcat->execute();
+$resultcat1 = $stmtcat->fetchAll();
+
+##Met deze querry tel je de aantal records van een group, dit gebruiken wij voor pagination
+$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$aantalPages= $nRows/$limit;
+$aantalPages=ceil($aantalPages); //Bepaal de aantal pages.
+
+
+
 $conn = null;
 
 ##<------------------------------------------------->
@@ -130,8 +148,36 @@ $array = array($driester, $vierster, $vijfster);
 
         <!-- This is the different sorting element above the items -->
         <div id="test">
+
+            <!--Pagination-->
+            <?php
+
+
+            ?>
                 <div id="Element">
-                    Pagina  << < 1 van 2 > >>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <?php
+                            //Generate the amount of pages needed
+                            for($i=1; $i<=$aantalPages; $i++){
+                                ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
+                                <?php
+                            }?>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
                 <div id="Element">
                     Sorteer op:
@@ -141,9 +187,9 @@ $array = array($driester, $vierster, $vijfster);
                     <div class="dropdown-menu">
                     <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
                     <!-- TODO: onthoud limit bij veranderen sortering -->
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=0'; ?>">Standaard</a>
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=1'; ?>">Prijs oplopend</a>
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=2'; ?>">Prijs aflopend</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
                     </div>
                 </div>
 
@@ -152,9 +198,9 @@ $array = array($driester, $vierster, $vijfster);
                     Aantal:
                 <div class="btn-group">
                 <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24"; ?>'">24</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48"; ?>'">48</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96"; ?>'">96</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=${page}"; ?>'">24</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=${page}"; ?>'">48</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=${page}"; ?>'">96</button>
                 </div>
                 </div>
                 <div id="Element">
