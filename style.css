@@ -12,6 +12,8 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
 }
 #logo-img{
     width: 100%;
+    max-width: 120px;
+
 }
 a#brand {
     position: absolute;
