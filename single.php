@@ -29,7 +29,7 @@ $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $producti
 
 ?>
 
-<div class="container col-md-12 pt-8" st>
+<div class="container col-md-12 pt-8">
 
     <div class="img col-md-6 left" id="product_img">
     </div>
@@ -43,7 +43,7 @@ $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $producti
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
             <p><?php print($productInStock); ?> items op voorraad</p>
             <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur: <?php echo $colorName; ?></span><br>
-            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" value="1">
+            <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" max="100" value="1">
             <input class="submitbutton" type="submit" name="verzenden" value="Voeg toe">
         </form>
 
@@ -51,6 +51,13 @@ $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $producti
             <div class="container">
                 <div class="row blog">
                     <div class="col-sm-12">
+<<<<<<< HEAD
+=======
+                        <?php
+                            // foreach{
+                                
+                          //  }
+>>>>>>> 21447ea70ea3ecd89ca62c9226762e4bef084c43
 
                         <img src="images/usbkabel-2.jpeg">
                     </div>
