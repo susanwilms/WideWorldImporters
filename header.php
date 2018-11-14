@@ -19,8 +19,8 @@ $productgroup="";
 <body>
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="/WideWorldImporters/index.php">WWI</a>
-    <a href="/WideWorldImporters/index.php"><i class="pr-5 fas fa-home fa-lg"></i></a>
+
+    <a href="/WideWorldImporters/index.php"><img id="logo" src="images/logo.png"></a>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
@@ -42,6 +42,8 @@ $productgroup="";
                 ?>
             </div>
         </li>
+
+        <a class="navbar-brand" id="brand" href="/WideWorldImporters/index.php">Wide World Importers</a>
 <!--                <li class="nav-item">-->
 <!--                <form class="form-inline px-5" action="/action_page.php">-->
 <!--                    <div class="input-group input-group-sm">-->
@@ -55,9 +57,17 @@ $productgroup="";
 
     </ul>
     <ul class="navbar-nav">
-        <form action="/action_page.php">
+        <form action="action_page.php" method="post">
             <input type="text" placeholder="Search.." name="search">
+<<<<<<< HEAD
             <a href="/WideWorldImporters/index.php"><i class="fa fa-search"></i></button>
+=======
+<<<<<<< HEAD
+            <a href="/WideWorldImporters/index.php"><i class="fa fa-search"></i></a>
+=======
+            <input type="submit" name="verstuur" value="send">
+>>>>>>> dfdd36cfd51ade43cb7ea9d4bceaa7e51cde6b46
+>>>>>>> parent of 0d7e67c... Revert "Merge branch 'Development' of https://github.com/susanwilms/WideWorldImporters into Development"
         </form>
         <li class="nav-item">
             <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
