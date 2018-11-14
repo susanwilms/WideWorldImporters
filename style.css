@@ -1,22 +1,3 @@
-/* fonts */
-@import url('https://fonts.googleapis.com/css?family=Rochester');
-
-nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
-    height: 80px;
-    box-shadow: none !important;
-}
-
-#logo{
-    width: 15%;
-
-}
-a#brand {
-    position: absolute;
-    left: 40%;
-    font-family: rochester;
-    font-size: 30px;
-    padding-top: 0px;
-}
 p{
     font-size: 13px;
 }
