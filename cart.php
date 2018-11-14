@@ -224,7 +224,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 <button style="float:right" type="submit" class="btn checkout-button">Afrekenen</button>
             </form>
                 
-                <h4 style="float:right" class="col-md-2">Totaal: € <?php echo $totaal?> </h4>
+                <h4 style="float:right" class="col-md-2">Totaal: € <?php echo number_format($totaal, 2, ",",".")?> </h4>
                 <?php
             }
         else {
