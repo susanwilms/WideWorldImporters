@@ -140,10 +140,9 @@ $array = array($driester, $vierster, $vijfster);
                 </button>
                     <div class="dropdown-menu">
                     <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
-                    <!-- TODO: onthoud limit bij veranderen sortering -->
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=0'; ?>">Standaard</a>
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=1'; ?>">Prijs oplopend</a>
-                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=2'; ?>">Prijs aflopend</a>
+                        <a class="dropdown-item" href="<?php echo $generalURL . "&sort=0&limit=${limit}"; ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo $generalURL . "&sort=1&limit=${limit}"; ?>">Prijs oplopend</a>
+                        <a class="dropdown-item" href="<?php echo $generalURL . "&sort=2&limit=${limit}"; ?>">Prijs aflopend</a>
                     </div>
                 </div>
 
