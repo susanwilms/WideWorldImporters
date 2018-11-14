@@ -7,7 +7,7 @@ $productid = $_GET['ProductID'];
 require_once('header.php');
 include ('connection.php');
 
-$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = " . $productid);
+$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = ${productid}");
 
 $select->execute();
 $result = $select->fetchAll();

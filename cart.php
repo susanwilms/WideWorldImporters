@@ -186,7 +186,10 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
             ?>
                 <!--    Afreken button en totaalprijs   -->
+            <form method="get" action="/WideWorldImporters/afrekenen.php">
                 <button style="float:right" type="submit" class="btn checkout-button">Afrekenen</button>
+            </form>
+                
                 <h4 style="float:right" class="col-md-2">Totaal: € <?php echo $totaal?> </h4>
                 <?php
             }
