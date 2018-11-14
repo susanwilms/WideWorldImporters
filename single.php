@@ -50,9 +50,9 @@ $colorName =        $colorresult[0]["ColorName"];
                 <div class="row blog">
                     <div class="col-sm-12">
                         <?php
-                            foreach{
+                            // foreach{
                                 
-                            }
+                          //  }
 
                         ?>
                         <img src="images/usbkabel-2.jpeg">
