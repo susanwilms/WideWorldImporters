@@ -12,6 +12,7 @@ $productgroup="";
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./includes/default.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -57,10 +58,13 @@ $productgroup="";
 
     </ul>
     <ul class="navbar-nav">
-        <form action="action_page.php" method="post">
-            <input type="text" placeholder="Search.." name="search">
-            <input type="submit" name="verstuur" value="send">
-        </form>
+        <div class="searchbox">
+            <form action="action_page.php" method="post">
+                <input type="text" placeholder="Search.." name="search">
+                <input type="submit" name="verstuur" value="zoek">
+            </form>
+        </div>
+
         <li class="nav-item">
             <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
 

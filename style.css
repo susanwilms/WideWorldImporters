@@ -28,6 +28,25 @@ a#navbardrop {
 .dropdown-menu.show {
     font-family: raleway;
     font-weight: 300;
+    border-radius: 0;
+    border: 0px;
+    background: #F8F9FA;
+}
+
+.searchbox{
+    border: 1px solid grey;
+    background-color: white;
+}
+input[type="text"] {
+    border: 0px;
+    font-family: raleway;
+    padding-left: 10px;
+}
+input[type="submit"] {
+    border: 0px;
+    font-family: raleway;
+    background-color: lightgrey;
+    height:100%;
 }
 
 p{
