@@ -10,29 +10,158 @@
 require_once('header.php');
 include ('connection.php');
 
+##<!-- Random generated reviews -->
 $driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
 $vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
 $vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
 $array = array($driester, $vierster, $vijfster);
-
+##<!-- End reviews -->
+##<!-- Search bar input -->
 $description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
 ?>
-<style>
-    p{
+<!-- Style for page -->
+<style xmlns="http://www.w3.org/1999/html">
+
+    <style>
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    #main_container div{
+        top: 10%;
+    }
+    #img_productgroup{
+
+        margin-top: 5%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+    }
+    .btn-group button {
+        padding: 0px 10px;  /*Some padding */
+        float: right; /* Float the buttons side by side */
+    }
+
+    #test{
         margin-top: 5%;
         text-align: center;
 
     }
-
-    p{
+    #test #Element {
+        display: inline-block;
+    }
+    #test #Element:first-child {
         display: inline-block;
         margin-left: 3%;
     }
 
-</style>
-<p><?php print($description); ?></p>
+    #Element {
+        margin-right: 10%;
 
+    }
+
+    #lol {
+
+    }
+
+</style>
+<!-- Script for list or grid view -->
+<script>
+
+    function listView(){
+        $('#categorieen > div').removeClass('col-md-3').addClass('col-md-12');
+    }
+
+    function gridView(){
+        $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
+    }
+
+    /* Optional: Add active class to the current button (highlight it) */
+    var container = document.getElementById("btnContainer");
+    var btns = container.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function(){
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+</script>
+
+<div id="main_container">
+    <div class="container pt-4">
+
+        <!-- This is the different sorting element above the items -->
+        <div id="test">
+            <div id="Element">
+                Pagina  << < 1 van 2 > >>
+            </div>
+            <div id="Element">
+                Sorteert op:
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?php makeUrl($generalURL, 'ASC'); ?>">Van laag naar hoog</a>
+                    <a class="dropdown-item" href="<?php makeUrl($generalURL, 'DESC'); ?>">Van hoog naar laag</a>
+                    <?php
+                    function makeUrl($theUrl, $sortby){
+                        global $temporyURL;
+                        $temporyURL = "$theUrl&sort=UnitPrice $sortby&gesorteerd=1";
+
+                        print($temporyURL);
+                    }
+                    ?>
+                </div>
+            </div>
+
+
+            <div id="Element">
+                Aantal:
+                <div class="btn-group">
+                    <button class="btn btn-secondary" onclick="location.href='<?php
+                    if(!$gesorteerd){
+                        $temporyURL2=$generalURL;
+                        $temporyURL2=$temporyURL2 . "&LIMIT=24";
+                        print($temporyURL2);
+                    }else{
+                        $temporyURL=$temporyURL . "&LIMIT=24";
+                        print($temporyURL);
+                    }
+
+                    ?>'">24</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php
+                    if(!$gesorteerd){
+                        $temporyURL2=$generalURL;
+                        $temporyURL2=$temporyURL2 . "&LIMIT=48";
+                        print($temporyURL2);
+                    }else{
+                        $temporyURL==$temporyURL . "&LIMIT=48";
+                    }
+
+                    ?>'" >48</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php
+                    if(!$gesorteerd){
+                        $temporyURL2=$generalURL;
+                        $temporyURL2=$temporyURL2 . "&LIMIT=96";
+                        print($temporyURL2);
+                    }else{
+                        $temporyURL==$temporyURL . "&LIMIT=96";
+                    }
+
+                    ?>'" >96</button>
+                </div>
+            </div>
+            <div id="Element">
+                <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+                <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+            </div>
+
+        </div>
 <?php
 $stmtcat1 = $conn->prepare('SELECT * FROM stockitems WHERE SearchDetails LIKE "%' . $description . '%"');
 
@@ -41,11 +170,6 @@ $stmtcat1->bindParam(':sort', $sort);
 $stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
-##$select->execute();
-##$result = $select->fetchAll();
-
-##$productName =      $result[0]["StockItemName"];
-##$productPrice =     $result[0]["RecommendedRetailPrice"];
 
 ?>
 
@@ -70,8 +194,8 @@ $resultcat1 = $stmtcat1->fetchAll();
                     </div>
                 </div>
             </div>
-        <?php } }else{
+        <?php } }
+        else{
         echo "This category is empty.";
     }?>
 </div>
-

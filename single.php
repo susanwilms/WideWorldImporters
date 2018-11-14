@@ -7,7 +7,7 @@ $productid = $_GET['ProductID'];
 require_once('header.php');
 include ('connection.php');
 
-$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = ${productid}");
+$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = " . $productid);
 
 $select->execute();
 $result = $select->fetchAll();
@@ -24,6 +24,8 @@ $color->execute();
 $colorresult = $color->fetchAll();
 
 $colorName =        $colorresult[0]["ColorName"];
+
+$images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $productid);
 
 ?>
 
@@ -49,12 +51,7 @@ $colorName =        $colorresult[0]["ColorName"];
             <div class="container">
                 <div class="row blog">
                     <div class="col-sm-12">
-                        <?php
-                            foreach{
-                                
-                            }
-
-                        ?>
+                        
                         <img src="images/usbkabel-2.jpeg">
                     </div>
                 </div>
