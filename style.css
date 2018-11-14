@@ -1,5 +1,6 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css?family=Rochester');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600');
 
 nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
     height: 80px;
@@ -8,7 +9,9 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
 
 #logo{
     width: 15%;
-
+}
+#logo-img{
+    width: 100%;
 }
 a#brand {
     position: absolute;
@@ -17,6 +20,16 @@ a#brand {
     font-size: 30px;
     padding-top: 0px;
 }
+
+a#navbardrop {
+    font-family: raleway;
+    font-weight: 300;
+}
+.dropdown-menu.show {
+    font-family: raleway;
+    font-weight: 300;
+}
+
 p{
     font-size: 13px;
 }

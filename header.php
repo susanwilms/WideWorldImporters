@@ -20,7 +20,7 @@ $productgroup="";
 <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
     <!-- Brand/logo -->
 
-    <a href="/WideWorldImporters/index.php"><img id="logo" src="images/logo.png"></a>
+    <a href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
 
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
