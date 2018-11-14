@@ -135,7 +135,7 @@ $array = array($driester, $vierster, $vijfster);
                     Pagina  << < 1 van 2 > >>
                 </div>
                 <div id="Element">
-                    Sorteert op:
+                    Sorteer op:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                 </button>
