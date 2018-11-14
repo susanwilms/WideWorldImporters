@@ -37,7 +37,7 @@ $productgroup="";
                 for($i=0;$i<count($categorien);$i++){
                     $productgroup++;
                 ?>
-                <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
+                <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
                 <?php
                 }
                 ?>

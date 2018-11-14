@@ -1,27 +1,28 @@
 <?php
-
 require_once 'connection.php';
 require_once 'header.php';
 
 ##<--!ALl variables used in this document-->
 
-$groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
+$productgroup=filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
 $sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit=filter_input(INPUT_GET, "LIMIT", FILTER_SANITIZE_STRING);
+$limit=filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+
+$generalURL= "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
+
+// zet limit standaard op 24, de default waarde
 if(empty($limit)){
     $limit=24;
 }
-$productgroup=$groupid;
-$generalURL= "/WideWorldImporters/Categories.php?Productgroup=". $productgroup;
-$gesorteerd=FALSE;
-if(isset($_GET['gesorteerd'])){
-    $gesorteerd = (boolean)$_GET['gesorteerd'];
+
+// zet sorteer standaard op 0 wanneer deze niet geset is (de default sort dus)
+if(!isset($sort)){
+    $sort = 0;
 }
 
-
-if(empty($sort)){
-    $sort="sisg.StockItemID";
-}
+// array met alle mogelijke sorteer opties
+$sort_options = array (0 => "sisg.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sorted = $sort_options[$sort];
 
 ##<----------------------------------------------->
 
@@ -29,9 +30,8 @@ if(empty($sort)){
 ##<-- SQL querry en connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY :sort LIMIT :limit;");
-$stmtcat1->bindParam(':groupid', $groupid);
-$stmtcat1->bindParam(':sort', $sort);
+$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :limit;");
+$stmtcat1->bindParam(':groupid', $productgroup);
 $stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
@@ -54,7 +54,8 @@ $array = array($driester, $vierster, $vijfster);
 
 <style xmlns="http://www.w3.org/1999/html">
 
-<style>
+/*TODO: verplaatsen naar style.css*/
+
     .row:after {
         content: "";
         display: table;
@@ -95,9 +96,6 @@ $array = array($driester, $vierster, $vijfster);
 
     }
 
-    #lol {
-    
-    }
 
 </style>
 
@@ -111,16 +109,18 @@ $array = array($driester, $vierster, $vijfster);
         $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    /* Optional: Add active class to the current button (highlight it) */
-    var container = document.getElementById("btnContainer");
-    var btns = container.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(){
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
+    // werkt niet
+    //
+    // /* Optional: Add active class to the current button (highlight it) */
+    // var container = document.getElementById("btnContainer");
+    // var btns = container.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener("click", function(){
+    //         var current = document.getElementsByClassName("active");
+    //         current[0].className = current[0].className.replace(" active", "");
+    //         this.className += " active";
+    //     });
+    // }
 </script>
 
 <div id="main_container">
@@ -134,21 +134,16 @@ $array = array($driester, $vierster, $vijfster);
                     Pagina  << < 1 van 2 > >>
                 </div>
                 <div id="Element">
-                    Sorteert op:
+                    Sorteer op:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                 </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'ASC'); ?>">Van laag naar hoog</a>
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'DESC'); ?>">Van hoog naar laag</a>
-                        <?php
-                        function makeUrl($theUrl, $sortby){
-                            global $temporyURL;
-                            $temporyURL = "$theUrl&sort=UnitPrice $sortby&gesorteerd=1";
-
-                            print($temporyURL);
-                        }
-                        ?>
+                    <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                    <!-- TODO: onthoud limit bij veranderen sortering -->
+                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=0'; ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=1'; ?>">Prijs oplopend</a>
+                        <a class="dropdown-item" href="<?php echo $generalURL . '&sort=2'; ?>">Prijs aflopend</a>
                     </div>
                 </div>
 
@@ -156,42 +151,15 @@ $array = array($driester, $vierster, $vijfster);
                 <div id="Element">
                     Aantal:
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=24";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL=$temporyURL . "&LIMIT=24";
-                        print($temporyURL);
-                    }
-
-                    ?>'">24</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=48";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=48";
-                    }
-
-                    ?>'" >48</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=96";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=96";
-                    }
-
-                    ?>'" >96</button>
+                <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24"; ?>'">24</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48"; ?>'">48</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96"; ?>'">96</button>
                 </div>
                 </div>
                 <div id="Element">
                     <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
-                    <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+                    <button class="btn" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
                 </div>
 
         </div>
