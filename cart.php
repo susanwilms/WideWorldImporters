@@ -232,7 +232,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
             echo 'Je winkelmand is leeg';
             echo '<br>';
             ?>
-            <form method="get" action="/WideWorldImporters/index.php">
+            <form class="mt-3" method="get" action="/WideWorldImporters/index.php">
                 <button style="float:left" type="submit" class="btn large-button">< Verder winkelen </button>
             </form>
 
