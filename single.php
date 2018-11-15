@@ -26,6 +26,10 @@ $colorresult = $color->fetchAll();
 $colorName =        $colorresult[0]["ColorName"];
 
 $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $productid);
+$images->execute();
+$imagesresult = $images->fetchAll();
+
+
 
 ?>
 
@@ -51,8 +55,12 @@ $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $producti
             <div class="container">
                 <div class="row blog">
                     <div class="col-sm-12">
-                        
-                        <img src="images/usbkabel-2.jpeg">
+                        <?php
+                        foreach($imagesresult as $number => $imginfo){
+                            $imgpath = $imgresult[$number]["img_path"];
+                            echo"<img src='" . $imgpath . "'>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
