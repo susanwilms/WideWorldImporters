@@ -14,7 +14,6 @@ $productgroup="";
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="./includes/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -37,7 +36,7 @@ $productgroup="";
                 for($i=0;$i<count($categorien);$i++){
                     $productgroup++;
                 ?>
-                <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?Productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
+                <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
                 <?php
                 }
                 ?>

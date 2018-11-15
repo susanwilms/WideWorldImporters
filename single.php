@@ -2,13 +2,13 @@
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
 
-$productid = $_GET['ProductID'];
+$productid = filter_input(INPUT_GET, "ProductID", FILTER_SANITIZE_STRING);
 
 require_once('header.php');
 include ('connection.php');
 
-$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = " . $productid);
-
+$select = $conn->prepare("SELECT * FROM stockitems WHERE StockItemID = :productid");
+$select->bindParam(':productid', $productid);
 $select->execute();
 $result = $select->fetchAll();
 

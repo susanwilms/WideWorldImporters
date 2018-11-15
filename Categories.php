@@ -1,27 +1,37 @@
 <?php
-
 require_once 'connection.php';
 require_once 'header.php';
 
-##<--!ALl variables used in this document-->
+##<--!All variables used in this document-->
 
-$groupid=filter_input(INPUT_GET, "Productgroup", FILTER_SANITIZE_STRING);
-$sort=filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit=filter_input(INPUT_GET, "LIMIT", FILTER_SANITIZE_STRING);
+$productgroup= (int)filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
+$sort= (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit= (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
+
+$generalURL= "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
+
+
+// zet limit standaard op 24, de default waarde
 if(empty($limit)){
     $limit=24;
 }
-$productgroup=$groupid;
-$generalURL= "/WideWorldImporters/Categories.php?Productgroup=". $productgroup;
-$gesorteerd=FALSE;
-if(isset($_GET['gesorteerd'])){
-    $gesorteerd = (boolean)$_GET['gesorteerd'];
-}
 
-
+// zet sorteer standaard op 0 wanneer deze niet geset is (de default sort dus)
 if(empty($sort)){
-    $sort="sisg.StockItemID";
+    $sort = 0;
 }
+
+// Standard moet page 0, ook moet page 0 zijn wanneer ze op page 1 drukken.
+if(empty($page) || $page==1){
+    $pages=0;
+}else{
+    $pages=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
+}
+
+// array met alle mogelijke sorteer opties
+$sort_options = array (0 => "sisg.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sorted = $sort_options[$sort];
 
 ##<----------------------------------------------->
 
@@ -29,12 +39,20 @@ if(empty($sort)){
 ##<-- SQL querry en connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat1 = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY :sort LIMIT :limit;");
-$stmtcat1->bindParam(':groupid', $groupid);
-$stmtcat1->bindParam(':sort', $sort);
-$stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmtcat1->execute();
-$resultcat1 = $stmtcat1->fetchAll();
+$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmtcat->bindParam(':groupid', $productgroup);
+$stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
+$stmtcat->execute();
+$resultcat1 = $stmtcat->fetchAll();
+
+##Met deze querry tel je de aantal records van een group, dit gebruiken wij voor pagination
+$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$aantalPages= $nRows/$limit;
+$aantalPages=ceil($aantalPages); //Bepaal de aantal pages.
+
+
+
 $conn = null;
 
 ##<------------------------------------------------->
@@ -54,7 +72,8 @@ $array = array($driester, $vierster, $vijfster);
 
 <style xmlns="http://www.w3.org/1999/html">
 
-<style>
+/*TODO: verplaatsen naar style.css*/
+
     .row:after {
         content: "";
         display: table;
@@ -95,9 +114,6 @@ $array = array($driester, $vierster, $vijfster);
 
     }
 
-    #lol {
-    
-    }
 
 </style>
 
@@ -111,16 +127,18 @@ $array = array($driester, $vierster, $vijfster);
         $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    /* Optional: Add active class to the current button (highlight it) */
-    var container = document.getElementById("btnContainer");
-    var btns = container.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(){
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
+    // werkt niet
+    //
+    // /* Optional: Add active class to the current button (highlight it) */
+    // var container = document.getElementById("btnContainer");
+    // var btns = container.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener("click", function(){
+    //         var current = document.getElementsByClassName("active");
+    //         current[0].className = current[0].className.replace(" active", "");
+    //         this.className += " active";
+    //     });
+    // }
 </script>
 
 <div id="main_container">
@@ -130,25 +148,65 @@ $array = array($driester, $vierster, $vijfster);
 
         <!-- This is the different sorting element above the items -->
         <div id="test">
+
+            <!--Pagination-->
+            <?php
+
+
+            ?>
                 <div id="Element">
-                    Pagina  << < 1 van 2 > >>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <?php
+                            if($page>1 ) {
+
+
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                       echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            //Generate the amount of pages needed
+                            for($i=1; $i<=$aantalPages; $i++){
+                                ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
+                                <?php
+                            }?>
+                            <?php
+                            if($page<$aantalPages) {
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                    echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }?>
+                        </ul>
+                    </nav>
                 </div>
                 <div id="Element">
-                    Sorteert op:
+                    Sorteer op:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                 </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'ASC'); ?>">Van laag naar hoog</a>
-                        <a class="dropdown-item" href="<?php makeUrl($generalURL, 'DESC'); ?>">Van hoog naar laag</a>
-                        <?php
-                        function makeUrl($theUrl, $sortby){
-                            global $temporyURL;
-                            $temporyURL = "$theUrl&sort=UnitPrice $sortby&gesorteerd=1";
+                    <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
 
-                            print($temporyURL);
-                        }
-                        ?>
+                    <!-- TODO: onthoud limit bij veranderen sortering -->
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
                     </div>
                 </div>
 
@@ -156,42 +214,15 @@ $array = array($driester, $vierster, $vijfster);
                 <div id="Element">
                     Aantal:
                 <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=24";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL=$temporyURL . "&LIMIT=24";
-                        print($temporyURL);
-                    }
-
-                    ?>'">24</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=48";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=48";
-                    }
-
-                    ?>'" >48</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=96";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=96";
-                    }
-
-                    ?>'" >96</button>
+                <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=1"; ?>'">48</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=1"; ?>'">96</button>
                 </div>
                 </div>
                 <div id="Element">
                     <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
-                    <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+                    <button class="btn" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
                 </div>
 
         </div>
@@ -203,7 +234,7 @@ $array = array($driester, $vierster, $vijfster);
 
         ?>
 
-        <!-- This are the items -->
+        <!-- These are the items -->
         <div class="row" id="categorieen">
 
             <?php
