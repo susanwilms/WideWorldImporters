@@ -24,9 +24,9 @@ if(empty($sort)){
 
 // Standard moet page 0, ook moet page 0 zijn wanneer ze op page 1 drukken.
 if(empty($page) || $page==1){
-    $page=0;
+    $pages=0;
 }else{
-    $page=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
+    $pages=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
 }
 
 // array met alle mogelijke sorteer opties
@@ -42,7 +42,7 @@ $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 $stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmtcat->bindParam(':groupid', $productgroup);
 $stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmtcat->bindParam(':page', $page, PDO::PARAM_INT);
+$stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
 $stmtcat->execute();
 $resultcat1 = $stmtcat->fetchAll();
 
