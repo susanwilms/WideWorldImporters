@@ -157,12 +157,22 @@ $array = array($driester, $vierster, $vijfster);
                 <div id="Element">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
+                            <?php
+                            if($page>1 ) {
+
+
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                       echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            ?>
                             <?php
                             //Generate the amount of pages needed
                             for($i=1; $i<=$aantalPages; $i++){
@@ -170,12 +180,18 @@ $array = array($driester, $vierster, $vijfster);
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
                             }?>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
+                            <?php
+                            if($page<$aantalPages) {
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                    echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }?>
                         </ul>
                     </nav>
                 </div>
@@ -199,9 +215,9 @@ $array = array($driester, $vierster, $vijfster);
                     Aantal:
                 <div class="btn-group">
                 <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=${page}"; ?>'">24</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=${page}"; ?>'">48</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=${page}"; ?>'">96</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=1"; ?>'">48</button>
+                    <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=1"; ?>'">96</button>
                 </div>
                 </div>
                 <div id="Element">
