@@ -75,7 +75,7 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
         ?>
         <br>
         <br>
-        <div class="container col-sm-8 mt-5 mb-0">
+        <div class="container col-sm-8 mt-5">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
@@ -173,7 +173,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                         <div class="col-md-12">
                             <!--    print het aantal van het artikel    -->
-                            <form method="POST">
+                            <form method="post">
                                 <input class="form-control col-md-3 aantalproducten" type="number" min="1" max="100" name="verander" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
 
@@ -207,8 +207,8 @@ if (filter_has_var(INPUT_POST, "productID")) {
                     </div>
 
                     <div class="col-md-1">
-                        <!--    print de prijs van het artikel   -->
-                        <h6> € <?php echo $result[$id2 - 1]["RecommendedRetailPrice"]?> </h6>
+                        <!--    print de prijs van het artikel (replaced komma met punt)  -->
+                        <h6> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
 
 
@@ -221,17 +221,22 @@ if (filter_has_var(INPUT_POST, "productID")) {
             ?>
                 <!--    Afreken button en totaalprijs   -->
             <form method="get" action="/WideWorldImporters/afrekenen.php">
-                <button style="float:right" type="submit" class="btn checkout-button">Afrekenen</button>
+                <button style="float:right" type="submit" class="btn large-button">Afrekenen</button>
             </form>
-                
-                <h4 style="float:right" class="col-md-2">Totaal: € <?php echo $totaal?> </h4>
+
+            <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($totaal, 2, ",",".")?> </h4>
                 <?php
             }
         else {
             // wanneer ['cart'] dus 0 is is de winkelmand leeg
             echo 'Je winkelmand is leeg';
             echo '<br>';
+            ?>
+            <form class="mt-3" method="get" action="/WideWorldImporters/index.php">
+                <button style="float:left" type="submit" class="btn large-button">< Verder winkelen </button>
+            </form>
 
+            <?php
             }
         ?>
 
