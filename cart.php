@@ -3,6 +3,7 @@
 require_once './connection.php';
 require_once './header.php';
 
+
 // SQL query used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
@@ -13,10 +14,13 @@ if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = 0;
 }
 
+
 $totaal = 0;
 
-// checks if delete has a value and if there's an article that has to be deleted
+
+// checks if remove_item has a value and if there's an article that has to be deleted
 if (filter_has_var(INPUT_POST, "remove_item")) {
+    // gets the product id from the hidden field
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $remove_item = filter_input(INPUT_POST, "remove_item", FILTER_SANITIZE_STRING);
 
@@ -34,9 +38,9 @@ if (filter_has_var(INPUT_POST, "remove_item")) {
 }
 
 
-// checks if lower has a value and if there is a product that needs to be lowered in amount
+// checks if decrease_quantity has a value and if there is a product that needs to be lowered in amount
 if (filter_has_var(INPUT_POST, "decrease_quantity")) {
-    // haalt het id uit het hidden veld
+    // gets the product id from the hidden field
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $decrease_quantity = filter_input(INPUT_POST, "decrease_quantity", FILTER_SANITIZE_STRING);
 
@@ -57,58 +61,54 @@ if (filter_has_var(INPUT_POST, "decrease_quantity")) {
         // anders gaat het aantal gewoon 1 omlaag
         $_SESSION['cart'][$post_id]--;
     }
-
 }
 
 
 // checks if raise has a value and if there is a product that needs raising in amount
 if (filter_has_var(INPUT_POST, "increase_quantity")) {
-    // takes the id from the hidden field
+    // gets the product id from the hidden field
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $increase_quantity = filter_input(INPUT_POST, "increase_quantity", FILTER_SANITIZE_STRING);
 
-    if ($_SESSION['cart'][$post_id] >= 100) {
-        // cant go higher than 100 so does nothing
+    // only increase the quantity if the quantity is lower than 100, because that's the set limit
+    if ($_SESSION['cart'][$post_id] < 100) {
+        // raises the product with $post_id by 1
+        $_SESSION['cart'][$post_id]++;
+    // else: don't increase the quantity, and show an alert
+    } else {
         ?>
-
         <div class="container col-sm-8">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
             </div>
         </div>
-
-
         <?php
-        // TODO: melding over aantal hoger dan 100
-    } else {
-        // raises the product with $post_id with 1
-        $_SESSION['cart'][$post_id]++;
     }
-
 }
 
 
-// checks if change has a value and if there is a product that needs changing
-if (filter_has_var(INPUT_POST, "verander")) {
-    // haalt het id uit het hidden veld
+// checks if modify_quantity has a value and if there is a product that needs changing
+if (filter_has_var(INPUT_POST, "modify_quantity")) {
+    // gets the product id from the hidden field
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
-    $verander = filter_input(INPUT_POST, "verander", FILTER_SANITIZE_STRING);
+    $modify_quantity = filter_input(INPUT_POST, "modify_quantity", FILTER_SANITIZE_STRING);
 
     // the added number has to be 100 or less at all times
-    if ($verander > 100) {
-        $verander = 100;
+    if ($modify_quantity > 100) {
+        $modify_quantity = 100;
     }
 
-    // raises the product with $post_id with 1
-    $_SESSION['cart'][$post_id] = $verander;
+    // raises the product with $post_id by 1
+    $_SESSION['cart'][$post_id] = $modify_quantity;
 }
 
 
-// haalt dingen uit post van productpagina en zet het in cart array
+// takes stuff from the single.php POST, and puts it in an array
 if (filter_has_var(INPUT_POST, "productID")) {
+    // gets the product id from the hidden field
     $ProductID = filter_input(INPUT_POST, "productID", FILTER_SANITIZE_STRING);
-    // hoe veel er toegevoegd moet worden
+    // the amount that should be added
     $add_aantal = filter_input(INPUT_POST, "Aantal", FILTER_SANITIZE_STRING);
 
     // the added amount needs to be 1 or higher at all times
@@ -130,7 +130,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
         $_SESSION['cart']['_' . $ProductID] = $add_aantal;
         // if there already is another product 
     } elseif (isset($_SESSION['cart']['_' . $ProductID])) {
-        // maar kan weer niet hoger dan 100, dus dan wordt het gewoon 100
+        // the total amount can't be higher than 100, so we set it to 100 if it is.
         if ($_SESSION['cart']['_' . $ProductID] + $add_aantal >= 100) {
             $_SESSION['cart']['_' . $ProductID] = 100;
         } else {
@@ -138,6 +138,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
         }
     }
 }
+
 ?>
     <div class="container col-md-8">
         <h2 class="pb-4">Je winkelmand</h2>
@@ -146,9 +147,9 @@ if (filter_has_var(INPUT_POST, "productID")) {
         // if session is not 0 ( which means there are items in the cart), the cart will be shown.
         if($_SESSION['cart'] != 0) {
 
-            //loopt door ieder item in de winkelmand sessie
+            // loops through every item in the ['cart'] array
             foreach ($_SESSION['cart'] as $id => $aantal) {
-                // haalt underscores weg zodat de query werkt
+                // removes the underscores for the SQL query
                 $id2 = substr($id, 1);
                 ?>
 
@@ -158,57 +159,52 @@ if (filter_has_var(INPUT_POST, "productID")) {
                     </div>
 
                     <div class="col-md-6">
-                        <!--    print de naam van het artikel   -->
+                        <!--    prints the name of the item   -->
                         <a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5></a>
                         <h6> Op voorraad.</h6>
                     </div>
 
                     <div class="col-md-4">
-
                         <h6 class="aantal" style="float:left">Aantal:</h6>
-
                         <div class="col-md-12">
-                            <!--    print het aantal van het artikel    -->
+                            <!--    prints the quantity of the item    -->
                             <form method="post">
-                                <input class="form-control col-md-3 aantalproducten" type="number" min="1" max="100" name="verander" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-md-3 aantalproducten" type="number" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
                             </form>
 
-                                <!--    deleten uit cart   -->
+                                <!--    remove from cart   -->
                                 <form method="post" action=""  class="form-delete-button">
-                                    <!--    stuurt een hidden veld mee met het id van het product dat verwijderd moet worden-->
+                                    <!--    sends a hidden field with the id of the product that should be deleted  -->
                                     <input name="post_id" type="hidden" value="<?php echo $id?>">
-                                    <button type="submit" name="remove_item" value="1" class="btn btn-secondary">x</button>
+                                    <button type="submit" name="remove_item" value="1" class="btn btn-secondary">&times;</button>
                                 </form>
 
-                                <!--    verlagen van aantal      -->
+                                <!--    decrease of quantity      -->
                                 <form method="post" action="" class="form-button">
-                                    <!--    stuurt een hidden veld mee met het id van het product dat verlaagd moet worden-->
+                                    <!--    sends a hidden field with the id of the product that should be decreased  -->
                                     <input name="post_id" type="hidden" value="<?php echo $id?>">
-                                    <button type="submit" name="decrease_quantity" value="1" class="btn btn-secondary">-</button>
+                                    <button type="submit" name="decrease_quantity" value="1" class="btn btn-secondary">&minus;</button>
                                 </form>
 
-                                <!--    verhogen van aantal     -->
+                                <!--    increase of quantity     -->
                                 <form method="post" action="" class="form-button">
-                                    <!--    stuurt een hidden veld mee met het id van het product dat verhoogd moet worden-->
+                                    <!--    sends a hidden field with the id of the product that should be increased  -->
                                     <input name="post_id" type="hidden" value="<?php echo $id?>">
-                                    <button type="submit" name="increase_quantity" value="1" class="btn btn-secondary">+</button>
+                                    <button type="submit" name="increase_quantity" value="1" class="btn btn-secondary">&plus;</button>
                                 </form>
-
 
                         </div>
-
                     </div>
 
                     <div class="col-md-1">
-                        <!--    print de prijs van het artikel (replaced komma met punt)  -->
+                        <!--    prints the price of the item (replace ',' with '.')  -->
                         <h6> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
 
-
                 </div>
                 <?php
-                // berekend het totaal van de winkelmand
+                // calculate the total price of every item in the cart
                 $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
@@ -222,7 +218,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 <?php
             }
         else {
-            // wanneer ['cart'] dus 0 is is de winkelmand leeg
+            // when ['cart'] is 0, the cart is empty
             echo 'Je winkelmand is leeg';
             echo '<br>';
             ?>

@@ -1,44 +1,41 @@
 <?php
+
 require_once 'connection.php';
 require_once 'header.php';
 
-##<--!All variables used in this document-->
 
-$productgroup= (int)filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
-$sort= (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit= (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
-$page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
+// all variables used in this document
+$productgroup = (int)filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
+$sort = (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit = (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
-$generalURL= "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
+$generalURL = "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
 
 
-// Change limit standard to 24
+// set limit to 24 if it isn't set (default limit)
 if(empty($limit)){
     $limit=24;
 }
 
-// Set sort standard to 0 when it isn't set (default sort)
+// set sort to 0 if it isn't set (default sort)
 if(empty($sort)){
     $sort = 0;
 }
 
-// Standard page has to be 0 even if user presses page 1
+// standard page has to be 0 even if user presses page 1
 if(empty($page) || $page==1){
     $pages=0;
 }else{
-    $pages=($page*$limit)-$limit; //Algorithm to determine the first number of the limit
+    $pages=($page*$limit)-$limit; // algorithm to determine the first number of the limit
 }
 
 // array with all possible sort options
 $sort_options = array (0 => "sisg.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
 $sorted = $sort_options[$sort];
 
-##<----------------------------------------------->
 
-
-##<-- SQL querry and connection configuration -->
-
-$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+// QUERY 1, for getting the itemID, Name, and price.
 $stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmtcat->bindParam(':groupid', $productgroup);
 $stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
@@ -46,27 +43,20 @@ $stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
 $stmtcat->execute();
 $resultcat1 = $stmtcat->fetchAll();
 
-##Using this query you count the amount of records in a group. We use this for pagination.
+// QUERY 2, used for counting the amount of records in an item group, for pagination
 $nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
-$Pagesamount= $nRows/$limit;
-$Pagesamount=ceil($Pagesamount); //Determine amount of pages
-
-
+$Pagesamount = $nRows/$limit;
+$Pagesamount = ceil($Pagesamount); // determine amount of pages
 
 $conn = null;
 
-##<------------------------------------------------->
 
-
-##<-- Generation of random review stars-->
-
+// generation of random review stars
 $threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
 $fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
 $fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
 $array = array($threestar, $fourstar, $fivestar);
-
-##<---------------------------------------->
 
 ?>
 
@@ -80,7 +70,7 @@ $array = array($threestar, $fourstar, $fivestar);
         $('#Categories > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    // Doesn't work
+    // doesn't work
     //
     // /* Optional: Add active class to the current button (highlight it) */
     // var container = document.getElementById("btnContainer");
@@ -108,7 +98,6 @@ $array = array($threestar, $fourstar, $fivestar);
                         <ul class="pagination">
                             <?php
                             if($page>1 ) {
-
 
                                 ?>
                                 <li class="page-item">

@@ -1,59 +1,61 @@
 <?php
 
-require_once('header.php');
-include ('connection.php');
+require_once 'header.php';
+require_once 'connection.php';
 
-##<!-- Random generated reviews -->
+
+// All variables used in this document
+$description = filter_input(INPUT_GET, "search", FILTER_SANITIZE_STRING);
+$sort = (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit = (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
+
+$generalURL = "/WideWorldImporters/action_page.php?search=". $description;
+
+
+// set limit to 24 if it isn't set (default limit)
+if(empty($limit)){
+    $limit = 24;
+}
+
+// set sort to 0 if it isn't set (default sort)
+if(empty($sort)){
+    $sort = 0;
+}
+
+// standard page has to be 0 even if user presses page 1.
+if(empty($page) || $page == 1){
+    $pages = 0;
+}else{
+    $pages = ($page * $limit) - $limit; // algorithm to determine the first number of the limit
+}
+
+// array with all possible sort options
+$sort_options = array (0 => "si.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sorted = $sort_options[$sort];
+
+
+// QUERY 1, for getting the itemID, Name, and price.
+$stmt_search = $conn->prepare("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%' ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmt_search->bindParam(':page', $pages, PDO::PARAM_INT);
+$stmt_search->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmt_search->execute();
+$resultcat1 = $stmt_search->fetchAll();
+
+// QUERY 2, used for counting the amount of records in a search query, for pagination
+$nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
+$aantalPages = $nRows / $limit;
+$aantalPages = ceil($aantalPages); // determine amount of pages
+
+$conn = NULL;
+
+
+// generation of random review stars
 $threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
 $fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
 $fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
 $array = array($threestar, $fourstar, $fivestar);
-##<!-- End reviews -->
-##<!-- Search bar input -->
-$sort= (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit= (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
-$page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
-
-$description = filter_input(INPUT_GET, "search", FILTER_SANITIZE_STRING);
-$generalURL= "/WideWorldImporters/action_page.php?search=". $description;
-
-
-// zet limit standaard op 24, de default waarde
-if(empty($limit)){
-    $limit=24;
-}
-
-// zet sorteer standaard op 0 wanneer deze niet geset is (de default sort dus)
-if(empty($sort)){
-    $sort = 0;
-}
-
-// Standard moet page 0, ook moet page 0 zijn wanneer ze op page 1 drukken.
-if(empty($page) || $page==1){
-    $pages=0;
-}else{
-    $pages=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
-}
-
-// array met alle mogelijke sorteer opties
-$sort_options = array (0 => "si.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
-$sorted = $sort_options[$sort];
-
-$stmtcat1 = $conn->prepare("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%' ORDER BY ${sorted} LIMIT :page,:limit;");
-
-$stmtcat1->bindParam(':page', $pages, PDO::PARAM_INT);
-$stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmtcat1->execute();
-$resultcat1 = $stmtcat1->fetchAll();
-
-##Met deze querry tel je de aantal records van een group, dit gebruiken wij voor pagination
-$nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
-$aantalPages= $nRows/$limit;
-$aantalPages=ceil($aantalPages); //Bepaal de aantal pages.
-
-$aantalpr = count($resultcat1);
-$conn = NULL;
 
 ?>
 <!-- Script for list or grid view -->
@@ -67,17 +69,19 @@ $conn = NULL;
         $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    /* Optional: Add active class to the current button (highlight it) */
-    var container = document.getElementById("btnContainer");
-    var btns = container.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(){
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-
-    }
+    // doesn't work
+    //
+    // /* Optional: Add active class to the current button (highlight it) */
+    // var container = document.getElementById("btnContainer");
+    // var btns = container.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener("click", function(){
+    //         var current = document.getElementsByClassName("active");
+    //         current[0].className = current[0].className.replace(" active", "");
+    //         this.className += " active";
+    //     });
+    //
+    // }
 </script>
 
 
@@ -132,12 +136,12 @@ $conn = NULL;
                 </div>
 
                 <div id="Element">
-                    Sorteert op:
+                    Sort by:
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                     </button>
                     <div class="dropdown-menu">
-                        <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
@@ -145,9 +149,9 @@ $conn = NULL;
                 </div>
 
                 <div id="Element">
-                    Aantal:
+                    Amount:
                     <div class="btn-group">
-                        <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
                         <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
                         <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=1"; ?>'">48</button>
                         <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=1"; ?>'">96</button>
@@ -193,4 +197,9 @@ $conn = NULL;
     </div>
 </div>
 
+</body>
+
+<?php
+require_once 'footer.php';
+?>
 
