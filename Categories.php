@@ -60,62 +60,15 @@ $conn = null;
 
 ##<-- Generation of random review stars-->
 
-$Threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
-$Fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
-$Fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
+$threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
+$fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
+$fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
-$array = array($Threestar, $Fourstar, $Fivestar);
+$array = array($threestar, $fourstar, $fivestar);
 
 ##<---------------------------------------->
 
 ?>
-
-<style xmlns="http://www.w3.org/1999/html">
-
-/*TODO: move to style.css*/
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    #main_container div{
-        top: 10%;
-    }
-    #img_productgroup{
-
-        margin-top: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%;
-    }
-    .btn-group button {
-        padding: 0px 10px;  /*Some padding */
-        float: right; /* Float the buttons side by side */
-    }
-
-    #test{
-        margin-top: 5%;
-        text-align: center;
-
-    }
-    #test #Element {
-    display: inline-block;
-    }
-    #test #Element:first-child {
-        display: inline-block;
-        margin-left: 3%;
-    }
-
-    #Element {
-        margin-right: 10%;
-
-    }
-
-
-</style>
 
 <script>
 
@@ -150,10 +103,6 @@ $array = array($Threestar, $Fourstar, $Fivestar);
         <div id="test">
 
             <!--Pagination-->
-            <?php
-
-
-            ?>
                 <div id="Element">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
@@ -197,14 +146,12 @@ $array = array($Threestar, $Fourstar, $Fivestar);
                 </div>
                 <div id="Element">
                     Sort by:
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                     <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
-                    <!-- TODO: Remember limit while changing sort -->
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standard</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Price ascending</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Price descending</a>
-
                     </div>
                 </div>
 

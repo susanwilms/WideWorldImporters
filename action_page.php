@@ -1,24 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: susanwilms
- * Date: 13/11/2018
- * Time: 14:08
- */
-
 
 require_once('header.php');
 include ('connection.php');
 
 ##<!-- Random generated reviews -->
-$driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
-$vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
-$vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
+$threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
+$fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
+$fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
-$array = array($driester, $vierster, $vijfster);
+$array = array($threestar, $fourstar, $fivestar);
 ##<!-- End reviews -->
 ##<!-- Search bar input -->
-
 $sort= (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
 $limit= (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
 $page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
@@ -91,6 +83,7 @@ $conn = NULL;
 
     <?php
     if($nRows == 0){
+        
         echo  "Geen artikelen gevonden";} else {
         ?>
 
