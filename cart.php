@@ -77,7 +77,7 @@ if (filter_has_var(INPUT_POST, "increase_quantity")) {
     // else: don't increase the quantity, and show an alert
     } else {
         ?>
-        <div class="container col-sm-8">
+        <div class="container col-sm-8 col-11">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
@@ -142,7 +142,6 @@ if (filter_has_var(INPUT_POST, "productID")) {
 ?>
     <div class="container col-xl-8 col-md-10 col-11">
         <h2 class="pb-4">Je winkelmand</h2>
-
         <?php
         // if session is not 0 (which means there are items in the cart), the cart will be shown.
         if($_SESSION['cart'] != 0) {
@@ -164,7 +163,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-xl-5 col-lg-6 col-md-6">
+                    <div class="col-xl-5 col-lg-5 col-md-6">
                         <h6 class="aantal" style="float:left">Aantal:</h6>
                         <div class="col-md-12">
                             <!--    prints the quantity of the item    -->
@@ -197,7 +196,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         </div>
                     </div>
 
-                    <div class="col-xl-1 col-lg-1 col-md-1">
+                    <div class="col-xl-1 col-lg-2 col-md-1">
                         <!--    prints the price of the item (replace ',' with '.')  -->
                         <h6> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
