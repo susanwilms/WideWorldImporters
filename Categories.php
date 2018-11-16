@@ -12,44 +12,44 @@ $page= (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 $generalURL= "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
 
 
-// zet limit standaard op 24, de default waarde
+// Change limit standard to 24
 if(empty($limit)){
     $limit=24;
 }
 
-// zet sorteer standaard op 0 wanneer deze niet geset is (de default sort dus)
+// Set sort standard to 0 when it isn't set (default sort)
 if(empty($sort)){
     $sort = 0;
 }
 
-// Standard moet page 0, ook moet page 0 zijn wanneer ze op page 1 drukken.
+// Standard page has to be 0 even if user presses page 1
 if(empty($page) || $page==1){
     $pages=0;
 }else{
-    $pages=($page*$limit)-$limit; //Algorithme om de eerste cijfer van de limit te bepalen.
+    $pages=($page*$limit)-$limit; //Algorithm to determine the first number of the limit
 }
 
-// array met alle mogelijke sorteer opties
+// array with all possible sort options
 $sort_options = array (0 => "sisg.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
 $sorted = $sort_options[$sort];
 
 ##<----------------------------------------------->
 
 
-##<-- SQL querry en connection configuration -->
+##<-- SQL querry and connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmtcat->bindParam(':groupid', $productgroup);
 $stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
 $stmtcat->execute();
 $resultcat1 = $stmtcat->fetchAll();
 
-##Met deze querry tel je de aantal records van een group, dit gebruiken wij voor pagination
-$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
-$aantalPages= $nRows/$limit;
-$aantalPages=ceil($aantalPages); //Bepaal de aantal pages.
+##Using this query you count the amount of records in a group. We use this for pagination.
+$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$Pagesamount= $nRows/$limit;
+$Pagesamount=ceil($Pagesamount); //Determine amount of pages
 
 
 
@@ -60,74 +60,27 @@ $conn = null;
 
 ##<-- Generation of random review stars-->
 
-$driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
-$vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
-$vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
+$threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
+$fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
+$fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
 
-$array = array($driester, $vierster, $vijfster);
+$array = array($threestar, $fourstar, $fivestar);
 
 ##<---------------------------------------->
 
 ?>
 
-<style xmlns="http://www.w3.org/1999/html">
-
-/*TODO: verplaatsen naar style.css*/
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    #main_container div{
-        top: 10%;
-    }
-    #img_productgroup{
-
-        margin-top: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%;
-    }
-    .btn-group button {
-        padding: 0px 10px;  /*Some padding */
-        float: right; /* Float the buttons side by side */
-    }
-
-    #test{
-        margin-top: 5%;
-        text-align: center;
-
-    }
-    #test #Element {
-    display: inline-block;
-    }
-    #test #Element:first-child {
-        display: inline-block;
-        margin-left: 3%;
-    }
-
-    #Element {
-        margin-right: 10%;
-
-    }
-
-
-</style>
-
 <script>
 
     function listView(){
-        $('#categorieen > div').removeClass('col-md-3').addClass('col-md-12');
+        $('#Categories > div').removeClass('col-md-3').addClass('col-md-12');
     }
 
     function gridView(){
-        $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
+        $('#Categories > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    // werkt niet
+    // Doesn't work
     //
     // /* Optional: Add active class to the current button (highlight it) */
     // var container = document.getElementById("btnContainer");
@@ -150,10 +103,6 @@ $array = array($driester, $vierster, $vijfster);
         <div id="test">
 
             <!--Pagination-->
-            <?php
-
-
-            ?>
                 <div id="Element">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
@@ -175,13 +124,13 @@ $array = array($driester, $vierster, $vijfster);
                             ?>
                             <?php
                             //Generate the amount of pages needed
-                            for($i=1; $i<=$aantalPages; $i++){
+                            for($i=1; $i<=$Pagesamount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
                             }?>
                             <?php
-                            if($page<$aantalPages) {
+                            if($page<$Pagesamount) {
                                 ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
@@ -196,25 +145,21 @@ $array = array($driester, $vierster, $vijfster);
                     </nav>
                 </div>
                 <div id="Element">
-                    Sorteer op:
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-
-                </button>
+                    Sort by:
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                    <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
-
-                    <!-- TODO: onthoud limit bij veranderen sortering -->
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standard</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Price ascending</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Price descending</a>
                     </div>
                 </div>
 
 
                 <div id="Element">
-                    Aantal:
+                    Amount:
                 <div class="btn-group">
-                <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
+                <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
                     <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
                     <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=1"; ?>'">48</button>
                     <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=1"; ?>'">96</button>
@@ -229,13 +174,9 @@ $array = array($driester, $vierster, $vijfster);
 
         <!-- End of Sorting Elements -->
 
-        <?php
-
-
-        ?>
 
         <!-- These are the items -->
-        <div class="row" id="categorieen">
+        <div class="row" id="Categories">
 
             <?php
             if(!empty($resultcat1)){
@@ -251,7 +192,7 @@ $array = array($driester, $vierster, $vijfster);
                         </a>
                         <div class="card-body text-center text-white">
                             <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
-                            <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
+                            <p class="text-left card-text"><span style="float:left;"><?php echo "Price: ".$stock_price; ?></span></p>
                             <p><?php echo $array[array_rand($array)]; ?></p>
                         </div>
                     </div>

@@ -72,7 +72,7 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
     if ($_SESSION['cart'][$post_id] >= 100) {
         // cant go higher than 100 so does nothing
         ?>
-        
+
         <div class="container col-sm-8">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
