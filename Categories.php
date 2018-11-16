@@ -142,7 +142,7 @@ $array = array($driester, $vierster, $vijfster);
 </script>
 
 <div id="main_container">
-    <div class="container pt-4">
+    <div class="container ">
         <!-- This is the category photo -->
         <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
