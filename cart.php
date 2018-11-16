@@ -73,9 +73,8 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
         // kan niet hoger dan 100, dus doe niks.
 
         ?>
-        <br>
-        <br>
-        <div class="container col-sm-8 mt-5">
+        
+        <div class="container col-sm-8">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
@@ -144,7 +143,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 }
 ?>
     <div class="container col-md-8">
-        <h2 class="pt-5 pb-4">Je winkelmand</h2>
+        <h2 class="pb-4">Je winkelmand</h2>
 
         <?php
         // als sessie niet 0 (dus er zitten items in de mand) zal de winkelmand weergegeven worden
