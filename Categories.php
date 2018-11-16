@@ -251,7 +251,7 @@ $array = array($Threestar, $Fourstar, $Fivestar);
                         </a>
                         <div class="card-body text-center text-white">
                             <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
-                            <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
+                            <p class="text-left card-text"><span style="float:left;"><?php echo "Price: ".$stock_price; ?></span></p>
                             <p><?php echo $array[array_rand($array)]; ?></p>
                         </div>
                     </div>
