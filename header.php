@@ -26,17 +26,17 @@ $productgroup="";
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown px-5">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Categorieën
+                    Categories
                 </a>
                 <div class="dropdown-menu">
                     <?php
-                    $categorien = array("Novelty Items","Clothing","Mugs","T-Shirs","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
+                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirs","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
                     $productgroup=0;
 
-                    for($i=0;$i<count($categorien);$i++){
+                    for($i=0;$i<count($categories);$i++){
                         $productgroup++;
                         ?>
-                        <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categorien[$i])?></a>
+                        <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categories[$i])?></a>
                         <?php
                     }
                     ?>
