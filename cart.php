@@ -157,14 +157,14 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje">
                     </div>
 
-                    <div class="col-xl-5 col-lg-3 col-md-3">
+                    <div class="col-xl-4 col-lg-3 col-md-3">
                         <!--    prints the name of the item   -->
                         <a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5></a>
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-xl-4 col-lg-5 col-md-5">
-<!--                        <h6 class="aantal" style="float:left">Aantal:</h6>-->
+                    <div class="col-xl-5 col-lg-5 col-md-5">
+                        <h6 class="aantal" style="float:left">Aantal:</h6>
                         <div class="col-md-12">
                             <!--    prints the quantity of the item    -->
                             <form method="post">
