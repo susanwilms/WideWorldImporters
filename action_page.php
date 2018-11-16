@@ -83,7 +83,7 @@ $conn = NULL;
 
     <?php
     if($nRows == 0){
-        
+
         echo  "Geen artikelen gevonden";} else {
         ?>
 
