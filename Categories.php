@@ -160,7 +160,6 @@ $array = array($threestar, $fourstar, $fivestar);
                 </div>
 
         </div>
-
         <!-- End of Sorting Elements -->
 
 
