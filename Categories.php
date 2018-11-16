@@ -39,7 +39,7 @@ $sorted = $sort_options[$sort];
 ##<-- SQL querry and connection configuration -->
 
 $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmtcat->bindParam(':groupid', $productgroup);
 $stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
@@ -47,7 +47,7 @@ $stmtcat->execute();
 $resultcat1 = $stmtcat->fetchAll();
 
 ##Using this query you count the amount of records in a group. We use this for pagination.
-$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
 $Pagesamount= $nRows/$limit;
 $Pagesamount=ceil($Pagesamount); //Determine amount of pages
 
