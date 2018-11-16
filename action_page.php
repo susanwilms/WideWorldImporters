@@ -89,6 +89,7 @@ $description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
         });
+
     }
 </script>
 
@@ -170,12 +171,21 @@ $stmtcat1->bindParam(':sort', $sort);
 $stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat1->execute();
 $resultcat1 = $stmtcat1->fetchAll();
-
+$aantalpr = count($resultcat1);
 ?>
-
+        <?php
+        if(empty($description)){
+            echo  "Er zijn 0 resultaten.";}
+        else {
+            echo "Er zijn " . $aantalpr . " resultaten.";
+        }
+        ?>
 <div class="row" id="categorieen">
 
     <?php
+    if(empty($description)){
+        echo  " ";}
+        else{
     if(!empty($resultcat1)){
         foreach($resultcat1 as $r){
             $stock_id = $r[0];
@@ -194,8 +204,7 @@ $resultcat1 = $stmtcat1->fetchAll();
                     </div>
                 </div>
             </div>
-        <?php } }
-        else{
-        echo "This category is empty.";
-    }?>
+        <?php }}
+        }?>
+
 </div>
