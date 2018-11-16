@@ -143,7 +143,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
     }
 }
 ?>
-    <div class="container pt-5 col-md-8">
+    <div class="container col-md-8">
         <h2 class="pt-5 pb-4">Je winkelmand</h2>
 
         <?php
