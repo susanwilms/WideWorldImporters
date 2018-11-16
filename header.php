@@ -48,9 +48,9 @@ $productgroup="";
         </ul>
         <ul class="navbar-nav">
             <div class="searchbox">
-                <form action="action_page.php" method="post">
+                <form action="action_page.php" method="GET">
                     <input type="text" placeholder="Search.." name="search">
-                    <input type="submit" name="verstuur" value="zoek">
+                    <input type="submit" value="zoek">
                 </form>
             </div>
 

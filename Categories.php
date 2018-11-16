@@ -196,14 +196,11 @@ $array = array($driester, $vierster, $vijfster);
                     </nav>
                 </div>
                 <div id="Element">
-                    Sorteer op:
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                        Sorteer op:
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
 
-                </button>
                     <div class="dropdown-menu">
                     <!-- TODO: zorgen dat er zichtbaar is welke button aangeklikt is, dmv 'active' class -->
-
-                    <!-- TODO: onthoud limit bij veranderen sortering -->
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
                         <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>

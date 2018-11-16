@@ -173,3 +173,43 @@ button.btn.btn-secondary {
     margin-top: -39px;
     margin-left: 25px;
 }
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#main_container div{
+    top: 10%;
+}
+#img_productgroup{
+
+    margin-top: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+.btn-group button {
+    padding: 0px 10px;  /*Some padding */
+    float: right; /* Float the buttons side by side */
+}
+
+#test{
+    margin-top: 5%;
+    text-align: center;
+
+}
+#test #Element {
+    display: inline-block;
+}
+#test #Element:first-child {
+    display: inline-block;
+    margin-left: 3%;
+}
+
+#Element {
+    margin-right: 10%;
+
+}

@@ -73,7 +73,7 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
         // kan niet hoger dan 100, dus doe niks.
 
         ?>
-        
+
         <div class="container col-sm-8">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
