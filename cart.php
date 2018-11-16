@@ -3,12 +3,12 @@
 require_once './connection.php';
 require_once './header.php';
 
-// SQL query voor id, naam, prijs
+// SQL query used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
 $result = $stmt->fetchAll();
 
-// checked of er iets in de cart staat, als dat niet zo is wordt cart = 0.
+// checks if there is something in the cart. if not, cart = 0.
 if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = 0;
 }
@@ -17,39 +17,39 @@ if(!isset($_SESSION['cart'])) {
 $totaal = 0;
 
 
-// checked of verwijder een value heeft en dus een artikel gedelete moet worden
+// checks if delete has a value and if there's an article that has to be deleted
 if (filter_has_var(INPUT_POST, "verwijder")) {
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verwijder = filter_input(INPUT_POST, "verwijder", FILTER_SANITIZE_STRING);
 
-    // checked of het product in de mand zit, als dat zo is, verwijder het
+    // checks if there's a product in the cart, if so, it deletes the product from the cart
     if (isset($_SESSION['cart'][$post_id])) {
         unset($_SESSION['cart'][$post_id]);
     }
 
-    // checked of er nog meer artikelen in de mand zitten of niet
+    // checks if there are any more products in the cart
     if (count($_SESSION['cart']) == 0) {
-        // als er niks meer in de mand zit, mag de hele mand sessie weg, en op 0 gezet worden
+        // if there's nothing left in the cart, it deletes the whole session and sets it to 0
         unset($_SESSION['cart']);
         $_SESSION['cart'] = 0;
     }
 }
 
 
-// checked of verlaag een value heeft, en er dus een artikel in aantal verlaagd moet worden
+// checks if lower has a value and if there is a product that needs to be lowered in amount
 if (filter_has_var(INPUT_POST, "verlaag")) {
     // haalt het id uit het hidden veld
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verlaag = filter_input(INPUT_POST, "verlaag", FILTER_SANITIZE_STRING);
 
-    // als het aantal al 1 is, moet het niet lager, maar moet het hele artikel uit de mand
+    // if the amount is already 1, it doesn't lower the amount but it removes the product from the cart instead
     if ($_SESSION['cart'][$post_id] == 1) {
-        // unset het artikel zodat het uit de mand is
+        // unset the product so it's removed from the cart
         unset($_SESSION['cart'][$post_id]);
 
-        // checked of er nog meer artikelen in de mand zitten of niet
+        // checks if there are any other products in the cart
         if (count($_SESSION['cart']) == 0) {
-            // als er niks meer in de mand zit, mag de hele mand sessie weg, en op 0 gezet worden
+            // if there's nothing left in the cart, it deletes the whole session and sets it to 0
             unset($_SESSION['cart']);
             $_SESSION['cart'] = 0;
         }
@@ -63,15 +63,14 @@ if (filter_has_var(INPUT_POST, "verlaag")) {
 }
 
 
-// checked of verhoog een value heeft, en er dus een artikel in aantal verhoogd moet worden
+// checks if raise has a value and if there is a product that needs raising in amount
 if (filter_has_var(INPUT_POST, "verhoog")) {
-    // haalt het id uit het hidden veld
+    // takes the id from the hidden field
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verhoog = filter_input(INPUT_POST, "verhoog", FILTER_SANITIZE_STRING);
 
     if ($_SESSION['cart'][$post_id] >= 100) {
-        // kan niet hoger dan 100, dus doe niks.
-
+        // cant go higher than 100 so does nothing
         ?>
         
         <div class="container col-sm-8">
@@ -85,25 +84,25 @@ if (filter_has_var(INPUT_POST, "verhoog")) {
         <?php
         // TODO: melding over aantal hoger dan 100
     } else {
-        // verhoogd het artikel met $post_id met 1
+        // raises the product with $post_id with 1
         $_SESSION['cart'][$post_id]++;
     }
 
 }
 
 
-// checked of verander een value heeft, en er dus een artikel in aantal veranderd moet worden
+// checks if change has a value and if there is a product that needs changing
 if (filter_has_var(INPUT_POST, "verander")) {
     // haalt het id uit het hidden veld
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $verander = filter_input(INPUT_POST, "verander", FILTER_SANITIZE_STRING);
 
-    // het toegevoegde aantal moet altijd 100 of lager zijn
+    // the added number has to be 100 or less at all times
     if ($verander > 100) {
         $verander = 100;
     }
 
-    // verhoogd het artikel met $post_id met 1
+    // raises the product with $post_id with 1
     $_SESSION['cart'][$post_id] = $verander;
 }
 
@@ -114,24 +113,24 @@ if (filter_has_var(INPUT_POST, "productID")) {
     // hoe veel er toegevoegd moet worden
     $add_aantal = filter_input(INPUT_POST, "Aantal", FILTER_SANITIZE_STRING);
 
-    // het toegevoegde aantal moet altijd 1 of hoger zijn
+    // the added amount needs to be 1 or higher at all times
     if ($add_aantal < 1) {
         $add_aantal = 1;
     }
 
-    // het toegevoegde aantal moet altijd 100 of lager zijn
+    // the added amount needs to be 100 or less at all times
     if ($add_aantal > 100) {
         $add_aantal = 100;
     }
 
-    // als cart eerst leeg was, unset cart
+    // if cart was empty before, unset cart
     if ($_SESSION['cart'] == 0) {
         unset($_SESSION['cart']);
     }
-    // als er nog niet al een product met zelfde ID is, set aantal op doorgegeven aantal
+    // If there is not yet another product with the same ID, set the amount to the given amount
     if (!isset($_SESSION['cart']['_' . $ProductID])) {
         $_SESSION['cart']['_' . $ProductID] = $add_aantal;
-        //als dat er al wel is, tel bestaande aantal op bij nieuwe aantal
+        // if there already is another product 
     } elseif (isset($_SESSION['cart']['_' . $ProductID])) {
         // maar kan weer niet hoger dan 100, dus dan wordt het gewoon 100
         if ($_SESSION['cart']['_' . $ProductID] + $add_aantal >= 100) {
@@ -146,7 +145,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
         <h2 class="pb-4">Je winkelmand</h2>
 
         <?php
-        // als sessie niet 0 (dus er zitten items in de mand) zal de winkelmand weergegeven worden
+        // if session is not 0 ( which means there are items in the cart), the cart will be shown.
         if($_SESSION['cart'] != 0) {
 
             //loopt door ieder item in de winkelmand sessie
