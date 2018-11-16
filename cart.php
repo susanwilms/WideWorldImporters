@@ -163,12 +163,12 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-xl-5 col-lg-5 col-md-6">
-                        <h6 class="aantal" style="float:left">Aantal:</h6>
+                    <div class="col-xl-4 col-lg-5 col-md-5">
+<!--                        <h6 class="aantal" style="float:left">Aantal:</h6>-->
                         <div class="col-md-12">
                             <!--    prints the quantity of the item    -->
                             <form method="post">
-                                <input class="form-control col-md-3 col-3 aantalproducten" type="number" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-md-3 col-3 aantalproducten" type="tel" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
                             </form>
 
@@ -196,9 +196,9 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         </div>
                     </div>
 
-                    <div class="col-xl-1 col-lg-2 col-md-1">
+                    <div class="col-xl-2 col-lg-2 col-md-2">
                         <!--    prints the price of the item (replace ',' with '.')  -->
-                        <h6> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
+                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
 
                 </div>
