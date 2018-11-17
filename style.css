@@ -213,3 +213,14 @@ button.btn.btn-secondary {
     margin-right: 10%;
 
 }
+
+
+/* hide spinner button on cart page 'aantal' */
+input[type="number"] { -moz-appearance: textfield; }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}

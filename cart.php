@@ -140,7 +140,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 }
 
 ?>
-    <div class="container col-xl-8 col-md-11 col-11">
+    <div class="container col-xl-9 col-lg-10 col-md-11 col-11">
         <h2 class="pb-4">Je winkelmand</h2>
         <?php
         // if session is not 0 (which means there are items in the cart), the cart will be shown.
@@ -153,25 +153,25 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 ?>
 
                 <div class="row py-2">
-                    <div class="col-xl-1 col-lg-2 col-md-2 col-sm-6 col-12">
+                    <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 col-12">
                         <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje">
                     </div>
 
-                    <div class="col-xl-4 col-lg-3 col-md-3">
+                    <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3">
                         <!--    prints the name of the item   -->
                         <a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5></a>
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-xl-5 col-lg-5 col-md-5">
-                        <h6 class="aantal" style="float:left">Aantal:</h6>
-                        <div class="col-md-12">
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-sm-6 col-8">
+                        <h6 class="aantal d-none d-lg-block" style="float:left">Aantal:</h6>
+                        <div class="">
                             <!--    prints the quantity of the item    -->
                             <form method="post">
-                                <input class="form-control col-md-2 col-3 aantalproducten" type="tel" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 aantalproducten" type="number" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
                             </form>
-
+                            <div class="col-md-12 col-sm-12">
                                 <!--    remove from cart   -->
                                 <form method="post" action=""  class="form-delete-button">
                                     <!--    sends a hidden field with the id of the product that should be deleted  -->
@@ -192,11 +192,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
                                     <input name="post_id" type="hidden" value="<?php echo $id?>">
                                     <button type="submit" name="increase_quantity" value="1" class="btn btn-secondary">&plus;</button>
                                 </form>
-
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-xl-2 col-lg-2 col-md-2">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-4">
                         <!--    prints the price of the item (replace ',' with '.')  -->
                         <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["UnitPrice"])?> </h6>
                     </div>
