@@ -163,7 +163,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <h6> Op voorraad.</h6>
                     </div>
 
-                    <div class="col-xl-5 col-lg-5 col-md-4 col-sm-6 col-8">
+                    <div class="col-xl-5 col-lg-5 col-md-4 col-sm-6 col-9">
                         <h6 class="aantal d-none d-lg-block" style="float:left">Aantal:</h6>
                         <div class="">
                             <!--    prints the quantity of the item    -->
@@ -196,7 +196,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         </div>
                     </div>
 
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-4">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-3">
                         <!--    prints the price of the item (replace ',' with '.')  -->
                         <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["UnitPrice"])?> </h6>
                     </div>
