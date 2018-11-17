@@ -5,7 +5,7 @@ require_once './header.php';
 
 
 // SQL query used for id, name, price
-$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, UnitPrice FROM stockitems;");
 $stmt->execute();
 $result = $stmt->fetchAll();
 
@@ -140,7 +140,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 }
 
 ?>
-    <div class="container col-xl-8 col-md-10 col-11">
+    <div class="container col-xl-8 col-md-11 col-11">
         <h2 class="pb-4">Je winkelmand</h2>
         <?php
         // if session is not 0 (which means there are items in the cart), the cart will be shown.
@@ -168,7 +168,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <div class="col-md-12">
                             <!--    prints the quantity of the item    -->
                             <form method="post">
-                                <input class="form-control col-md-3 col-3 aantalproducten" type="tel" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-md-2 col-3 aantalproducten" type="tel" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
                             </form>
 
@@ -198,13 +198,13 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                     <div class="col-xl-2 col-lg-2 col-md-2">
                         <!--    prints the price of the item (replace ',' with '.')  -->
-                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
+                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["UnitPrice"])?> </h6>
                     </div>
 
                 </div>
                 <?php
                 // calculate the total price of every item in the cart
-                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
+                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["UnitPrice"]);
             }
 
             ?>
