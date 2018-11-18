@@ -4,10 +4,16 @@ require_once './connection.php';
 require_once './header.php';
 
 
-// SQL query used for id, name, price
+// QUERY 1, used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, UnitPrice FROM stockitems;");
 $stmt->execute();
 $result = $stmt->fetchAll();
+
+// QUERY 2, used for getting the amount of stock and Reorderlevel
+$stmt2 = $conn->prepare("SELECT StockItemID, QuantityOnHand FROM StockItemHoldings;");
+$stmt2->execute();
+$stock_query = $stmt2->fetchAll();
+
 
 // checks if there is something in the cart. if not, cart = 0.
 if(!isset($_SESSION['cart'])) {
@@ -160,7 +166,13 @@ if (filter_has_var(INPUT_POST, "productID")) {
                     <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3">
                         <!--    prints the name of the item   -->
                         <a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><h5 class="plaatje"><?php echo $result[$id2 - 1]['StockItemName']?></h5></a>
-                        <h6> Op voorraad.</h6>
+                        <?php
+                        if ($stock_query[$id2 - 1]["QuantityOnHand"] > 100) {
+                            print("<h6 style='color:green'> Op voorraad.</h6>");
+                        } else
+                            print("<h6 style='color:orange'> Weinig voorraad.</h6>");
+                        ?>
+
                     </div>
 
                     <div class="col-xl-5 col-lg-5 col-md-4 col-sm-6 col-9">
