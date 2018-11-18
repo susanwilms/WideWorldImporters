@@ -4,7 +4,6 @@ require_once 'connection.php';
 require_once 'header.php';
 
 ?>
-<br><br><br><br><br><br>
 <h1>DIT IS DE HOOFDPAGINA</h1>
 
 <!--<div class="container pt-4">-->
