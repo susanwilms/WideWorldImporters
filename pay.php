@@ -21,6 +21,7 @@ $ingelogd= FALSE;
     .inner {
         margin-left: auto;
         margin-right: auto;
+        margin-top: -10px;
         width: 80%;
         height: 100%;
         box-shadow: 3px 4px 6px rgba(0, 0, 0,0.5);
@@ -50,7 +51,7 @@ $ingelogd= FALSE;
         /*padding-top: 5%;*/
         text-align: center;
     }
-    #cellen button{
+    #cellen:first-child button{
         height:40px;
         width:200px;
         margin: -40px -100px;
@@ -61,9 +62,16 @@ $ingelogd= FALSE;
     #Gast_formulier .form-group{
         margin-bottom:0rem;
     }
-    #submit{
-
+    #lastInput{
+        margin-bottom: 0px;
     }
+    #buttomSubmit{
+        top: 10px;
+        /*lef: 20px;*/
+    }
+
+
+
 </style>
 
 
@@ -95,7 +103,7 @@ $ingelogd= FALSE;
                 <div class="container">
                     <table class="table table-striped">
 
-                                <form class="well form-horizontal">
+                                <form class="well form-horizontal" method="post" action="afrekenen.php">
                                     <fieldset id="Gast_formulier">
                                         <div class="form-group">
                                             <label class="col-md-4 control-label">Volledige Naam</label>
@@ -138,15 +146,15 @@ $ingelogd= FALSE;
                                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" id="lastInput">
                                             <label class="col-md-4 control-label">Phone Number</label>
                                             <div class="col-md-8 inputGroupContainer">
                                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text"></div>
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="col-md-4 control-label">
-                                                <button type="submit" class="btn btn-default">Submit</button>
+                                            <div class="col-md-4 control-label" id="buttomSubmit">
+                                                <button type="submit" class="btn btn-info">Verzenden</button>
                                             </div>
                                         </div>
 
