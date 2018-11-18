@@ -10,7 +10,7 @@ $stmt->execute();
 $result = $stmt->fetchAll();
 
 // QUERY 2, used for getting the amount of stock and Reorderlevel
-$stmt2 = $conn->prepare("SELECT StockItemID, QuantityOnHand FROM StockItemHoldings;");
+$stmt2 = $conn->prepare("SELECT StockItemID, QuantityOnHand FROM stockitemholdings;");
 $stmt2->execute();
 $stock_query = $stmt2->fetchAll();
 
