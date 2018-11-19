@@ -221,7 +221,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
             ?>
                 <!--    Afreken button en totaalprijs   -->
-            <form method="get" action="/WideWorldImporters/afrekenen.php">
+            <form method="get" action="/WideWorldImporters/pay.php">
                 <button style="float:right; margin-bottom:20px" type="submit" class="btn large-button">Afrekenen</button>
             </form>
 
