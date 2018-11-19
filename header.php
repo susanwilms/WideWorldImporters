@@ -27,7 +27,7 @@ $productgroup="";
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown px-5">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Categories
+                    Categorieën
                 </a>
                 <div class="dropdown-menu">
                     <?php
