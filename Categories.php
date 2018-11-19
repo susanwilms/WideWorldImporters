@@ -134,19 +134,19 @@ $array = array($threestar, $fourstar, $fivestar);
                     </nav>
                 </div>
                 <div id="Element">
-                    Sort by:
+                    Sorteer:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                     <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standard</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Price ascending</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Price descending</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs laag naar hoog</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs hoog naar laag</a>
                     </div>
                 </div>
 
 
                 <div id="Element">
-                    Amount:
+                    Aantal:
                 <div class="btn-group">
                 <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
                     <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
@@ -180,13 +180,13 @@ $array = array($threestar, $fourstar, $fivestar);
                         </a>
                         <div class="card-body text-center text-white">
                             <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
-                            <p class="text-left card-text"><span style="float:left;"><?php echo "Price: ".$stock_price; ?></span></p>
+                            <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
                             <p><?php echo $array[array_rand($array)]; ?></p>
                         </div>
                     </div>
                 </div>
             <?php } }else{
-                echo "This category is empty.";
+                echo "Deze categorie is leeg.";
             }?>
         </div>
 
