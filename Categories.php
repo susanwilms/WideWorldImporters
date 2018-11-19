@@ -105,7 +105,7 @@ $array = array($threestar, $fourstar, $fivestar);
                                        href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
                                        echo $page - 1; ?>" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
+                                        <span class="sr-only">Vorige</span>
                                     </a>
                                 </li>
                                 <?php
