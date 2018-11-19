@@ -41,16 +41,16 @@ $ingelogd= FALSE;
         /*background-color: blue;*/
         margin-right: auto;
         width: 35%;
-        /*height: 400px;*/
+        height: 100%;
         float: right;
         border-left: 1px solid grey;
-
-
     }
+
     #cellen h2{
         /*padding-top: 5%;*/
         text-align: center;
     }
+
     #cellen:first-child button{
         height:40px;
         width:200px;
@@ -62,9 +62,7 @@ $ingelogd= FALSE;
     #Gast_formulier .form-group{
         margin-bottom:0rem;
     }
-    #lastInput{
-        margin-bottom: 0px;
-    }
+
     #buttomSubmit{
         top: 10px;
         /*lef: 20px;*/
@@ -146,7 +144,7 @@ $ingelogd= FALSE;
                                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
                                             </div>
                                         </div>
-                                        <div class="form-group" id="lastInput">
+                                        <div class="form-group" >
                                             <label class="col-md-4 control-label">Phone Number</label>
                                             <div class="col-md-8 inputGroupContainer">
                                                 <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text"></div>
