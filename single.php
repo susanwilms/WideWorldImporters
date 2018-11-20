@@ -13,7 +13,7 @@ $select->execute();
 $result = $select->fetchAll();
 
 $productName =      $result[0]["StockItemName"];
-$productPrice =     $result[0]["RecommendedRetailPrice"];
+$productPrice =     $result[0]["UnitPrice"];
 $productTime =      $result[0]["LeadTimeDays"];
 $productInStock =   2;
 $productColorID =   $result[0]["ColorID"];

@@ -1,74 +1,63 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: susanwilms
- * Date: 13/11/2018
- * Time: 14:08
- */
+
+require_once 'header.php';
+require_once 'connection.php';
 
 
-require_once('header.php');
-include ('connection.php');
+// All variables used in this document
+$description = filter_input(INPUT_GET, "search", FILTER_SANITIZE_STRING);
+$sort = (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
+$limit = (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
-##<!-- Random generated reviews -->
-$driester = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
-$vierster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
-$vijfster = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
+$generalURL = "/WideWorldImporters/action_page.php?search=". $description;
 
-$array = array($driester, $vierster, $vijfster);
-##<!-- End reviews -->
-##<!-- Search bar input -->
-$description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
+
+// set limit to 24 if it isn't set (default limit)
+if(empty($limit)){
+    $limit = 24;
+}
+
+// set sort to 0 if it isn't set (default sort)
+if(empty($sort)){
+    $sort = 0;
+}
+
+// standard page has to be 0 even if user presses page 1.
+if(empty($page) || $page == 1){
+    $pages = 0;
+}else{
+    $pages = ($page * $limit) - $limit; // algorithm to determine the first number of the limit
+}
+
+// array with all possible sort options
+$sort_options = array (0 => "si.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sorted = $sort_options[$sort];
+
+
+// QUERY 1, for getting the itemID, Name, and price.
+$stmt_search = $conn->prepare("SELECT si.StockItemID, si.StockItemName, si.UnitPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%' ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmt_search->bindParam(':page', $pages, PDO::PARAM_INT);
+$stmt_search->bindParam(':limit', $limit, PDO::PARAM_INT);
+$stmt_search->execute();
+$resultcat1 = $stmt_search->fetchAll();
+
+// QUERY 2, used for counting the amount of records in a search query, for pagination
+$nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.UnitPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
+$aantalPages = $nRows / $limit;
+$aantalPages = ceil($aantalPages); // determine amount of pages
+
+$conn = NULL;
+
+
+// generation of random review stars
+$threestar = "<span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>";
+$fourstar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>";
+$fivestar = "<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>";
+
+$array = array($threestar, $fourstar, $fivestar);
+
 ?>
-<!-- Style for page -->
-<style xmlns="http://www.w3.org/1999/html">
-
-    <style>
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-
-    #main_container div{
-        top: 10%;
-    }
-    #img_productgroup{
-
-        margin-top: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 70%;
-    }
-    .btn-group button {
-        padding: 0px 10px;  /*Some padding */
-        float: right; /* Float the buttons side by side */
-    }
-
-    #test{
-        margin-top: 5%;
-        text-align: center;
-
-    }
-    #test #Element {
-        display: inline-block;
-    }
-    #test #Element:first-child {
-        display: inline-block;
-        margin-left: 3%;
-    }
-
-    #Element {
-        margin-right: 10%;
-
-    }
-
-    #lol {
-
-    }
-
-</style>
 <!-- Script for list or grid view -->
 <script>
 
@@ -80,103 +69,109 @@ $description = filter_input(INPUT_POST, "search", FILTER_SANITIZE_STRING);
         $('#categorieen > div').addClass('col-md-3').removeClass('col-md-12');
     }
 
-    /* Optional: Add active class to the current button (highlight it) */
-    var container = document.getElementById("btnContainer");
-    var btns = container.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(){
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
+    // doesn't work
+    //
+    // /* Optional: Add active class to the current button (highlight it) */
+    // var container = document.getElementById("btnContainer");
+    // var btns = container.getElementsByClassName("btn");
+    // for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener("click", function(){
+    //         var current = document.getElementsByClassName("active");
+    //         current[0].className = current[0].className.replace(" active", "");
+    //         this.className += " active";
+    //     });
+    //
+    // }
 </script>
 
-<div id="main_container">
-    <div class="container pt-4">
-
-        <!-- This is the different sorting element above the items -->
-        <div id="test">
-            <div id="Element">
-                Pagina  << < 1 van 2 > >>
-            </div>
-            <div id="Element">
-                Sorteert op:
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
-
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="<?php makeUrl($generalURL, 'ASC'); ?>">Van laag naar hoog</a>
-                    <a class="dropdown-item" href="<?php makeUrl($generalURL, 'DESC'); ?>">Van hoog naar laag</a>
-                    <?php
-                    function makeUrl($theUrl, $sortby){
-                        global $temporyURL;
-                        $temporyURL = "$theUrl&sort=UnitPrice $sortby&gesorteerd=1";
-
-                        print($temporyURL);
-                    }
-                    ?>
-                </div>
-            </div>
-
-
-            <div id="Element">
-                Aantal:
-                <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=24";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL=$temporyURL . "&LIMIT=24";
-                        print($temporyURL);
-                    }
-
-                    ?>'">24</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=48";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=48";
-                    }
-
-                    ?>'" >48</button>
-                    <button class="btn btn-secondary" onclick="location.href='<?php
-                    if(!$gesorteerd){
-                        $temporyURL2=$generalURL;
-                        $temporyURL2=$temporyURL2 . "&LIMIT=96";
-                        print($temporyURL2);
-                    }else{
-                        $temporyURL==$temporyURL . "&LIMIT=96";
-                    }
-
-                    ?>'" >96</button>
-                </div>
-            </div>
-            <div id="Element">
-                <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
-                <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
-            </div>
-
-        </div>
-<?php
-$stmtcat1 = $conn->prepare('SELECT * FROM stockitems WHERE SearchDetails LIKE "%' . $description . '%"');
-
-$stmtcat1->bindParam(':groupid', $groupid);
-$stmtcat1->bindParam(':sort', $sort);
-$stmtcat1->bindParam(':limit', $limit, PDO::PARAM_INT);
-$stmtcat1->execute();
-$resultcat1 = $stmtcat1->fetchAll();
-
-?>
-
-<div class="row" id="categorieen">
 
     <?php
-    if(!empty($resultcat1)){
+    if($nRows == 0){
+
+        echo  "Geen artikelen gevonden";} else {
+        ?>
+
+    <div id="main_container">
+        <div class="container pt-4">
+            <!-- This is the different sorting element above the items -->
+            <div id="test">
+                <div id="Element">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <?php
+                            if($page>1 ) {
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link"
+                                       href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                       echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                            //Generate the amount of pages needed
+                            for($i=1; $i<=$aantalPages; $i++){
+                                ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
+                                <?php
+                            }?>
+                            <?php
+                            if($page<$aantalPages) {
+                                ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
+                                    echo $page + 1; ?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                                <?php
+                            }?>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div id="Element">
+                    Sort by:
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+
+                    </button>
+                    <div class="dropdown-menu">
+                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                    </div>
+                </div>
+
+                <div id="Element">
+                    Amount:
+                    <div class="btn-group">
+                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
+                        <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>
+                        <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=48&page=1"; ?>'">48</button>
+                        <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=96&page=1"; ?>'">96</button>
+                    </div>
+                </div>
+                <div id="Element">
+                    <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+                    <button class="btn active" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+                </div>
+            </div>
+
+            <?php
+            if(empty($description)){
+                echo  "Er zijn 0 resultaten.";}
+            else {
+                echo "Er zijn " . $nRows . " resultaten.";
+            }
+        ?>
+        <div class="row" id="categorieen">
+        <?php
         foreach($resultcat1 as $r){
             $stock_id = $r[0];
             $stock_name = $r[1];
@@ -194,8 +189,17 @@ $resultcat1 = $stmtcat1->fetchAll();
                     </div>
                 </div>
             </div>
-        <?php } }
-        else{
-        echo "This category is empty.";
-    }?>
+            <?php
+        }
+    }
+    ?>
+        </div>
+    </div>
 </div>
+
+</body>
+
+<?php
+require_once 'footer.php';
+?>
+

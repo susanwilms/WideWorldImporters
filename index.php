@@ -4,9 +4,10 @@ require_once 'connection.php';
 require_once 'header.php';
 
 ?>
-<br><br><br><br><br><br>
-<h1>DIT IS DE HOOFDPAGINA</h1>
-
+<center>
+<h1>Wide World Importers</h1>
+<img src="./images/logo.png" height="500">
+</center>
 <!--<div class="container pt-4">-->
 <!--    <div class="row">-->
 <!--        --><?php
