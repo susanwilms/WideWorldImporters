@@ -12,7 +12,6 @@ $page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
 $generalURL = "/WideWorldImporters/action_page.php?search=". $description;
 
-
 // set limit to 24 if it isn't set (default limit)
 if(empty($limit)){
     $limit = 24;
@@ -136,7 +135,7 @@ $array = array($threestar, $fourstar, $fivestar);
                 </div>
 
                 <div id="Element">
-                    Sort by:
+                    Sorteer:
                     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
 
                     </button>
@@ -149,7 +148,7 @@ $array = array($threestar, $fourstar, $fivestar);
                 </div>
 
                 <div id="Element">
-                    Amount:
+                    Aantal:
                     <div class="btn-group">
                     <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
                         <button class="btn btn-secondary" onclick="location.href='<?php echo $generalURL . "&sort=${sort}&limit=24&page=1"; ?>'">24</button>

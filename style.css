@@ -7,6 +7,11 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
     box-shadow: none !important;
 }
 
+.small-img{
+    width: 110px;
+    height:110px;
+}
+
 #logo{
     width: 15%;
 }
