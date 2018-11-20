@@ -173,17 +173,19 @@ $array = array($threestar, $fourstar, $fivestar);
                 $stock_name = $r[1];
                 $stock_price = $r[2];
                 ?>
-                <div class="col-md-3 col-12 pb-2 no-radius">
-                    <div class="card mb-4 text-center no-radius" style="background-color:rgb(155, 155, 155);">
-                        <a href="/WideWorldImporters/single.php?ProductID=<?php echo $stock_id?>">
-                            <img class="card-img no-radius" src="images/<?php print("PicProduct".$stock_id)?>.png" alt="<?php echo $stock_name?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
-                        </a>
-                        <div class="card-body text-center text-white no-radius">
+                <div class="product-box">
+                        <div class="product-overview-img">
+                            <a href="/WideWorldImporters/single.php?ProductID=<?php echo $stock_id?>">
+                                <div class="product-image" style="background-image: url('images/<?php echo $stock_id . "-1.jpg"; ?>');">
+                                </div>
+                                <img class="card-img no-radius"/>
+                            </a>
+                        </div>
+                        <div class="product-overview-info">
                             <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
                             <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
                             <p><?php echo $array[array_rand($array)]; ?></p>
                         </div>
-                    </div>
                 </div>
             <?php } }else{
                 echo "Deze categorie is leeg.";
