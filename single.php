@@ -57,9 +57,8 @@ $imagesresult = $images->fetchAll();
                     foreach($imagesresult as $number => $array){
                         $path = $array["img_path"];
                         $id = $array["pathID"];
-                        echo "<img onclick='imgFunction(" . $path . ")' class='small-img' id='image-" . $id . "' src='." . $path . "'>";
                         ?>
-
+                        <img class="small-img" onclick="imgFunction('<?php echo $path?>')" id="image- <?php echo $id?>" src=".<?php echo $path?>">
                         <?php
                     }
                 ?>
@@ -76,7 +75,7 @@ $imagesresult = $images->fetchAll();
 
 <script>
     function imgFunction(path) {
-        document.getElementById("product_img").style.backgroundImage = "url('./images/1-1.jpeg')";
+        document.getElementById("product_img").style.backgroundImage = "url('." + path + "')";
     }
 
 </script>
