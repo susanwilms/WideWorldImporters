@@ -5,7 +5,7 @@ require_once 'header.php';
 
 ?>
 <center>
-
+<h1>Wide World Importers</h1>
 <img src="./images/logo.png" height="500">
 </center>
 <!--<div class="container pt-4">-->
