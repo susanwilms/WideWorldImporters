@@ -12,6 +12,10 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
     height:110px;
 }
 
+.no-radius{
+    border-radius: 0!important;
+}
+
 #logo{
     width: 15%;
 }
