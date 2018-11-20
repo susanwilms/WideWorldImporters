@@ -229,3 +229,17 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-appearance: none;
     margin: 0;
 }
+
+footer {
+    background-color: #F8F9FA;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a{
+    color: black;
+}
