@@ -50,7 +50,7 @@ $productgroup="";
         <ul class="navbar-nav">
             <div class="searchbox">
                 <form action="action_page.php" method="GET">
-                    <input type="text" placeholder="Search.." name="search">
+                    <input type="text" placeholder="Zoek..." name="search">
                     <input type="submit" value="zoek">
                 </form>
             </div>
