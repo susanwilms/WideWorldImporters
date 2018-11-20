@@ -36,7 +36,6 @@ $imagesresult = $images->fetchAll();
 <div class="container col-md-12 pt-8">
 
     <div class="img col-md-6 left" id="product_img">
-
     </div>
 
     <div class="info col-md-6 pt-4 right" id="productinfo">
@@ -58,7 +57,7 @@ $imagesresult = $images->fetchAll();
                     foreach($imagesresult as $number => $array){
                         $path = $array["img_path"];
                         $id = $array["pathID"];
-                        echo "<img onclick='imgFunction(" . $path . ")' id='image-" . $id . "' src='." . $path . "'>";
+                        echo "<img onclick='imgFunction(" . $path . ")' class='small-img' id='image-" . $id . "' src='." . $path . "'>";
                         ?>
 
                         <?php
@@ -77,9 +76,9 @@ $imagesresult = $images->fetchAll();
 
 <script>
     function imgFunction(path) {
-        $object = document.getElementById("product_img");
-        $object.style.backgroundImage = "url('. " + path + "')";
+        document.getElementById("product_img").style.backgroundImage = "url('./images/1-1.jpeg')";
     }
+
 </script>
 
 
