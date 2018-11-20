@@ -238,8 +238,15 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
+    text-align: center;
 }
 
 footer a{
     color: black;
+}
+
+.footer_content{
+    right: 0;
+    left: 0;
+    margin: auto;
 }
