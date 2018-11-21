@@ -10,7 +10,7 @@ require_once 'header.php';
     <form action="contact.php" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="fullname" required autofocus>
+            <input type="text" class="form-control" id="name" name="name" required autofocus>
         </div>
         <div class="form-group">
             <label for="mail">Email:</label>
@@ -28,8 +28,8 @@ require_once 'header.php';
         if (filter_has_var(INPUT_POST, "text")) {
             print_r($_POST);
             $name = $_POST['name'];
-            $email = $_POST['email'];
-            $message = $_POST['message'];
+            $email = $_POST['sender'];
+            $message = $_POST['text'];
             $formcontent = "From: $name \n Message: $message";
             $recipient = "1@t45.nl";
             $subject = "Contact Form";
