@@ -49,7 +49,7 @@ $productgroup="";
         </ul>
         <ul class="navbar-nav">
             <div class="searchbox">
-                <form action="action_page.php" method="GET">
+                <form action="action_page.php" method="GET" style="margin-top: -3px!important;">
                     <input type="text" placeholder="Zoek..." name="search">
                     <input type="submit" value="zoek">
                 </form>
