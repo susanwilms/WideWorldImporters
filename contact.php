@@ -25,8 +25,7 @@ require_once 'header.php';
 
         <?php
         //
-        if (filter_has_var(INPUT_GET, "text")) {
-
+        if (filter_has_var(INPUT_POST, "text")) {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $message = $_POST['message'];
