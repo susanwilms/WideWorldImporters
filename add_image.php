@@ -2,16 +2,21 @@
 
 require_once 'connection.php';
 
+$truncate = "TRUNCATE ${dbname}.img_path";
+print("Succesfully truncated img_path table.<br>");
+
 $path    = './images/';
 $files = scandir($path);
+// excluding non product images
 $files = array_diff(scandir($path), array('.', '..', 'header.jpg', 'PicProduct1.png', 'afrekenen.png', 'iDEAL_ss.PNG', 'logo.png', 'placeholder.png', 'productgroup1.jpg', 'productgroup2.jpg', 'productgroup3.jpg', 'productgroup4.jpg', 'productgroup5.jpg', 'productgroup6.jpg', 'productgroup7.jpg', 'productgroup8.jpg', 'productgroup9.jpg', 'productgroup10.jpg', 'top_placeholder.png'));
-print_r($files);
+// pretty printing
+echo "<pre>"; print_r($files); echo "</pre>";
 
 foreach($files as $file){
     $arr = explode("-", $file, 2);
     $img_id = $arr[0];
 
-    print($img_id . '<br>');
+    print("Image " . $img_id . ': ');
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $file = '/images/' . $file;
