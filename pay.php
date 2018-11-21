@@ -114,7 +114,7 @@ $ingelogd= FALSE;
                                             <label class="col-md-4 control-label">Adres</label>
                                             <div class="form-inline">
                                                 <div class="col-md-4 inputGroupContainer">
-                                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="addressLine1" placeholder="Straat Huisnummer" class="form-control" required="true" value="" type="text"></div>
+                                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="addressLine1" name="address" placeholder="Straat Huisnummer" class="form-control" required="true" value="" type="text"></div>
                                                 </div>
                                                 <div class="col-md-4 inputGroupContainer">
                                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input id="postcode" name="postcode" placeholder="Postal Code/ZIP" class="form-control" required="true" value="" type="text"></div>
