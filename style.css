@@ -27,7 +27,8 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
 a#brand {
     position: absolute;
     left: 40%;
-    font-family: rochester;
+    font-family:raleway;
+    font-weight:600;
     font-size: 30px;
     padding-top: 0px;
 }
