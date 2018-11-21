@@ -4,7 +4,7 @@ require_once 'connection.php';
 
 $path    = './images/';
 $files = scandir($path);
-$files = array_diff(scandir($path), array('.', '..', 'PicProduct1.png', 'afrekenen.png', 'iDEAL_ss.PNG', 'logo.png', 'placeholder.png', 'productgroup1.jpg', 'productgroup2.jpg', 'productgroup3.jpg', 'productgroup4.jpg', 'productgroup5.jpg', 'productgroup6.jpg', 'productgroup7.jpg', 'productgroup8.jpg', 'productgroup9.jpg', 'productgroup10.jpg', 'top_placeholder.png'));
+$files = array_diff(scandir($path), array('.', '..', 'header.jpg', 'PicProduct1.png', 'afrekenen.png', 'iDEAL_ss.PNG', 'logo.png', 'placeholder.png', 'productgroup1.jpg', 'productgroup2.jpg', 'productgroup3.jpg', 'productgroup4.jpg', 'productgroup5.jpg', 'productgroup6.jpg', 'productgroup7.jpg', 'productgroup8.jpg', 'productgroup9.jpg', 'productgroup10.jpg', 'top_placeholder.png'));
 print_r($files);
 
 foreach($files as $file){
