@@ -166,7 +166,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                             ?><img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg"><?php
                         } else {
                             // else show a placeholder
-                            ?><img class="img-thumbnail" src="https://via.placeholder.com/100"><?php
+                            ?><img class="img-thumbnail" src="https://via.placeholder.com/500"><?php
                         }
 
                         ?>
