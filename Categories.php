@@ -85,9 +85,9 @@ $array = array($threestar, $fourstar, $fivestar);
 </script>
 
 <div id="main_container">
+    <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
     <div class="container ">
         <!-- This is the category photo -->
-        <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
 
         <!-- This is the different sorting element above the items -->
         <div id="test">
