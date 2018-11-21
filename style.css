@@ -256,6 +256,7 @@ input[type=number]::-webkit-outer-spin-button {
     opacity: 1;
     transition: .5s ease;
     backface-visibility: hidden;
+    display: block;
 }
 .product-box:hover .product-overview-img a div{
     opacity: 0.3;
@@ -267,7 +268,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: 506px;
     width: auto;
     color: black;
-    margin-top: -546px;
+    margin-top: -293px;
     transition: .5s ease;
     opacity: 0;
     transform: translate(-50%, -50%);
