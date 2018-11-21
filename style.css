@@ -134,8 +134,8 @@ label{
 }
 
 .submitbutton{
-    background-color: #1DAFEC;
-    border: 1px solid #1DAFEC;
+    background-color: #008CBA;
+    border: 1px solid #008CBA;
     color: white;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -154,7 +154,7 @@ label{
 
 button.btn.btn-secondary {
     background-color: #1DAFEC;
-    border: 0px;
+    border: 0px ;
     border-radius: 0;
     width: 40px;
     height: 40px;
