@@ -4,7 +4,7 @@ require_once 'connection.php';
 require_once 'header.php';
 
 ?>
-<img id="img_productgroup" src="/WideWorldImporters/images/header.jpg">
+<img id="img_productgroup" src="/https://cdnio.luscious.net/Poisonmaster12/327202/b17aa8303a0a831f6f5d1c2a5ecc36b0_01CW1VW4N0H90H5MV8SC43ZFTK.315x0.jpg">
 <!--<div class="container pt-4">-->
 <!--    <div class="row">-->
 <!--        --><?php
