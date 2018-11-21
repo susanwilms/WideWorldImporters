@@ -12,15 +12,20 @@ $files = array_diff(scandir($path), array('.', '..', 'PicProduct1.png', 'afreken
 print_r($files);
 
 foreach($files as $file){
-    $img_id = substr($file, 0, 1);
-    print($img_id);
+
+    $arr = explode("-", $file, 2);
+    $img_id = $arr[0];
+
+
+    print($img_id . '<br>');
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $file = '/images/' . $file;
     $sql = "INSERT INTO img_path (ProductID, img_path)
     VALUES (${img_id}, '${file}')";
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo "New record created successfully";
+    echo "New record created successfully <br>";
 
 }
 
