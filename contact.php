@@ -14,7 +14,7 @@ require_once 'header.php';
 
         <?php $name = $_POST['name'];
         $email = $_POST['email'];
-        $message_POST['message'];
+        $message = $_POST['message'];
         $formcontent="From: $name \n Message: $message";
         $recipient = "1@t45.nl";
         $subject = "Contact Form";

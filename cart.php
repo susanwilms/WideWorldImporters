@@ -147,7 +147,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
 ?>
     <div class="container col-xl-8 col-lg-10 col-md-11 col-11">
-        <h2 class="pb-4">Je winkelmand</h2>
+        <h2 class="py-4">Je winkelmand</h2>
         <?php
         // if session is not 0 (which means there are items in the cart), the cart will be shown.
         if($_SESSION['cart'] != 0) {
