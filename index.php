@@ -4,7 +4,10 @@ require_once 'connection.php';
 require_once 'header.php';
 
 ?>
+
 <img id="img_productgroup" src="WideWorldImporters/images/header.jpg">
+
+
 <!--<div class="container pt-4">-->
 <!--    <div class="row">-->
 <!--        --><?php
