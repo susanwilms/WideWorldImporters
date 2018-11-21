@@ -77,7 +77,7 @@ $imagesresult = $images->fetchAll();
     function imgFunction(path) {
         document.getElementById("product_img").style.backgroundImage = "url('." + path + "')";
     }
-
+    window.onload = imgFunction('/images/<?php echo $productid?>-1.jpg');
 </script>
 
 
