@@ -1,10 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wideworldimporters";
-$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
+require_once 'connection.php';
 
 $path    = './images/';
 $files = scandir($path);
@@ -12,10 +8,8 @@ $files = array_diff(scandir($path), array('.', '..', 'PicProduct1.png', 'afreken
 print_r($files);
 
 foreach($files as $file){
-
     $arr = explode("-", $file, 2);
     $img_id = $arr[0];
-
 
     print($img_id . '<br>');
     // set the PDO error mode to exception
@@ -26,9 +20,4 @@ foreach($files as $file){
     // use exec() because no results are returned
     $conn->exec($sql);
     echo "New record created successfully <br>";
-
 }
-
-
-
-?>
