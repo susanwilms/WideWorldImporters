@@ -57,7 +57,7 @@ input[type="text"] {
 input[type="submit"] {
     border: 0px;
     font-family: raleway;
-    background-color: deepskyblue;
+    background-color: #00BCF2;
     height:100%;
 }
 
@@ -135,8 +135,8 @@ label{
 }
 
 .submitbutton{
-    background-color: #008CBA;
-    border: 1px solid #008CBA;
+    background-color: #00BCF2;
+    border: 1px solid #00BCF2;
     color: white;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -154,7 +154,7 @@ label{
 }
 
 button.btn.btn-secondary {
-    background-color: #1DAFEC;
+    background-color: #00BCF2;
     border: 0px ;
     border-radius: 0;
     width: 40px;
@@ -174,7 +174,7 @@ button.btn.btn-secondary {
 }
 
 .large-button{
-    background-color: #1DAFEC;
+    background-color: #00BCF2;
     border: 0;
     border-radius: 0;
     color: white;
