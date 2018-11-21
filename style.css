@@ -239,41 +239,25 @@ input[type=number]::-webkit-outer-spin-button {
     border: 0px;
 }
 
-.product-box{
-    max-width: 347px;
-    min-width: 320px;
-    height: 506px;
-    display: inline-block;
-    margin-bottom: 1%;
-    color: white;
+.card-body{
+    margin-top: -140px;
+    color: black;
 }
-.product-overview-img a div{
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 506px;
+
+.cart-content a img{
     opacity: 1;
     transition: .5s ease;
-    backface-visibility: hidden;
-    display: block;
 }
-.product-box:hover .product-overview-img a div{
+.product-box:hover .cart-content a img{
     opacity: 0.3;
 }
 .product-box:hover .product-overview-info{
     opacity: 1;
 }
 .product-overview-info{
-    height: 506px;
-    width: auto;
-    color: black;
-    margin-top: -293px;
     transition: .5s ease;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    text-align: center;
+
 }
 
 footer {
