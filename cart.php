@@ -160,7 +160,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                 <div class="row py-2">
                     <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 col-12">
-                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje">
+                        <img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg">
                     </div>
 
                     <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3">
