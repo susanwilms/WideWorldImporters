@@ -5,7 +5,7 @@ require_once 'connection.php';
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $truncate = "TRUNCATE ${dbname}.img_path";
 $conn->exec($truncate);
-print("Succesfully truncated img_path table.<br>");
+echo("Succesfully truncated img_path table.<br>");
 
 $path    = './images/';
 $files = scandir($path);
@@ -18,7 +18,7 @@ foreach($files as $file){
     $arr = explode("-", $file, 2);
     $img_id = $arr[0];
 
-    print("Image " . $img_id . ': ');
+    echo("Image " . $img_id . ': ');
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $file = '/images/' . $file;
