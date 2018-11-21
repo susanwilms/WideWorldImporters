@@ -170,9 +170,9 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         if ($stock_query[$id2 - 1]["QuantityOnHand"] > 100) {
                             print("<h6 style='color:green'> Op voorraad.</h6>");
                         } elseif ($stock_query[$id2 - 1]["QuantityOnHand"] == 0) {
-                            print("<h6 style='color:orange'> Weinig voorraad.</h6>");
-                        } else {
                             print("<h6 style='color:red'> Geen voorraad.</h6>");
+                        } else {
+                            print("<h6 style='color:orange'> Weinig voorraad.</h6>");
                         }
 
                         ?>
