@@ -160,7 +160,17 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                 <div class="row py-2">
                     <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 col-12">
-                        <img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg">
+                        <?php
+                        // checks if there is a picture for the item, if there is, show it.
+                        if (file_exists("./images/${id2}-1.jpg")) {
+                            ?><img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg"><?php
+                        } else {
+                            // else show a placeholder
+                            ?><img class="img-thumbnail" src="https://via.placeholder.com/100"><?php
+                        }
+
+                        ?>
+
                     </div>
 
                     <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3">
