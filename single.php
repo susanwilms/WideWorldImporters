@@ -19,7 +19,7 @@ $productInStock =   2;
 $productColorID =   $result[0]["ColorID"];
 
 $color = $conn->prepare("SELECT * FROM colors WHERE ColorID = 1");
-
+$color->bindParam(':colorid', $productColorID);
 $color->execute();
 $colorresult = $color->fetchAll();
 
@@ -28,6 +28,14 @@ $colorName =        $colorresult[0]["ColorName"];
 $images = $conn->prepare("SELECT * FROM img_path WHERE productID = " . $productid);
 $images->execute();
 $imagesresult = $images->fetchAll();
+
+$stmt2 = $conn->prepare("SELECT StockItemID, QuantityOnHand FROM stockitemholdings WHERE StockItemID = :productid");
+$stmt2->bindParam(':productid', $productid);
+$stmt2->execute();
+$stock_query = $stmt2->fetchAll();
+
+$productQuantityInStock = $stock_query[0]["QuantityOnHand"];
+
 
 
 
@@ -45,7 +53,7 @@ $imagesresult = $images->fetchAll();
             <p><?php print($productName); ?></p>
             <p>Prijs: €<?php print($productPrice); ?></p>
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
-            <p><?php print($productInStock); ?> items op voorraad</p>
+            <p><?php echo $productQuantityInStock; ?> items op voorraad</p>
             <span class="dot" style="background-color: <?php echo $colorName; ?>;"></span><span>Kleur: <?php echo $colorName; ?></span><br>
             <label class="label-aantal">Aantal:</label><input class="number" type="number" name="Aantal" min="1" max="100" value="1">
             <input class="submitbutton" type="submit" name="verzenden" value="Voeg toe">
