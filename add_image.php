@@ -2,7 +2,9 @@
 
 require_once 'connection.php';
 
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $truncate = "TRUNCATE ${dbname}.img_path";
+$conn->exec($truncate);
 print("Succesfully truncated img_path table.<br>");
 
 $path    = './images/';
