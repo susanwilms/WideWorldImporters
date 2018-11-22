@@ -5,7 +5,7 @@ require_once 'connection.php';
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $truncate = "TRUNCATE ${dbname}.img_path";
 $conn->exec($truncate);
-echo("Succesfully truncated img_path table.<br>");
+echo("img_path tabel succesvol geleegd<br>");
 
 $path    = './images/';
 $files = scandir($path);
@@ -18,7 +18,7 @@ foreach($files as $file){
     $arr = explode("-", $file, 2);
     $img_id = $arr[0];
 
-    echo("Image " . $img_id . ': ');
+    echo("Foto " . $file . ': ');
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $file = '/images/' . $file;
@@ -26,5 +26,5 @@ foreach($files as $file){
     VALUES (${img_id}, '${file}')";
     // use exec() because no results are returned
     $conn->exec($sql);
-    echo "New record created successfully <br>";
+    echo "Record succesvol aangemaakt <br>";
 }
