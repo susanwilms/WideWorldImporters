@@ -1,5 +1,4 @@
 <?php session_start();
-//bier
 $productgroup="";
 ?>
 <!DOCTYPE html>
