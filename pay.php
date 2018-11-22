@@ -3,7 +3,7 @@
 require_once('header.php');
 include ('connection.php');
 
-$ingelogd= FALSE;
+$ingelogd= TRUE;
 ?>
 <style>
     .outer {
@@ -83,7 +83,7 @@ $ingelogd= FALSE;
                 if($ingelogd==TRUE){
 
                 ?>
-                    <button type="button" class="btn btn-info">Verder met mijn account</button>
+                    <a href="afrekenen.php"><button type="button" class="btn btn-info">Verder met mijn account</button></a>
 
                 <?php
                 }else {

@@ -10,12 +10,12 @@ $number_of_rows = $stmtcat1->rowCount();
 
 $limit=24;
 $productgroup=10;
-$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$nRows = $conn->query("SELECT LAST_INSERT_ID()");
 $aantalPages= $nRows/$limit;
 print($nRows);
-echo "<br>";
-$aantalPages=ceil($aantalPages);
-echo $aantalPages;
+//echo "<br>";
+//$aantalPages=ceil($aantalPages);
+//echo $aantalPages;
 
 
 
