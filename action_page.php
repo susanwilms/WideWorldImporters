@@ -43,8 +43,8 @@ $resultcat1 = $stmt_search->fetchAll();
 
 // QUERY 2, used for counting the amount of records in a search query, for pagination
 $nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
-$aantalPages = $nRows / $limit;
-$aantalPages = ceil($aantalPages); // determine amount of pages
+$PageAmount = $nRows / $limit;
+$PageAmount = ceil($PageAmount); // determine amount of pages
 
 $conn = NULL;
 
@@ -113,13 +113,13 @@ $array = array($threestar, $fourstar, $fivestar);
                             ?>
                             <?php
                             //Generate the amount of pages needed
-                            for($i=1; $i<=$aantalPages; $i++){
+                            for($i=1; $i<=PageAmount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
                             }?>
                             <?php
-                            if($page<$aantalPages) {
+                            if($page<$PageAmount) {
                                 ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
