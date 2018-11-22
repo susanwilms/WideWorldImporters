@@ -5,7 +5,7 @@ require_once './header.php';
 
 
 // QUERY 1, used for id, name, price
-$stmt = $conn->prepare("SELECT StockItemID, StockItemName, UnitPrice FROM stockitems;");
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
 $result = $stmt->fetchAll();
 
@@ -224,13 +224,12 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-3">
                         <!--    prints the price of the item (replace ',' with '.')  -->
-                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["UnitPrice"])?> </h6>
+                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
-
                 </div>
                 <?php
                 // calculate the total price of every item in the cart
-                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["UnitPrice"]);
+                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
             ?>

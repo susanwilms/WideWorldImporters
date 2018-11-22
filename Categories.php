@@ -31,12 +31,12 @@ if(empty($page) || $page==1){
 }
 
 // array with all possible sort options
-$sort_options = array (0 => "sisg.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sort_options = array (0 => "sisg.StockItemID ASC", 1 => "RecommendedRetailPrice ASC", 2 => "RecommendedRetailPrice DESC");
 $sorted = $sort_options[$sort];
 
 
 // QUERY 1, for getting the itemID, Name, and price.
-$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmtcat = $conn->prepare("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = :groupid ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmtcat->bindParam(':groupid', $productgroup);
 $stmtcat->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmtcat->bindParam(':page', $pages, PDO::PARAM_INT);
@@ -44,7 +44,7 @@ $stmtcat->execute();
 $resultcat1 = $stmtcat->fetchAll();
 
 // QUERY 2, used for counting the amount of records in an item group, for pagination
-$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.UnitPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
+$nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
 $Pagesamount = $nRows/$limit;
 $Pagesamount = ceil($Pagesamount); // determine amount of pages
 
