@@ -12,16 +12,20 @@ $phoneNumber= filter_input(INPUT_POST, "phoneNumber", FILTER_SANITIZE_STRING);
 
 $name= explode(" ", $fullName);
 $addressing= explode(" ", $address);
-echo "Firstname is: $name[0]<br>";
-echo "Lastname is: $name[1]<br>";
-echo "Straat is: $addressing[0]<br>";
-echo "Huisnummer is: $addressing[1]<br>";
-echo "Stad is: $city<br>";
-echo "Land is: $land<br>";
-echo "Email is: $email<br>";
-echo "Telefoon number: $phoneNumber<br>";
 
+if(empty(!$_POST)) {
+    echo "Firstname is: $name[0]<br>";
+    echo "Lastname is: $name[1]<br>";
+    echo "Straat is: $addressing[0]<br>";
+    echo "Huisnummer is: $addressing[1]<br>";
+    echo "Stad is: $city<br>";
+    echo "Land is: $land<br>";
+    echo "Email is: $email<br>";
+    echo "Telefoon number: $phoneNumber<br>";
 
+}
+
+//$stmtInsert= $conn->prepare(INSERT INTO customers ())
 
 
 ?>
@@ -31,7 +35,13 @@ echo "Telefoon number: $phoneNumber<br>";
 <body style="background-color:#eef0f0;">
 <div style="width: 100%; text-align: center;">
 
-<!--<img src="./images/afrekenen.png" alt="iDEALpage" align="middle" height="597" width="770"/>-->
+    <?php
+    if(empty($_POST)) {
+        ?>
+        <img src="./images/afrekenen.png" alt="iDEALpage" align="middle" height="597" width="770"/>
+        <?php
+    }
+    ?>
     </div>
 </body>
 </html>
