@@ -147,7 +147,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
 ?>
     <div class="container col-xl-8 col-lg-10 col-md-11 col-11">
-        <h2 class="pb-4">Je winkelmand</h2>
+        <h2 class="py-4">Je winkelmand</h2>
         <?php
         // if session is not 0 (which means there are items in the cart), the cart will be shown.
         if($_SESSION['cart'] != 0) {
@@ -160,7 +160,17 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                 <div class="row py-2">
                     <div class="col-xl-1 col-lg-2 col-md-2 col-sm-3 col-12">
-                        <img src="https://www.bbqenzo.nl/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/d/r/drank-alcohol-vrij-bier.jpg" class="img-thumbnail" alt="Plaatje">
+                        <?php
+                        // checks if there is a picture for the item, if there is, show it.
+                        if (file_exists("./images/${id2}-1.jpg")) {
+                            ?><img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg"><?php
+                        } else {
+                            // else show a placeholder
+                            ?><img class="img-thumbnail" src="https://via.placeholder.com/500"><?php
+                        }
+
+                        ?>
+
                     </div>
 
                     <div class="col-xl-4 col-lg-3 col-md-4 col-sm-3">
@@ -169,8 +179,12 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <?php
                         if ($stock_query[$id2 - 1]["QuantityOnHand"] > 100) {
                             print("<h6 style='color:green'> Op voorraad.</h6>");
-                        } else
+                        } elseif ($stock_query[$id2 - 1]["QuantityOnHand"] == 0) {
+                            print("<h6 style='color:red'> Geen voorraad.</h6>");
+                        } else {
                             print("<h6 style='color:orange'> Weinig voorraad.</h6>");
+                        }
+
                         ?>
 
                     </div>

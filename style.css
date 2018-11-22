@@ -27,7 +27,8 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
 a#brand {
     position: absolute;
     left: 40%;
-    font-family: rochester;
+    font-family:raleway;
+    font-weight:600;
     font-size: 30px;
     padding-top: 0px;
 }
@@ -56,7 +57,7 @@ input[type="text"] {
 input[type="submit"] {
     border: 0px;
     font-family: raleway;
-    background-color: lightgrey;
+    background-color: #00BCF2;
     height:100%;
 }
 
@@ -134,8 +135,8 @@ label{
 }
 
 .submitbutton{
-    background-color: #008CBA;
-    border: 1px solid #008CBA;
+    background-color: #00BCF2;
+    border: 1px solid #00BCF2;
     color: white;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -153,7 +154,7 @@ label{
 }
 
 button.btn.btn-secondary {
-    background-color: #1DAFEC;
+    background-color: #00BCF2;
     border: 0px ;
     border-radius: 0;
     width: 40px;
@@ -173,7 +174,7 @@ button.btn.btn-secondary {
 }
 
 .large-button{
-    background-color: #1DAFEC;
+    background-color: #00BCF2;
     border: 0;
     border-radius: 0;
     color: white;
@@ -194,12 +195,7 @@ button.btn.btn-secondary {
     top: 10%;
 }
 #img_productgroup{
-
-    margin-top: 5%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
+    width: 100%;
 }
 .btn-group button {
     padding: 0px 10px;  /*Some padding */
