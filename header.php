@@ -47,8 +47,6 @@ $productgroup="";
                 </div>
             </li>
 
-            <a class="navbar-brand" id="brand" href="/WideWorldImporters/index.php">Wide World Importers</a>
-
         </ul>
         <ul class="navbar-nav">
             <div class="searchbox">
