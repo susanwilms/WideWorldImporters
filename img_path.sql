@@ -1,5 +1,4 @@
 -- phpMyAdmin SQL Dump
-//bier
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
