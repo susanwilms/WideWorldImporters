@@ -196,8 +196,6 @@ $array = array($threestar, $fourstar, $fivestar);
     </div>
 </div>
 
-</body>
-
 <?php
 require_once 'footer.php';
 ?>
