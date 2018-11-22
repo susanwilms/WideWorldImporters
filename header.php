@@ -25,6 +25,9 @@ $productgroup="";
         <!-- Brand/logo -->
 
         <a href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
+        <a href="/WideWorldImporters/about.php">Over ons </a>
+        <a href="/WideWorldImporters/contact.php">Contact </a>
+        <a href="/WideWorldImporters/terms.php">Algemene voorwaarden </a>
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
