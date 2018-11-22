@@ -34,7 +34,7 @@ $productgroup="";
                 </a>
                 <div class="dropdown-menu">
                     <?php
-                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirs","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
+                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirts","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
                     $productgroup=0;
 
                     for($i=0;$i<count($categories);$i++){
@@ -52,7 +52,7 @@ $productgroup="";
             <div class="searchbox">
                 <form action="action_page.php" method="GET" style="margin-top: -3px!important;">
                     <input type="text" placeholder="Zoek..." name="search">
-                    <input type="submit" value="zoek">
+                    <button type="submit" <i class="fa fa-search"></i>
                 </form>
             </div>
 
