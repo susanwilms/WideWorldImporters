@@ -30,19 +30,19 @@ if(empty($page) || $page == 1){
 }
 
 // array with all possible sort options
-$sort_options = array (0 => "si.StockItemID ASC", 1 => "UnitPrice ASC", 2 => "UnitPrice DESC");
+$sort_options = array (0 => "si.StockItemID ASC", 1 => "RecommendedRetailPrice ASC", 2 => "RecommendedRetailPrice DESC");
 $sorted = $sort_options[$sort];
 
 
 // QUERY 1, for getting the itemID, Name, and price.
-$stmt_search = $conn->prepare("SELECT si.StockItemID, si.StockItemName, si.UnitPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%' ORDER BY ${sorted} LIMIT :page,:limit;");
+$stmt_search = $conn->prepare("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%' ORDER BY ${sorted} LIMIT :page,:limit;");
 $stmt_search->bindParam(':page', $pages, PDO::PARAM_INT);
 $stmt_search->bindParam(':limit', $limit, PDO::PARAM_INT);
 $stmt_search->execute();
 $resultcat1 = $stmt_search->fetchAll();
 
 // QUERY 2, used for counting the amount of records in a search query, for pagination
-$nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.UnitPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
+$nRows = $conn->query("SELECT si.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitems si WHERE si.SearchDetails LIKE '%${description}%'")->rowCount();
 $aantalPages = $nRows / $limit;
 $aantalPages = ceil($aantalPages); // determine amount of pages
 
@@ -195,8 +195,6 @@ $array = array($threestar, $fourstar, $fivestar);
         </div>
     </div>
 </div>
-
-</body>
 
 <?php
 require_once 'footer.php';

@@ -18,7 +18,7 @@ $result = $select->fetchAll();
 
 // Set the variables with the results I need
 $productName =      $result[0]["StockItemName"];
-$productPrice =     $result[0]["UnitPrice"];
+$productPrice =     $result[0]["RecommendedRetailPrice"];
 $productTime =      $result[0]["LeadTimeDays"];
 $productInStock =   2;
 $productColorID =   $result[0]["ColorID"];

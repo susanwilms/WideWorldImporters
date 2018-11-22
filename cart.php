@@ -1,11 +1,10 @@
 <?php
-
 require_once './connection.php';
 require_once './header.php';
 
 
 // QUERY 1, used for id, name, price
-$stmt = $conn->prepare("SELECT StockItemID, StockItemName, UnitPrice FROM stockitems;");
+$stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
 $result = $stmt->fetchAll();
 
@@ -21,7 +20,7 @@ if(!isset($_SESSION['cart'])) {
 }
 
 
-$totaal = 0;
+$total_price = 0;
 
 
 // checks if remove_item has a value and if there's an article that has to be deleted
@@ -64,8 +63,8 @@ if (filter_has_var(INPUT_POST, "decrease_quantity")) {
 
     } elseif (isset($_SESSION['cart'][$post_id])) {
         if ($_SESSION['cart'][$post_id] > 1)
-        // anders gaat het aantal gewoon 1 omlaag
-        $_SESSION['cart'][$post_id]--;
+            // anders gaat het aantal gewoon 1 omlaag
+            $_SESSION['cart'][$post_id]--;
     }
 }
 
@@ -80,7 +79,7 @@ if (filter_has_var(INPUT_POST, "increase_quantity")) {
     if ($_SESSION['cart'][$post_id] < 100) {
         // raises the product with $post_id by 1
         $_SESSION['cart'][$post_id]++;
-    // else: don't increase the quantity, and show an alert
+        // else: don't increase the quantity, and show an alert
     } else {
         ?>
         <div class="container col-sm-8 col-11">
@@ -134,7 +133,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
     // If there is not yet another product with the same ID, set the amount to the given amount
     if (!isset($_SESSION['cart']['_' . $ProductID])) {
         $_SESSION['cart']['_' . $ProductID] = $add_aantal;
-        // if there already is another product 
+        // if there already is another product
     } elseif (isset($_SESSION['cart']['_' . $ProductID])) {
         // the total amount can't be higher than 100, so we set it to 100 if it is.
         if ($_SESSION['cart']['_' . $ProductID] + $add_aantal >= 100) {
@@ -224,24 +223,24 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-3">
                         <!--    prints the price of the item (replace ',' with '.')  -->
-                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["UnitPrice"])?> </h6>
+                        <h6 style="float:right"> € <?php echo str_replace(".", ",", $result[$id2 - 1]["RecommendedRetailPrice"])?> </h6>
                     </div>
-
                 </div>
                 <?php
                 // calculate the total price of every item in the cart
-                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["UnitPrice"]);
+
+                $total_price+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
             ?>
-                <!--    Afreken button en totaalprijs   -->
+            <!--    Afreken button en totaalprijs   -->
             <form method="get" action="/WideWorldImporters/pay.php">
                 <button style="float:right; margin-bottom:20px" type="submit" class="btn large-button">Afrekenen</button>
             </form>
 
-            <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($totaal, 2, ",",".")?> </h4>
-                <?php
-            }
+            <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($total_price, 2, ",",".")?> </h4>
+            <?php
+        }
         else {
             // when ['cart'] is 0, the cart is empty
             echo 'Je winkelmand is leeg';
@@ -252,7 +251,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
             </form>
 
             <?php
-            }
+        }
         ?>
 
     </div>

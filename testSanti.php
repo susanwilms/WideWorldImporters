@@ -10,24 +10,3 @@ $number_of_rows = $stmtcat1->rowCount();
 
 $limit=24;
 $productgroup=10;
-$nRows = $conn->query("SELECT LAST_INSERT_ID()");
-$aantalPages= $nRows/$limit;
-print($nRows);
-//echo "<br>";
-//$aantalPages=ceil($aantalPages);
-//echo $aantalPages;
-
-
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
