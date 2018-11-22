@@ -12,6 +12,9 @@ $productgroup="";
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./includes/default.css" media="screen" />
 
+    <link rel="icon" type="image/png" href="/WideWorldImporters/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/WideWorldImporters/images/favicon-16x16.png" sizes="16x16" />
+
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -31,7 +34,7 @@ $productgroup="";
                 </a>
                 <div class="dropdown-menu">
                     <?php
-                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirs","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
+                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirts","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
                     $productgroup=0;
 
                     for($i=0;$i<count($categories);$i++){
@@ -44,14 +47,12 @@ $productgroup="";
                 </div>
             </li>
 
-            <a class="navbar-brand" id="brand" href="/WideWorldImporters/index.php">Wide World Importers</a>
-
         </ul>
         <ul class="navbar-nav">
             <div class="searchbox">
                 <form action="action_page.php" method="GET" style="margin-top: -3px!important;">
                     <input type="text" placeholder="Zoek..." name="search">
-                    <input type="submit" value="zoek">
+                    <button type="submit" <i class="fa fa-search"></i>
                 </form>
             </div>
 

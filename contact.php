@@ -22,7 +22,6 @@ require_once 'header.php';
         </div>
         <button type="submit" value="1" class="btn large-button">Submit</button>
 
-
         <?php
         // checks if text has a value and sends a mail if it has
         if (filter_has_var(INPUT_POST, "text")) {

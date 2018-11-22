@@ -21,7 +21,7 @@ if(!isset($_SESSION['cart'])) {
 }
 
 
-$totaal = 0;
+$total_price = 0;
 
 
 // checks if remove_item has a value and if there's an article that has to be deleted
@@ -229,7 +229,8 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 </div>
                 <?php
                 // calculate the total price of every item in the cart
-                $totaal+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
+
+                $total_price+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
             ?>
@@ -238,7 +239,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 <button style="float:right; margin-bottom:20px" type="submit" class="btn large-button">Afrekenen</button>
             </form>
 
-            <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($totaal, 2, ",",".")?> </h4>
+            <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($total_price, 2, ",",".")?> </h4>
                 <?php
             }
         else {

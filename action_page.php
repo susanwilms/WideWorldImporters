@@ -85,7 +85,7 @@ $array = array($threestar, $fourstar, $fivestar);
 
 
     <?php
-    if($nRows == 0){
+    if($nRows == 0 || $description == ""){
 
         echo  "Geen artikelen gevonden";} else {
         ?>
@@ -195,8 +195,6 @@ $array = array($threestar, $fourstar, $fivestar);
         </div>
     </div>
 </div>
-
-</body>
 
 <?php
 require_once 'footer.php';
