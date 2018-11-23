@@ -189,11 +189,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
                     </div>
 
                     <div class="col-xl-5 col-lg-5 col-md-4 col-sm-6 col-9">
-                        <h6 class="aantal d-none d-lg-block" style="float:left">Aantal:</h6>
+                        <h6 class="amount d-none d-lg-block" style="float:left">Aantal:</h6>
                         <div class="">
                             <!--    prints the quantity of the item    -->
                             <form method="post">
-                                <input class="form-control col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 aantalproducten" type="number" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
+                                <input class="form-control col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 productamount" type="number" min="1" max="100" name="modify_quantity" value="<?php echo $_SESSION['cart'][$id]?>">
                                 <input type="hidden" name="post_id" value="<?php echo $id?>">
                             </form>
                             <div class="col-md-12 col-sm-12">
@@ -234,7 +234,7 @@ if (filter_has_var(INPUT_POST, "productID")) {
 
             ?>
             <!--    Afreken button en totaalprijs   -->
-            <form method="get" action="/WideWorldImporters/pay.php">
+            <form method="get" action="/WideWorldImporters/checkout.php">
                 <button style="float:right; margin-bottom:20px" type="submit" class="btn large-button">Afrekenen</button>
             </form>
 

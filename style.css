@@ -193,6 +193,14 @@ button.search-btn:hover{
     margin-right: 10px;
 }
 
+.amount{
+    margin-right: 5%;
+}
+
+.productamount {
+    margin-top: -1.30%;
+}
+
 
 .videoplayer{
     width: 47.5vw;
@@ -329,3 +337,72 @@ footer a{
     left: 0;
     margin: auto;
 }
+
+
+
+
+/*CSS CHECKOUT.PHP ????????????????????????*/
+/*                                          */
+.outer {
+    display: table;
+    position: absolute;
+    height: 80%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+    width: 80%;
+    height: 100%;
+    box-shadow: 3px 4px 6px rgba(0, 0, 0,0.5);
+    background-color: #ebebeb;
+}
+
+.inner #cellen{
+    /*background-color: red;*/
+    margin-right: auto;
+    width: 65%;
+    height: 100%;
+    padding: 2%;
+    padding-top: 1%;
+
+}
+.inner #cellen:first-child{
+    /*background-color: blue;*/
+    margin-right: auto;
+    width: 35%;
+    height: 100%;
+    float: right;
+    border-left: 1px solid grey;
+}
+
+#cellen h2{
+    /*padding-top: 5%;*/
+    text-align: center;
+}
+
+#cellen:first-child button{
+    height:40px;
+    width:200px;
+    margin: -40px -100px;
+    position:relative;
+    left:50%;
+    margin-top: 20%;
+}
+#Gast_formulier .form-group{
+    margin-bottom:0rem;
+}
+
+#buttomSubmit{
+    top: 10px;
+    /*lef: 20px;*/
+}
+/* END CSS CHECKOUT.PHP ????????????????????????*/
+/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
