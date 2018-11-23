@@ -101,6 +101,7 @@ $total_price = 0;
 <?php
 // checks if text has a value and sends a mail if it has
 if ($_SESSION["order"] != 0) {
+    $formcontent = '';
     $order = $_SESSION["order"];
     foreach ($order as $item => $value) {
         $formcontent.= $item . $value;
