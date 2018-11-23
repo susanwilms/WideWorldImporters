@@ -45,8 +45,8 @@ $resultcat1 = $stmtcat->fetchAll();
 
 // QUERY 2, used for counting the amount of records in an item group, for pagination
 $nRows = $conn->query("SELECT sisg.StockItemID, si.StockItemName, si.RecommendedRetailPrice FROM stockitemstockgroups sisg JOIN stockitems si ON sisg.StockItemID=si.StockItemID WHERE StockGroupID = $productgroup")->rowCount();
-$Pagesamount = $nRows/$limit;
-$Pagesamount = ceil($Pagesamount); // determine amount of pages
+$PageAmount = $nRows/$limit;
+$PageAmount = ceil($PageAmount); // determine amount of pages
 
 $conn = null;
 
@@ -113,13 +113,13 @@ $array = array($threestar, $fourstar, $fivestar);
                             ?>
                             <?php
                             //Generate the amount of pages needed
-                            for($i=1; $i<=$Pagesamount; $i++){
+                            for($i=1; $i<=$PageAmount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
                             }?>
                             <?php
-                            if($page<$Pagesamount) {
+                            if($page<$PageAmount) {
                                 ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
