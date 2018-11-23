@@ -3,7 +3,7 @@
 require_once('header.php');
 include ('connection.php');
 
-$ingelogd= TRUE;
+$loggedin= TRUE;
 ?>
 <style>
     .outer {
@@ -80,7 +80,7 @@ $ingelogd= TRUE;
                 <h2>Inloggen</h2>
 
                 <?php
-                if($ingelogd==TRUE){
+                if($loggedin==TRUE){
 
                 ?>
                     <a href="pay.php"><button type="button" class="btn btn-info">Verder met mijn account</button></a>
