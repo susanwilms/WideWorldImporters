@@ -9,7 +9,6 @@ $productgroup="";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./includes/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./includes/default.css" media="screen" />
 
     <link rel="icon" type="image/png" href="/WideWorldImporters/images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/WideWorldImporters/images/favicon-16x16.png" sizes="16x16" />
@@ -73,4 +72,4 @@ $productgroup="";
         </div>
     </nav>
 </head>
-<body style="margin-bottom: 100px;">
+<body>
