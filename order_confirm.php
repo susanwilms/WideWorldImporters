@@ -106,7 +106,6 @@ if ($_SESSION["order"] != 0) {
     foreach ($order as $item => $value) {
         $formcontent.= $item . $value;
     }
-    $formcontent = $;
     // address the mails are sent to
     $recipient = "1@t45.nl";
     $customer_address = "2@t45.nl";
