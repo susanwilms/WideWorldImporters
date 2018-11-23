@@ -60,7 +60,7 @@ $productgroup="";
             </ul>
 
             <form action="action_page.php" method="GET" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2 search-control" type="search" placeholder="Zoek..." name="search" aria-label="Search">
+                <input class="form-control mr-sm-2 search-control" type="search" placeholder="Zoek..." name="search" aria-label="Search" required>
                 <button class="btn my-2 my-sm-0 search-btn" type="submit"><i class="fa fa-search"></i></button>
             </form>
             <ul class="navbar-nav">
