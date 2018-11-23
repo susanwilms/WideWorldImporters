@@ -1,11 +1,22 @@
 /* fonts */
 @import url('https://fonts.googleapis.com/css?family=Rochester');
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,600');
-
+body{
+    font-family: raleway;
+}
 nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
     height: 80px;
     box-shadow: none !important;
 }
+
+button.navbar-toggler {
+    border-color: #06bcf2!important;
+}
+
+.account-item{
+    color: #06bcf2!important;
+}
+
 
 a.menu-item-a {
     padding-left: 10px;
@@ -23,6 +34,9 @@ button.fa.fa-search {
     height:110px;
 }
 
+.logo{
+    max-width: 100px;
+}
 .no-radius{
     border-radius: 0!important;
 }
@@ -90,6 +104,28 @@ label{
     background-size: cover;
     background-position: center;
 }
+
+.search-control{
+    padding: 0.1rem 1rem;
+    margin-right: 0px!important;
+}
+button.search-btn{
+    padding: .1rem .4rem;
+    margin-right: .5rem!important;
+    background-color: #06bcf2;
+    color: white;
+}
+button.search-btn:hover{
+    background-color: white;
+    color: #06bcf2;
+    border: 1px solid #06bcf2;
+}
+
+
+.shoppingcart_icon{
+    width: 31px;
+}
+
 
 .container{
     padding-left: 0px!important;
@@ -278,8 +314,14 @@ footer {
     text-align: center;
 }
 
+footer{
+    color: grey;
+}
 footer a{
-    color: black;
+    color: grey;
+}
+.btn-contact{
+    color: #06bcf2!important;
 }
 
 .footer_content{

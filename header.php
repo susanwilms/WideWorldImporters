@@ -20,54 +20,57 @@ $productgroup="";
     <script src="./includes/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
-        <!-- Brand/logo -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="/WideWorldImporters/index.php"><img class="logo" src="images/logo.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-
-        <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-            <li><a class="menu-item-a" href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a></li>
-            <li><a class="menu-item-a" href="/WideWorldImporters/about.php">Over ons </a></li>
-            <li><a class="menu-item-a" href="/WideWorldImporters/contact.php">Contact </a></li>
-
-            <li class="nav-item dropdown px-5">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Categorieën
-                </a>
-                <div class="dropdown-menu">
-                    <?php
-                    $categories = array("Novelty Items","Clothing","Mugs","T-Shirts","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
-                    $productgroup=0;
-
-                    for($i=0;$i<count($categories);$i++){
-                        $productgroup++;
-                        ?>
-                        <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categories[$i])?></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/WideWorldImporters/index.php" id="logo">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WideWorldImporters/about.php">Over ons</a></li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WideWorldImporters/contact.php">Contact</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorieën
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <?php
-                    }
-                    ?>
-                </div>
-            </li>
+                        $categories = array("Novelty Items","Clothing","Mugs","T-Shirts","Airline Novelties","Computing Novelties","USB Novelties","Furry Footwear","Toys","Packaging Materials");
+                        $productgroup=0;
 
-        </ul>
-        <ul class="navbar-nav">
-            <div class="searchbox">
-                <form action="action_page.php" method="GET" style="margin-top: -3px!important;">
-                    <input type="text" placeholder="Zoek..." name="search">
-                    <button type="submit" <i class="fa fa-search"></i>
-                </form>
-            </div>
+                        for($i=0;$i<count($categories);$i++){
+                            $productgroup++;
+                            ?>
+                            <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categories[$i])?></a>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link account-item" href="/WideWorldImporters/login.php">Account</a></li>
+                </li>
+            </ul>
 
-            <li class="nav-item">
-                <a href="/WideWorldImporters/cart.php"><i class="px-3 fas fa-shopping-cart fa-lg"></i></a>
+            <form action="action_page.php" method="GET" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 search-control" type="search" placeholder="Zoek..." name="search" aria-label="Search">
+                <button class="btn my-2 my-sm-0 search-btn" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="cart.php"><img class="shoppingcart_icon" src="images/cart_icon.png"></a>
+                </li>
+            </ul>
 
-            </li>
-            <li class="nav-item">
-                <i class="px-3 fas fa-user fa-lg"></i>
-            </li>
-
-        </ul>
+        </div>
     </nav>
 </head>
-<body style="margin-top: 80px;margin-bottom: 100px;">
+<body style="margin-bottom: 100px;">
