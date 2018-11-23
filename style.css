@@ -9,6 +9,15 @@ nav.shadow.navbar.navbar-expand-sm.bg-light.navbar-light.fixed-top {
     box-shadow: none !important;
 }
 
+button.navbar-toggler {
+    border-color: #06bcf2!important;
+}
+
+.account-item{
+    color: #06bcf2!important;
+}
+
+
 a.menu-item-a {
     padding-left: 10px;
     padding-right: 10px;
@@ -305,8 +314,14 @@ footer {
     text-align: center;
 }
 
+footer{
+    color: grey;
+}
 footer a{
-    color: black;
+    color: grey;
+}
+.btn-contact{
+    color: #06bcf2!important;
 }
 
 .footer_content{
