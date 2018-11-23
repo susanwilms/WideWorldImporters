@@ -94,12 +94,25 @@ $total_price = 0;
             <br>
             woonplaats
             <br>
-            
             <p></p>
         </div>
     </div>
 </div>
 <?php
+// checks if text has a value and sends a mail if it has
+if ($_SESSION["order"] != 0) {
+    $order = $_SESSION["order"];
+    $formcontent = "$order";
+    // address the mails are sent to
+    $recipient = "1@t45.nl";
+    $customer_address = "2@t45.nl";
+    $subject = "Je bestelling bij WideWorldImporters";
+    $mailheader = "From: $email \r\n";
+    mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+    mail($customer_address, $subject, $formcontent, $mailheader) or die("Error!");
+    echo "Thank You!";
+}
+
 require_once './footer.php';
 
 ?>
