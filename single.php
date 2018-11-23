@@ -106,6 +106,10 @@ $productQuantityInStock = $stock_query[0]["QuantityOnHand"];
     window.onload = imgFunction('/images/<?php echo $productid?>-1.jpg');
 </script>
 
+<?php
+    require_once ('footer.php');
+?>
+
 
 
 
