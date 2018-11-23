@@ -23,10 +23,14 @@ $productgroup="";
     <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
         <!-- Brand/logo -->
 
-        <a href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
+
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
+            <li><a class="menu-item-a" href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a></li>
+            <li><a class="menu-item-a" href="/WideWorldImporters/about.php">Over ons </a></li>
+            <li><a class="menu-item-a" href="/WideWorldImporters/contact.php">Contact </a></li>
+
             <li class="nav-item dropdown px-5">
                 <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                     Categorieën
