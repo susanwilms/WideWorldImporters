@@ -38,7 +38,7 @@ if(empty(!$_POST)) {
     <?php
     if(empty($_POST)) {
         ?>
-        <img src="./images/afrekenen.png" alt="iDEALpage" align="middle" height="597" width="770"/>
+        <a href="/WideWorldImporters/order_confirm.php"><img src="./images/afrekenen.png" alt="iDEALpage" align="middle" height="597" width="770"/></a>
         <?php
     }
     ?>

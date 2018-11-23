@@ -20,7 +20,7 @@ $result = $select->fetchAll();
 $productName =      $result[0]["StockItemName"];
 $productPrice =     $result[0]["RecommendedRetailPrice"];
 $productTime =      $result[0]["LeadTimeDays"];
-$productInStock =   2;
+$productDescription = $result[0]["MarketingComments"];
 $productColorID =   $result[0]["ColorID"];
 
 // Select query to get the color information from the color table
@@ -64,6 +64,7 @@ $productQuantityInStock = $stock_query[0]["QuantityOnHand"];
             <input type="hidden" name="productID" value="<?php print($productid); ?>">
 
             <p><?php print($productName); ?></p>
+            <p><?php print($productDescription);?></p>
             <p>Prijs: €<?php print($productPrice); ?></p>
             <p>Verwachte levertijd: <?php print($productTime); ?></p>
             <p><?php echo $productQuantityInStock; ?> items op voorraad</p>
@@ -104,6 +105,10 @@ $productQuantityInStock = $stock_query[0]["QuantityOnHand"];
     }
     window.onload = imgFunction('/images/<?php echo $productid?>-1.jpg');
 </script>
+
+<?php
+    require_once ('footer.php');
+?>
 
 
 
