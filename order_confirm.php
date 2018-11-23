@@ -102,12 +102,15 @@ $total_price = 0;
 // checks if text has a value and sends a mail if it has
 if ($_SESSION["order"] != 0) {
     $order = $_SESSION["order"];
-    $formcontent = "$order";
+    foreach ($order as $item => $value) {
+        $formcontent.= $item . $value;
+    }
+    $formcontent = $;
     // address the mails are sent to
     $recipient = "1@t45.nl";
     $customer_address = "2@t45.nl";
     $subject = "Je bestelling bij WideWorldImporters";
-    $mailheader = "From: $email \r\n";
+    $mailheader = "From: info@WideWorldImporters.com \r\n";
     mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
     mail($customer_address, $subject, $formcontent, $mailheader) or die("Error!");
     echo "Thank You!";
