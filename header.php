@@ -23,10 +23,10 @@ $productgroup="";
     <nav class="shadow navbar navbar-expand-sm bg-light navbar-light fixed-top">
         <!-- Brand/logo -->
 
-        <a href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
-        <a href="/WideWorldImporters/about.php">Over ons </a>
-        <a href="/WideWorldImporters/contact.php">Contact </a>
-        <a href="/WideWorldImporters/terms.php">Algemene voorwaarden </a>
+        <a class="menu-item-a" href="/WideWorldImporters/index.php" id="logo"><img id="logo-img" src="images/logo.png"></a>
+        <a class="menu-item-a" href="/WideWorldImporters/about.php">Over ons </a>
+        <a class="menu-item-a" href="/WideWorldImporters/contact.php">Contact </a>
+        <a class="menu-item-a" href="/WideWorldImporters/terms.php">Algemene voorwaarden </a>
 
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
