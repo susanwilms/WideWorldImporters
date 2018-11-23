@@ -53,30 +53,30 @@ $array = array($threestar, $fourstar, $fivestar);
     ?>
 
 </p>
-
-<div class="row" id="Categories">
-
-    <?php
-    if(!empty($resultcat2)){
-        foreach($resultcat2 as $r){
-            $stock_id = $r[0];
-            $stock_name = $r[1];
-            $stock_price = $r[2];
-            ?>
-            <div class="col-md-3 col-12 pb-2 product-box">
-                <div class="card mb-4 text-center cart-content" >
-                    <a href="/WideWorldImporters/single.php?ProductID=<?php echo $stock_id?>">
-                        <img class="card-img" src="./images/<?php echo $stock_id . "-1.jpg"; ?>" alt="<?php echo $stock_name; ?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
-                    </a>
-                    <div class="card-body text-center product-overview-info" style="margin-top: -160px!important;">
-                        <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
-                        <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
-                        <p><?php echo $array[array_rand($array)]; ?></p>
+<div class="container">
+    <div class="row" id="Categories">
+        <?php
+        if(!empty($resultcat2)){
+            foreach($resultcat2 as $r){
+                $stock_id = $r[0];
+                $stock_name = $r[1];
+                $stock_price = $r[2];
+                ?>
+                <div class="col-md-3 col-12 pb-2 product-box">
+                    <div class="card mb-4 text-center cart-content" >
+                        <a href="/WideWorldImporters/single.php?ProductID=<?php echo $stock_id?>">
+                            <img class="card-img" src="./images/<?php echo $stock_id . "-1.jpg"; ?>" alt="<?php echo $stock_name; ?>" onerror="this.src='/WideWorldImporters/images/placeholder.png';"/>
+                        </a>
+                        <div class="card-body text-center product-overview-info" style="margin-top: -160px!important;">
+                            <p class="text-left card-text"><span style="float:left;"><?php echo $stock_name; ?></span></p><br>
+                            <p class="text-left card-text"><span style="float:left;"><?php echo "Prijs: ".$stock_price; ?></span></p>
+                            <p><?php echo $array[array_rand($array)]; ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php } }
-        ?>
+            <?php } }
+            ?>
+    </div>
 </div>
 <?php
     require_once 'footer.php';
