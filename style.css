@@ -13,6 +13,11 @@ a.menu-item-a {
     color: black;
 }
 
+button.fa.fa-search {
+    border: 0px;
+    margin-top: 5px;
+}
+
 .small-img{
     width: 110px;
     height:110px;
