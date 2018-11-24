@@ -31,7 +31,11 @@ if(empty(!$_POST)) {
 ?>
 
 
-
+<style>
+    body {
+        background-color: #eef0f0;
+    }
+</style>
 <div style="width: 100%; text-align: center;">
     <?php
     if(empty($_POST)) {
