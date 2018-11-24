@@ -4,10 +4,6 @@ require_once './connection.php';
 require_once './header.php';
 
 
-if ($_SESSION["cart"] != 0) {
-
-}
-
 // QUERY 1, used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();

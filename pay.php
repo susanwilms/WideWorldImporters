@@ -31,10 +31,8 @@ if(empty(!$_POST)) {
 ?>
 
 
-<html>
-<body style="background-color:#eef0f0;">
-<div style="width: 100%; text-align: center;">
 
+<div style="width: 100%; text-align: center;">
     <?php
     if(empty($_POST)) {
         ?>
@@ -42,6 +40,4 @@ if(empty(!$_POST)) {
         <?php
     }
     ?>
-    </div>
-</body>
-</html>
+</div>
