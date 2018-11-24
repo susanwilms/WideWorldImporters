@@ -92,7 +92,7 @@ $array = array($threestar, $fourstar, $fivestar);
 
     <div id="main_container">
         <div class="container pt-4">
-            <!-- This is the different sorting element above the items -->
+            <!-- This is the different sorting element above the items-->
             <div id="test">
                 <div id="Element">
                     <nav aria-label="Page navigation example">
@@ -113,7 +113,7 @@ $array = array($threestar, $fourstar, $fivestar);
                             ?>
                             <?php
                             //Generate the amount of pages needed
-                            for($i=1; $i<=PageAmount; $i++){
+                            for($i=1; $i<=$PageAmount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
@@ -140,10 +140,29 @@ $array = array($threestar, $fourstar, $fivestar);
 
                     </button>
                     <div class="dropdown-menu">
-                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                        <?php
+                        if ($sort == 0) {
+                            ?>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        } elseif ($sort == 1) {
+                            ?>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        } elseif ($sort == 2) {
+                            ?>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        }
+
+                        ?>
+
                     </div>
                 </div>
 
@@ -166,7 +185,7 @@ $array = array($threestar, $fourstar, $fivestar);
             if(empty($description)){
                 echo  "Er zijn 0 resultaten.";}
             else {
-                echo "Er zijn " . $nRows . " resultaten.";
+                echo "Er zijn " . $nRows . " resultaten gevonden voor '${description}'.";
             }
         ?>
         <div class="row" id="categorieen">

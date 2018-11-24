@@ -406,3 +406,9 @@ footer a{
 }
 /* END CSS CHECKOUT.PHP ????????????????????????*/
 /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+
+
+/*Background color for active(currently selected) button on dropdown menu.*/
+.dropdown-item.active {
+    background-color: #06BCF2;
+}
