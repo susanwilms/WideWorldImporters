@@ -103,11 +103,20 @@ $productQuantityInStock = $stock_query[0]["QuantityOnHand"];
     function imgFunction(path) {
         document.getElementById("product_img").style.backgroundImage = "url('." + path + "')";
     }
-    window.onload = imgFunction('/images/<?php echo $productid?>-1.jpg');
 </script>
 
 <?php
-    require_once ('footer.php');
+
+// if this item has an image, show the first one big on the left side.
+if (file_exists("./images/${productid}-1.jpg")) {
+    ?><script>window.onload = imgFunction('/images/<?php echo $productid?>-1.jpg');</script><?php
+} else {
+    // else show a placeholder
+    ?><script>window.onload = imgFunction('/images/top_placeholder.png');</script><?php
+}
+
+require_once ('footer.php');
+
 ?>
 
 
