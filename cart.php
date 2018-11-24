@@ -19,7 +19,6 @@ if(!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = 0;
 }
 
-
 $total_price = 0;
 
 
@@ -82,7 +81,7 @@ if (filter_has_var(INPUT_POST, "increase_quantity")) {
         // else: don't increase the quantity, and show an alert
     } else {
         ?>
-        <div class="container col-sm-8 col-11">
+        <div class="pt-2 container col-sm-8 col-11">
             <div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>Sorry,</strong> je kan maximaal 100 stuks van een artikel tegelijk bestellen.
@@ -162,12 +161,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <?php
                         // checks if there is a picture for the item, if there is, show it.
                         if (file_exists("./images/${id2}-1.jpg")) {
-                            ?><img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg"><?php
+                            ?><a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><img class="img-thumbnail" src="/WideWorldImporters/images/<?php echo $id2?>-1.jpg"></a><?php
                         } else {
                             // else show a placeholder
-                            ?><img class="img-thumbnail" src="https://via.placeholder.com/500"><?php
+                            ?><a href="/WideWorldImporters/single.php?ProductID=<?php echo $id2;?>"><img class="img-thumbnail" src="https://via.placeholder.com/500"></a><?php
                         }
-
                         ?>
 
                     </div>
@@ -178,12 +176,11 @@ if (filter_has_var(INPUT_POST, "productID")) {
                         <?php
                         if ($stock_query[$id2 - 1]["QuantityOnHand"] > 100) {
                             print("<h6 style='color:green'> Op voorraad.</h6>");
-                        } elseif ($stock_query[$id2 - 1]["QuantityOnHand"] == 0) {
+                        } elseif ($stock_query[$id2 - 1]["QuantityOnHand"] <= 0) {
                             print("<h6 style='color:red'> Geen voorraad.</h6>");
                         } else {
                             print("<h6 style='color:orange'> Weinig voorraad.</h6>");
                         }
-
                         ?>
 
                     </div>
@@ -228,16 +225,15 @@ if (filter_has_var(INPUT_POST, "productID")) {
                 </div>
                 <?php
                 // calculate the total price of every item in the cart
-
                 $total_price+= ($_SESSION['cart'][$id] * $result[$id2 - 1]["RecommendedRetailPrice"]);
             }
 
             ?>
-            <!--    Afreken button en totaalprijs   -->
+            <!--    Checkout button and total price   -->
             <form method="get" action="/WideWorldImporters/checkout.php">
                 <button style="float:right; margin-bottom:20px" type="submit" class="btn large-button">Afrekenen</button>
             </form>
-
+            <!--       number_format to get print the price in a nice way     -->
             <h4 style="float:right;margin-right:2%" class="">Totaal: € <?php echo number_format($total_price, 2, ",",".")?> </h4>
             <?php
         }

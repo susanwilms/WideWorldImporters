@@ -3,13 +3,9 @@
 require_once './connection.php';
 require_once './header.php';
 
-// check if there are items in the cart, if there are add the items in cart to the order and empty cart
-if ($_SESSION["cart"] != 0) {
-    $_SESSION["order"] = $_SESSION["cart"];
-    unset($_SESSION["cart"]);
-    ?>
 
-    <?php
+if ($_SESSION["cart"] != 0) {
+
 }
 
 // QUERY 1, used for id, name, price
@@ -30,8 +26,12 @@ $total_price = 0;
         <div class="col-md-6">
             <h2 class="py-4">Je bestelling</h2>
             <?php
-            // if session is not 0 (which means there are items in the cart), the cart will be shown.
-            if($_SESSION["order"] != 0) {
+            // if session is not 0 (which means there are items in the cart), the order confirmation will be shown.
+            if(!empty($_SESSION["cart"]) || $_SESSION["cart"] != 0) {
+
+                //  add the items in cart to the order and empty cart
+                $_SESSION["order"] = $_SESSION["cart"];
+                unset($_SESSION["cart"]);
 
                 // loops through every item in the ['cart'] array
                 foreach ($_SESSION["order"] as $id => $aantal) {
@@ -84,17 +84,26 @@ $total_price = 0;
             ?>
 
         </div>
-        <div class="col-md-6 pt-5">
+        <div class="col-md-6 pt-5 pr-5">
+            <!-- TODO: use real information from session/database -->
             <br><br>
-            klant gegevens
+            <h5>Je gegevens</h5>
+            <h6>Naam</h6>
+            Willibrordus Rutgers
             <br>
-            naam
             <br>
-            adres
+            <h6>E-mail adres</h6>
+            WillibrordusRutgers@jourrapide.com
             <br>
-            woonplaats
             <br>
-            <p></p>
+            <h6>Adres</h6>
+            Kerkstraat 149
+            <br>
+            5351 EB
+            <br>
+            <br>
+            <h6>Woonplaats</h6>
+            Berghem
         </div>
     </div>
 </div>
@@ -111,10 +120,34 @@ if ($_SESSION["order"] != 0) {
     $customer_address = "2@t45.nl";
     $subject = "Je bestelling bij WideWorldImporters";
     $mailheader = "From: info@WideWorldImporters.com \r\n";
-    mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
-    mail($customer_address, $subject, $formcontent, $mailheader) or die("Error!");
-    echo "Thank You!";
+    // we send 2 mails, 1 to the customer, and 1 to ourselves
+    mail($recipient, $subject, $formcontent, $mailheader);
+    mail($customer_address, $subject, $formcontent, $mailheader);
+
 }
+
+// lowers the StockItemHoldings by the amount ordered
+foreach ($_SESSION["order"] as $item => $value) {
+    // removes underscore from string to use it in a query
+    $product_id = substr($item, 1);
+    // gets the current amount of stock
+    $stmt3 = $conn->prepare("SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID = ${product_id};");
+    $stmt3->execute();
+    $item_stock = $stmt3->fetch();
+
+    // calculates the new amount of stock
+    $new_holdings = $item_stock["QuantityOnHand"] - $value;
+
+    // sets the new stock amount in the database
+    $update_stock = "UPDATE stockitemholdings SET QuantityOnHand = ${new_holdings} WHERE StockItemID = ${product_id};";
+    $conn->exec($update_stock);
+}
+
+// TODO: uncomment when done with development
+// unsets the order sessions when the order is processed
+//unset($_SESSION["order"];
+
+
 
 require_once './footer.php';
 
