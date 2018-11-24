@@ -137,10 +137,29 @@ $array = array($threestar, $fourstar, $fivestar);
                     Sorteer:
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
-                    <!-- TODO: Make sure it's visible which button is pressed, dmv 'active' class -->
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs laag naar hoog</a>
-                        <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs hoog naar laag</a>
+                        <?php
+                        if ($sort == 0) {
+                            ?>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        } elseif ($sort == 1) {
+                            ?>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        } elseif ($sort == 2) {
+                            ?>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
+                            <a class="dropdown-item" href="<?php echo "$generalURL&sort=1&limit=${limit}&page=${page}" ?>">Prijs oplopend</a>
+                            <a class="dropdown-item active" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
+                            <?php
+                        }
+
+                        ?>
+
                     </div>
                 </div>
 
