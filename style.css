@@ -340,8 +340,6 @@ footer a{
 }
 
 
-
-
 /*CSS CHECKOUT.PHP ????????????????????????*/
 /*                                          */
 .outer {
@@ -409,7 +407,25 @@ footer a{
 /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
 
 
-/*Background color for active(currently selected) button on dropdown menu.*/
+/* Background color for active(currently selected) button on dropdown menu. */
 .dropdown-item.active {
     background-color: #06BCF2;
+}
+
+
+/* Pagination in huisstijl */
+.pagination li a {
+    background: #06BCF2;
+    color: #ffffff;
+    border: 0;
+    border-radius: 0 !important;
+}
+.page-item.active .page-link {
+    background-color: #343a40;
+    border: 0;
+}
+.page-link:hover {
+    color: #ffffff;
+    background-color: #06BCF2;
+    border-color: #06BCF2;
 }
