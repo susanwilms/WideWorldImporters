@@ -98,12 +98,17 @@ if (filter_has_var(INPUT_POST, "modify_quantity")) {
     $post_id = filter_input(INPUT_POST, "post_id", FILTER_SANITIZE_STRING);
     $modify_quantity = filter_input(INPUT_POST, "modify_quantity", FILTER_SANITIZE_STRING);
 
-    // the added number has to be 100 or less at all times
+    // the changed quantity has to be 100 or less at all times
     if ($modify_quantity > 100) {
         $modify_quantity = 100;
     }
 
-    // raises the product with $post_id by 1
+    // the changed quantity has to be 1 or more at all times
+    if ($modify_quantity < 1) {
+        $modify_quantity = 1;
+    }
+
+    // sets the quantity to the new quantity
     $_SESSION["cart"][$post_id] = $modify_quantity;
 }
 
