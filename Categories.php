@@ -7,15 +7,14 @@ require_once 'header.php';
 // all variables used in this document
 $productgroup = (int)filter_input(INPUT_GET, "productgroup", FILTER_SANITIZE_STRING);
 $sort = (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit = (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
-$page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
+$limit = (int)filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page = (int)filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
 $generalURL = "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
 
-
 // set limit to 24 if it isn't set (default limit)
 if(empty($limit)){
-    $limit=24;
+    $limit = 24;
 }
 
 // set sort to 0 if it isn't set (default sort)
@@ -24,10 +23,10 @@ if(empty($sort)){
 }
 
 // standard page has to be 0 even if user presses page 1
-if(empty($page) || $page==1){
-    $pages=0;
+if(empty($page) || $page == 1){
+    $pages = 0;
 }else{
-    $pages=($page*$limit)-$limit; // algorithm to determine the first number of the limit
+    $pages = ($page * $limit) - $limit; // algorithm to determine the first number of the limit
 }
 
 // array with all possible sort options
@@ -61,7 +60,6 @@ $array = array($threestar, $fourstar, $fivestar);
 ?>
 
 <script>
-
     function listView(){
         $('#Categories > div').removeClass('col-md-3').addClass('col-md-10');
     }
@@ -71,7 +69,7 @@ $array = array($threestar, $fourstar, $fivestar);
     }
 
     // doesn't work
-    //
+    // TODO: delete or fix
     // /* Optional: Add active class to the current button (highlight it) */
     // var container = document.getElementById("btnContainer");
     // var btns = container.getElementsByClassName("btn");
@@ -85,9 +83,10 @@ $array = array($threestar, $fourstar, $fivestar);
 </script>
 
 <div id="main_container">
+    <!-- This is the category photo -->
     <img id="img_productgroup" src="/WideWorldImporters/images/productgroup<?php print($productgroup);?>.jpg">
     <div class="container ">
-        <!-- This is the category photo -->
+
 
         <!-- This is the different sorting element above the items -->
         <div id="test">
@@ -97,6 +96,7 @@ $array = array($threestar, $fourstar, $fivestar);
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <?php
+                            // if page we are on a is page farther than the first page, show the 'previous' button
                             if($page>1 ) {
 
                                 ?>
@@ -112,13 +112,14 @@ $array = array($threestar, $fourstar, $fivestar);
                             }
                             ?>
                             <?php
-                            //Generate the amount of pages needed
+                            // generate the amount of pages needed
                             for($i=1; $i<=$PageAmount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
                                 <?php
                             }?>
                             <?php
+                            // if page we are on is not the last page, show the 'next' button
                             if($page<$PageAmount) {
                                 ?>
                                 <li class="page-item">
@@ -138,6 +139,7 @@ $array = array($threestar, $fourstar, $fivestar);
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                         <?php
+                        // checks what sort option is used, to make it 'active'
                         if ($sort == 0) {
                             ?>
                             <a class="dropdown-item active" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
@@ -157,12 +159,9 @@ $array = array($threestar, $fourstar, $fivestar);
                             <a class="dropdown-item active" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
                             <?php
                         }
-
                         ?>
-
                     </div>
                 </div>
-
 
                 <div id="Element">
                     Aantal:
@@ -186,6 +185,7 @@ $array = array($threestar, $fourstar, $fivestar);
         <div class="row" id="Categories">
 
             <?php
+            // loop through all of the found items
             if(!empty($resultcat1)){
             foreach($resultcat1 as $r){
                 $stock_id = $r[0];
@@ -212,8 +212,6 @@ $array = array($threestar, $fourstar, $fivestar);
         <!-- End of items -->
     </div>
 </div>
-
-</body>
 
 <?php
     require_once 'footer.php';

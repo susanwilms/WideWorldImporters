@@ -7,8 +7,8 @@ require_once 'connection.php';
 // All variables used in this document
 $description = filter_input(INPUT_GET, "search", FILTER_SANITIZE_STRING);
 $sort = (int)filter_input(INPUT_GET, "sort", FILTER_SANITIZE_STRING);
-$limit = (int) filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
-$page = (int) filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
+$limit = (int)filter_input(INPUT_GET, "limit", FILTER_SANITIZE_STRING);
+$page = (int)filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 
 $generalURL = "/WideWorldImporters/action_page.php?search=". $description;
 
@@ -59,7 +59,6 @@ $array = array($threestar, $fourstar, $fivestar);
 ?>
 <!-- Script for list or grid view -->
 <script>
-
     function listView(){
         $('#categorieen > div').removeClass('col-md-3').addClass('col-md-12');
     }
@@ -69,7 +68,7 @@ $array = array($threestar, $fourstar, $fivestar);
     }
 
     // doesn't work
-    //
+    // // TODO: delete or fix
     // /* Optional: Add active class to the current button (highlight it) */
     // var container = document.getElementById("btnContainer");
     // var btns = container.getElementsByClassName("btn");
@@ -98,6 +97,7 @@ $array = array($threestar, $fourstar, $fivestar);
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <?php
+                            // if page we are on a is page farther than the first page, show the 'previous' button
                             if($page>1 ) {
                                 ?>
                                 <li class="page-item">
@@ -112,7 +112,7 @@ $array = array($threestar, $fourstar, $fivestar);
                             }
                             ?>
                             <?php
-                            //Generate the amount of pages needed
+                            // generate the amount of pages needed
                             for($i=1; $i<=$PageAmount; $i++){
                                 ?>
                                 <li class="page-item"><a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=${i}";?>"><?php echo $i ?></a></li>
@@ -120,6 +120,7 @@ $array = array($threestar, $fourstar, $fivestar);
                             }?>
                             <?php
                             if($page<$PageAmount) {
+                                // if page we are on is not the last page, show the 'next' button
                                 ?>
                                 <li class="page-item">
                                     <a class="page-link" href="<?php echo "$generalURL&sort=${sort}&limit=${limit}&page=";
@@ -141,6 +142,7 @@ $array = array($threestar, $fourstar, $fivestar);
                     </button>
                     <div class="dropdown-menu">
                         <?php
+                        // checks what sort option is used, to make it 'active'
                         if ($sort == 0) {
                             ?>
                             <a class="dropdown-item active" href="<?php echo "$generalURL&sort=0&limit=${limit}&page=${page}" ?>">Standaard</a>
@@ -160,9 +162,7 @@ $array = array($threestar, $fourstar, $fivestar);
                             <a class="dropdown-item active" href="<?php echo "$generalURL&sort=2&limit=${limit}&page=${page}" ?>">Prijs aflopend</a>
                             <?php
                         }
-
                         ?>
-
                     </div>
                 </div>
 
@@ -190,6 +190,7 @@ $array = array($threestar, $fourstar, $fivestar);
         ?>
         <div class="row" id="categorieen">
         <?php
+        // loop through all of the found items
         foreach($resultcat1 as $r){
             $stock_id = $r[0];
             $stock_name = $r[1];
@@ -218,4 +219,3 @@ $array = array($threestar, $fourstar, $fivestar);
 <?php
 require_once 'footer.php';
 ?>
-
