@@ -22,6 +22,8 @@ $total_price = 0;
         <div class="col-md-6">
             <h2 class="py-4">Je bestelling</h2>
             <?php
+            // TODO: responsive
+            // TODO: bugs wanneer je refreshed op deze pagina
             // if session is not 0 (which means there are items in the cart), the order confirmation will be shown.
             if(!empty($_SESSION["cart"]) || $_SESSION["cart"] != 0) {
 
