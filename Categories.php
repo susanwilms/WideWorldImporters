@@ -174,8 +174,8 @@ $array = array($threestar, $fourstar, $fivestar);
                 </div>
                 </div>
                 <div id="Element">
-                    <button class="btn" onclick="listView()"><i class="fa fa-bars"></i> List</button>
-                    <button class="btn" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
+                    <button class="btn btn-listgrid" onclick="listView()"><i class="fa fa-bars"></i> List</button>
+                    <button class="btn btn-listgrid" onclick="gridView()"><i class="fa fa-th"></i> Grid</button>
                 </div>
 
         </div>
