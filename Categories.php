@@ -63,11 +63,11 @@ $array = array($threestar, $fourstar, $fivestar);
 <script>
 
     function listView(){
-        $('#Categories > div').removeClass('col-md-3').addClass('col-md-12');
+        $('#Categories > div').removeClass('col-md-3').addClass('col-md-10');
     }
 
     function gridView(){
-        $('#Categories > div').addClass('col-md-3').removeClass('col-md-12');
+        $('#Categories > div').addClass('col-md-3').removeClass('col-md-10');
     }
 
     // doesn't work
