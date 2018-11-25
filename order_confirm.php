@@ -139,10 +139,80 @@ foreach ($_SESSION["order"] as $item => $value) {
     $conn->exec($update_stock);
 }
 
+
+// gets the last orderid
+$stmt4 = $conn->prepare("SELECT max(OrderID) MaxOrderID FROM orders;");
+$stmt4->execute();
+$orders= $stmt4->fetchAll();
+
+// gets the last orderlineid
+$stmt5 = $conn->prepare("SELECT max(OrderLineID) MaxOrderLineID FROM orderlines;");
+$stmt5->execute();
+$orderlines = $stmt5->fetchAll();
+
+// the last orderlineid
+$orderlineid = $orderlines[0]["MaxOrderLineID"];
+
+// add the order to the database
+// variables to be inserted into the database
+// the order id is the highest orderid in the database + 1
+$orderid = $orders[0]["MaxOrderID"] + 1;
+$customerid = 1; // TODO: fix this after every customer actually has an ID
+$salespersonpersonID = 1; // 1. because we don't actually track the salesperson for the order
+$contactpersonid = 1001; // 1001, because we don't actually track the contact person for the customer
+$orderdate =  date('Y-m-d', time()); // current date
+$expecteddeliverydate = date('Y-m-d', strtotime("+14 day")); // current date + 14 days TODO: get the delivery time from the item with the largest delivery time
+$isundersupplybackordered = 1; // "If items cannot be supplied are they backordered?" TODO: ?????
+$pickingcompletedwhen = '0000-00-00 00:00:00'; // because picking is not completed yet (see rest of database)
+$lasteditedby = 10; // 10 ???? TODO???
+$lasteditedwhen = date('Y-m-d H:i:s', time()); // current time
+
+$insert_order = $conn->prepare("INSERT INTO orders (OrderId, CustomerID, SalespersonPersonID, ContactPersonID, OrderDate, ExpectedDeliveryDate, IsUnderSupplyBackordered, PickingCompletedWhen, LastEditedBy, LastEditedWhen) 
+VALUES ($orderid, $customerid, $salespersonpersonID, $contactpersonid, '$orderdate', '$expecteddeliverydate', $isundersupplybackordered, '$pickingcompletedwhen', $lasteditedby, '$lasteditedwhen');");
+$insert_order->execute();
+
+
+// creates rows in orderlines table
+foreach ($_SESSION["order"] as $item => $value) {
+    // removes underscore from string to use it in a query
+    $product_id = substr($item, 1);
+
+    // variables to be inserted into the database
+    $orderlineid+= 1;;
+    $stockitemid = $product_id;
+    $description = $result[$product_id - 1]["StockItemName"];
+    $packagetypeid = 7; // 7, because that's what most orders used in the past
+    $quantity = $value;
+    $unitprice = $result[$product_id - 1]["RecommendedRetailPrice"];
+    $taxrate = 15; // 15, because that's what most orders used in the past
+    $pickedquantity = $value;
+    $pickingcompletedwhen = NULL; // null, because the order is not picked yer
+    $lasteditedby = 9; // 9, because that's what most orders used in the past
+    $lasteditedwhen = date('Y-m-d H:i:s', time());
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // insert everything into the database
+    $insert_orderline = $conn->prepare("INSERT INTO orderlines VALUES (:OrderLineID, :OrderID, :StockItemID, :Description, :PackageTypeID, :Quantity, :UnitPrice, :TaxRate, :PickedQuantity, :PickingCompletedWhen, :LastEditedBy, :LastEditedWhen)");
+    $insert_orderline->bindParam(':OrderLineID', $orderlineid);
+    $insert_orderline->bindParam(':OrderID', $orderid);
+    $insert_orderline->bindParam(':StockItemID', $stockitemid);
+    $insert_orderline->bindParam(':Description', $description);
+    $insert_orderline->bindParam(':PackageTypeID', $packagetypeid);
+    $insert_orderline->bindParam(':Quantity', $quantity);
+    $insert_orderline->bindParam(':UnitPrice', $unitprice);
+    $insert_orderline->bindParam(':TaxRate', $taxrate);
+    $insert_orderline->bindParam(':PickedQuantity', $pickedquantity);
+    $insert_orderline->bindParam(':PickingCompletedWhen', $pickingcompletedwhen);
+    $insert_orderline->bindParam(':LastEditedBy', $lasteditedby);
+    $insert_orderline->bindParam(':LastEditedWhen', $lasteditedwhen);
+    $insert_orderline->execute();
+}
+
+
+
+
 // TODO: uncomment when done with development
 // unsets the order sessions when the order is processed
 //unset($_SESSION["order"];
-
 
 
 require_once './footer.php';
