@@ -5,13 +5,6 @@ include ('connection.php');
 
 $loggedin= TRUE;
 ?>
-<style>
-
-
-
-
-</style>
-
 
 <div class="outer">
     <div class="middle">

@@ -10,3 +10,7 @@ $number_of_rows = $stmtcat1->rowCount();
 
 $limit=24;
 $productgroup=10;
+
+session_destroy();
+
+echo "destroy";
