@@ -11,6 +11,9 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 // Include config file
 require_once "connection.php";
 
+//header
+require_once "header.php";
+
 // Define variables and initialize with empty values
 $email = $password = "";
 $username_err = $password_err = "";
@@ -95,14 +98,14 @@ require_once "header.php";
     <h2>Inloggen</h2>
     <p>Vul je inloggegevens in</p>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+        <div class="form-group">
             <label>Email</label>
-            <input type="text" name="username" class="form-control" value="<?php echo $email; ?>">
+            <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
             <span class="help-block"><?php echo $username_err; ?></span>
         </div>
-        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+        <div class="form-group">
             <label>Wachtwoord</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>">
             <span class="help-block"><?php echo $password_err; ?></span>
         </div>
         <div class="form-group">
@@ -111,5 +114,6 @@ require_once "header.php";
         <p>Heb je geen account? <a href="register.php">Account aanmaken</a>.</p>
     </form>
 </div>
-</body>
-</html>
+<?php
+require_once 'footer.php';
+?>

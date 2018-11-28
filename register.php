@@ -119,7 +119,7 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
 
 
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_username, PDO::PARAM_STR);
             $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":name", $param_customername, PDO::PARAM_STR);
             $stmt->bindParam(":phonenumber", $param_phonenumber, PDO::PARAM_STR);
@@ -145,7 +145,6 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
             if($stmt->execute()){
                 // Redirect to login page
                 header("location: login.php");
-                //echo "gast de stmt werk niet :c";
             } else{
                 echo "Ik kon je niet naar de login.php pagina sturen";
             }
@@ -170,39 +169,39 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
         <h2>Account aanmaken</h2>
         <p>Vul dit formulier in om een account aan te maken. Alle velden zijn verplicht!</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Emailadres</label>
-                <input type="email" name="username" class="form-control" value="<?php echo $email; ?>">
+                <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($customername_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Voornaam achternaam</label>
-                <input type="text" name="customername" class="form-control" value="<?php echo $customername; ?>">
+                <input type="text" name="customername" class="form-control <?php if(!empty($customername_err)){echo "is-invalid";}?>" value="<?php echo $customername; ?>">
                 <span class="help-block"><?php echo $customername_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Wachtwoord</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>" value="<?php echo $password; ?>">
                 <span class="help-block"><?php echo $password_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Herhaal wachtwoord</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <input type="password" name="confirm_password" class="form-control <?php if(!empty($confirm_password_err)){echo "is-invalid";}?>" value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($address_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Adres</label>
-                <input type="text" name="address" class="form-control" value="<?php echo $address; ?>">
+                <input type="text" name="address" class="form-control <?php if(!empty($address_err)){echo "is-invalid";}?>" value="<?php echo $address; ?>">
                 <span class="help-block"><?php echo $address_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($postcode_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Postcode</label>
-                <input type="text" name="postcode" class="form-control" value="<?php echo $postcode; ?>">
+                <input type="text" name="postcode" class="form-control <?php if(!empty($postcode_err)){echo "is-invalid";}?>" value="<?php echo $postcode; ?>">
                 <span class="help-block"><?php echo $postcode_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($city_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Stad</label>
-                <input type="text" name="city" class="form-control" value="<?php echo $city; ?>">
+                <input type="text" name="city" class="form-control <?php if(!empty($city_err)){echo "is-invalid";}?>" value="<?php echo $city; ?>">
                 <span class="help-block"><?php echo $city_err; ?></span>
             </div>
             <div class="form-group">
@@ -212,9 +211,9 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
                     <option>Nederland</option>
                 </select>
             </div>
-            <div class="form-group <?php echo (!empty($phonenumber_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
                 <label>Telefoonnummer</label>
-                <input type="tel" name="phonenumber" class="form-control" value="<?php echo $phonenumber; ?>">
+                <input type="tel" name="phonenumber" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $phonenumber; ?>">
                 <span class="help-block"><?php echo $phonenumber_err; ?></span>
             </div>
             <div></div>
@@ -225,5 +224,6 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
             <p>Heb je al een account? <a href="login.php">Inloggen</a>.</p>
         </form>
     </div>    
-</body>
-</html>
+<?php
+require_once 'footer.php';
+?>
