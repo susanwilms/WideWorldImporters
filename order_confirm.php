@@ -138,7 +138,7 @@ if ($_SESSION["order"] != 0) {
     }
     // address the mails are sent to
     $recipient = "1@t45.nl";
-    $customer_address = "2@t45.nl";
+    $customer_address = $result2["Email"];
     $subject = "Je bestelling bij WideWorldImporters";
     $mailheader = "From: info@WideWorldImporters.com \r\n";
     // we send 2 mails, 1 to the customer, and 1 to ourselves
