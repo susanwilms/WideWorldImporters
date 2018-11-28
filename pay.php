@@ -1,6 +1,8 @@
 <?php
 
 require_once 'connection.php';
+session_start();
+
 
 $fullName = filter_input(INPUT_POST, "fullName", FILTER_SANITIZE_STRING);
 $address = filter_input(INPUT_POST, "address", FILTER_SANITIZE_STRING);
@@ -14,13 +16,13 @@ $phoneNumber= filter_input(INPUT_POST, "phoneNumber", FILTER_SANITIZE_STRING);
 
 
 if(empty(!$_POST)) {
-    echo "Volledige naam is: $fullName<br>";
-    echo "Adres is: $address<br>";
-    echo "Postcode is: $postcode<br>";
-    echo "Stad is: $city<br>";
-    echo "Land is: $country<br>";
-    echo "Email is: $email<br>";
-    echo "Telefoon number: $phoneNumber<br>";
+//    echo "Volledige naam is: $fullName<br>";
+//    echo "Adres is: $address<br>";
+//    echo "Postcode is: $postcode<br>";
+//    echo "Stad is: $city<br>";
+//    echo "Land is: $country<br>";
+//    echo "Email is: $email<br>";
+//    echo "Telefoon number: $phoneNumber<br>";
 
 
 
@@ -34,10 +36,17 @@ $stmtInsert= $conn->prepare('INSERT INTO customers (CustomerID, CustomerName,Bil
 $stmtInsert->execute(array(':name' => $fullName,':email' => $email, ':phoneNumber' => $phoneNumber,
                       ':country' => $country,':city' => $city,':address' => $address,':postcode' => $postcode));
 
-$conn=NULL;
+$sql = "S";
 
 
-
+// QUERY 1, used for getting the CustomerID
+$stmt = $conn->prepare("SELECT CustomerID FROM customers WHERE Email = :email;");
+$stmt->bindParam(":email", $email);
+$stmt->execute();
+$result = $stmt->fetch();
+print_r($result);
+$_SESSION["id"] = $result["CustomerID"];
+$conn = NULL;
 }
 
 ?>
@@ -50,10 +59,8 @@ $conn=NULL;
 </style>
 <div style="width: 100%; text-align: center;">
     <?php
-    if(empty($_POST)) {
         ?>
         <a href="/WideWorldImporters/order_confirm.php"><img src="./images/pay.png" alt="iDEALpage" align="middle" height="597" width="770"/></a>
         <?php
-    }
     ?>
 </div>
