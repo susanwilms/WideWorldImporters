@@ -3,7 +3,7 @@
 require_once "./connection.php";
 require_once "./header.php";
 
-
+print_r($_SESSION);
 // QUERY 1, used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
@@ -83,25 +83,48 @@ $total_price = 0;
 
         </div>
         <div class="col-md-6 pt-5 pr-5">
+            <?php
+            $id = $_SESSION["id"];
+            // QUERY 1, used for getting the customers information
+            $stmt = $conn->prepare("SELECT CustomerName, Email, PhoneNumber, Country, city, DeliveryAddressLine1, DeliveryPostalCode FROM customers WHERE CustomerID = $id;");
+            $stmt->execute();
+            $result2 = $stmt->fetch();
+            ?>
             <!-- TODO: use real information from session/database -->
             <br><br>
             <h5>Je gegevens</h5>
             <h6>Naam</h6>
-            Willibrordus Rutgers
+            <?php
+            echo $result2["CustomerName"];
+            ?>
             <br>
             <br>
             <h6>E-mail adres</h6>
-            WillibrordusRutgers@jourrapide.com
+            <?php
+            echo $result2["Email"];
+            ?>
+            <br>
+            <br>
+            <h6>Telefoonnummer</h6>
+            <?php
+            echo $result2["PhoneNumber"];
+            ?>
             <br>
             <br>
             <h6>Adres</h6>
-            Kerkstraat 149
+            <?php
+            echo $result2["DeliveryAddressLine1"];
+            ?>
             <br>
-            5351 EB
+            <?php
+            echo $result2["DeliveryPostalCode"];
+            ?>
             <br>
             <br>
             <h6>Woonplaats</h6>
-            Berghem
+            <?php
+            echo $result2["city"];
+            ?>
         </div>
     </div>
 </div>
@@ -159,7 +182,7 @@ $orderlineid = $orderlines[0]["MaxOrderLineID"];
 // variables to be inserted into the database
 // the order id is the highest orderid in the database + 1
 $orderid = $orders[0]["MaxOrderID"] + 1;
-$customerid = 1; // TODO: fix this after every customer actually has an ID
+$customerid = $id; // uses the id from the sessions
 $salespersonpersonID = 1; // 1. because we don't actually track the salesperson for the order TODO: ask the productowner
 $contactpersonid = 1001; // 1001, because we don't actually track the contact person for the customer TODO: ask the productowner
 $orderdate =  date("Y-m-d", time()); // current date
