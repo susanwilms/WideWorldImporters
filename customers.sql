@@ -1,4 +1,4 @@
-Customers table nieuwe columns-
+/*Customers table nieuwe columns-*/
 ALTER TABLE customers
   ADD Email varchar(64)
     AFTER PaymentDays,
