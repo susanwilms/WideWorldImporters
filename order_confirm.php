@@ -3,7 +3,6 @@
 require_once "./connection.php";
 require_once "./header.php";
 
-print_r($_SESSION);
 // QUERY 1, used for id, name, price
 $stmt = $conn->prepare("SELECT StockItemID, StockItemName, RecommendedRetailPrice FROM stockitems;");
 $stmt->execute();
