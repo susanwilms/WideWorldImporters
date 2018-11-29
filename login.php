@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $customerid = $row["customerid"];
-                        $email = $row["username"];
+                        $email = $row["email"];
                         $hashed_password = $row["password"];
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -61,8 +61,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
+                            $_SESSION["id"] = $customerid;
+                            $_SESSION["username"] = $email;
 
                             // Redirect user to welcome page
                             header("location: index.php");
@@ -87,33 +87,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     unset($pdo);
 }
-require_once "header.php";
 
 
 ?>
 <style>
-    .wrapper{ width: 350px; padding: 20px; }
+    .wrapper{
+        width: 350px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1%;
+        /*height: 100%;*/
+        box-shadow: 3px 4px 6px rgba(0, 0, 0,0.5);
+        background-color: #ebebeb;
+    }
+
 </style>
-<div class="wrapper">
-    <h2>Inloggen</h2>
-    <p>Vul je inloggegevens in</p>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
-            <span class="help-block"><?php echo $username_err; ?></span>
+    <div class="outer">
+        <div class="middle">
+            <div class="wrapper">
+                <h2>Inloggen</h2>
+                <p>Vul je inloggegevens in</p>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
+                        <span class="help-block"><?php echo $username_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Wachtwoord</label>
+                        <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>">
+                        <span class="help-block"><?php echo $password_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Inloggen">
+                    </div>
+                    <p>Heb je geen account? <a href="register.php">Account aanmaken</a>.</p>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Wachtwoord</label>
-            <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>">
-            <span class="help-block"><?php echo $password_err; ?></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Inloggen">
-        </div>
-        <p>Heb je geen account? <a href="register.php">Account aanmaken</a>.</p>
-    </form>
-</div>
+    </div>
 <?php
 require_once 'footer.php';
 ?>

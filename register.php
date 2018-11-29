@@ -162,68 +162,84 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
 ?>
  
 <style>
-    .wrapper{ width: 350px; padding: 20px; }
-</style>
+    /*class .wapper in login.php en register.php are not the same*/
+    .wrapper{
+        width: 700px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -7%;
+        margin-bottom: 10%;
+        /*height: 100%;*/
+        box-shadow: 3px 4px 6px rgba(0, 0, 0,0.5);
+        background-color: #ebebeb;
+    }
 
-    <div class="wrapper">
-        <h2>Account aanmaken</h2>
-        <p>Vul dit formulier in om een account aan te maken. Alle velden zijn verplicht!</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Emailadres</label>
-                <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
+</style>
+    <div class="outer">
+        <div class="middle">
+            <div class="wrapper">
+                <h2>Account aanmaken</h2>
+                <p>Vul dit formulier in om een account aan te maken. Alle velden zijn verplicht!</p>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="form-group">
+                        <label>Emailadres</label>
+                        <input type="email" name="username" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $email; ?>">
+                        <span class="help-block"><?php echo $username_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Voornaam achternaam</label>
+                        <input type="text" name="customername" class="form-control <?php if(!empty($customername_err)){echo "is-invalid";}?>" value="<?php echo $customername; ?>">
+                        <span class="help-block"><?php echo $customername_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Wachtwoord</label>
+                        <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>" value="<?php echo $password; ?>">
+                        <span class="help-block"><?php echo $password_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Herhaal wachtwoord</label>
+                        <input type="password" name="confirm_password" class="form-control <?php if(!empty($confirm_password_err)){echo "is-invalid";}?>" value="<?php echo $confirm_password; ?>">
+                        <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Adres</label>
+                        <input type="text" name="address" class="form-control <?php if(!empty($address_err)){echo "is-invalid";}?>" value="<?php echo $address; ?>">
+                        <span class="help-block"><?php echo $address_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Postcode</label>
+                        <input type="text" name="postcode" class="form-control <?php if(!empty($postcode_err)){echo "is-invalid";}?>" value="<?php echo $postcode; ?>">
+                        <span class="help-block"><?php echo $postcode_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Stad</label>
+                        <input type="text" name="city" class="form-control <?php if(!empty($city_err)){echo "is-invalid";}?>" value="<?php echo $city; ?>">
+                        <span class="help-block"><?php echo $city_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Land</label>
+                        <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-list"></i></span>
+                        <select class="selectpicker form-control">
+                            <option>Nederland</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefoonnummer</label>
+                        <input type="tel" name="phonenumber" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $phonenumber; ?>">
+                        <span class="help-block"><?php echo $phonenumber_err; ?></span>
+                    </div>
+                    <div></div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Verzenden">
+                        <input type="reset" class="btn btn-default" value="Reset">
+                    </div>
+                    <p>Heb je al een account? <a href="login.php">Inloggen</a>.</p>
+                </form>
             </div>
-            <div class="form-group">
-                <label>Voornaam achternaam</label>
-                <input type="text" name="customername" class="form-control <?php if(!empty($customername_err)){echo "is-invalid";}?>" value="<?php echo $customername; ?>">
-                <span class="help-block"><?php echo $customername_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Wachtwoord</label>
-                <input type="password" name="password" class="form-control <?php if(!empty($password_err)){echo "is-invalid";}?>" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Herhaal wachtwoord</label>
-                <input type="password" name="confirm_password" class="form-control <?php if(!empty($confirm_password_err)){echo "is-invalid";}?>" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Adres</label>
-                <input type="text" name="address" class="form-control <?php if(!empty($address_err)){echo "is-invalid";}?>" value="<?php echo $address; ?>">
-                <span class="help-block"><?php echo $address_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Postcode</label>
-                <input type="text" name="postcode" class="form-control <?php if(!empty($postcode_err)){echo "is-invalid";}?>" value="<?php echo $postcode; ?>">
-                <span class="help-block"><?php echo $postcode_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Stad</label>
-                <input type="text" name="city" class="form-control <?php if(!empty($city_err)){echo "is-invalid";}?>" value="<?php echo $city; ?>">
-                <span class="help-block"><?php echo $city_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Land</label>
-                <span class="input-group-addon" style="max-width: 100%;"><i class="glyphicon glyphicon-list"></i></span>
-                <select class="selectpicker form-control">
-                    <option>Nederland</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Telefoonnummer</label>
-                <input type="tel" name="phonenumber" class="form-control <?php if(!empty($username_err)){echo "is-invalid";}?>" value="<?php echo $phonenumber; ?>">
-                <span class="help-block"><?php echo $phonenumber_err; ?></span>
-            </div>
-            <div></div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Verzenden">
-                <input type="reset" class="btn btn-default" value="Reset">
-            </div>
-            <p>Heb je al een account? <a href="login.php">Inloggen</a>.</p>
-        </form>
-    </div>    
+        </div>
+    </div>
+
 <?php
 require_once 'footer.php';
 ?>
