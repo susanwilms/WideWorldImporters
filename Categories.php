@@ -13,6 +13,10 @@ $page = (int)filter_input(INPUT_GET, "page", FILTER_SANITIZE_STRING);
 $generalURL = "/WideWorldImporters/Categories.php?productgroup=". $productgroup;
 
 // set limit to 24 if it isn't set (default limit)
+if(empty($productgroup)){
+    $productgroup = 1;
+}
+// set limit to 24 if it isn't set (default limit)
 if(empty($limit)){
     $limit = 24;
 }

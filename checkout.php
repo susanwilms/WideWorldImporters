@@ -1,9 +1,9 @@
 <?php
 
 require_once('header.php');
-include ('connection.php');
+require_once ('connection.php');
 
-$loggedin= TRUE;
+
 ?>
 
 <div class="outer">
@@ -13,7 +13,7 @@ $loggedin= TRUE;
                 <h2>Inloggen</h2>
 
                 <?php
-                if($loggedin==TRUE){
+                if($_SESSION['loggedin']==TRUE){
 
                 ?>
                     <a href="pay.php"><button type="button" class="btn btn-info">Verder met mijn account</button></a>
@@ -21,7 +21,7 @@ $loggedin= TRUE;
                 <?php
                 }else {
                     ?>
-                    <button type="button" class="btn btn-info">INLOGGEN</button>
+                    <a href="login.php"><button type="button" class="btn btn-info">INLOGGEN</button></a>
 
                     <?php
                 }
