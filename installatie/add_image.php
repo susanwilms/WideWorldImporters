@@ -1,6 +1,6 @@
 <?php
 
-require_once "connection.php";
+require_once "../connection.php";
 
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // empty the img_path table
