@@ -55,7 +55,7 @@ $productgroup="";
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link account-item" href="/WideWorldImporters/<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && ){echo "myaccount.php";}else{echo "login.php";}?>">Account</a></li>
+                    <a class="nav-link account-item" href="/WideWorldImporters/<?php if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){echo "myaccount.php";}else{echo "login.php";}?>">Account</a></li>
                 </li>
             </ul>
 
