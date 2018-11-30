@@ -12,8 +12,6 @@ $path    = "../images/";
 $files = scandir($path);
 // excluding non product images
 $files = array_diff(scandir($path), array(".", "..", "cart.png", "cart_icon.png", "favicon-32x32.png", "favicon-16x16.png", "favicon.ico", "header.jpg", "PicProduct1.png", "pay.png", "logo.png", "placeholder.png", "productgroup1.jpg", "productgroup2.jpg", "productgroup3.jpg", "productgroup4.jpg", "productgroup5.jpg", "productgroup6.jpg", "productgroup7.jpg", "productgroup8.jpg", "productgroup9.jpg", "productgroup10.jpg", "top_placeholder.png"));
-// pretty printing
-echo "<pre>"; print_r($files); echo "</pre>";
 
 // loop through each file and add it to the db
 foreach($files as $file){
