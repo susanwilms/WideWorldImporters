@@ -14,9 +14,13 @@ $order="";
 $order=(int)filter_input(INPUT_GET, "order", FILTER_SANITIZE_STRING);
 
 if(!empty($order)){
-    $stmt = $conn->prepare("SELECT   FROM orderlines WHERE CustomerID = $id;");
+    $stmt = $conn->prepare("SELECT StockItemID, Description, Quantity,UnitPrice  FROM orderlines WHERE OrderID  = :orderid;");
+    $stmt->bindParam(":orderid", $param_orderid, PDO::PARAM_INT);
+    $param_orderid=$order;
+
     $stmt->execute();
-    $orders = $stmt->fetchAll();
+    $orderlines = $stmt->fetchAll();
+    $stmt= null;
 }
 ?>
     <style>
@@ -153,8 +157,35 @@ if(!empty($order)){
                 echo "<a href='Categories.php'><button>Naar de winkel</button></a>";
                 echo "Je klantnummer is: $id";
             }}else{
-                echo "Here wil you see the specific order $order";
-                echo "<br> PD: You are a little bitch";
+                ?>
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Omschrijving</th>
+                    <th>Aantal</th>
+                    <th>Prijs per product</th>
+                </tr>
+
+                <?php
+                foreach($orderlines as $r){
+                    $StockItemID= $r[0];
+                    $Description=$r[1];
+                    $Quantity=$r[2];
+                    $UnitPrice=$r[3];
+
+                    ?>
+                    <tr>
+                        <td><?php echo "<img src='images/$StockItemID-1.jpg' style='height: 100px'>";?></td>
+                        <td><?php echo "$Description";?></td>
+                        <td><?php echo "$Quantity";?></td>
+                        <td><?php echo "$UnitPrice"?></td>
+                    </tr>
+
+                    <?php
+                }
+                ?>
+            </table>
+                <?php
             }
             ?>
         </div>

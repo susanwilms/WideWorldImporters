@@ -3,6 +3,17 @@
 require_once('header.php');
 require_once ('connection.php');
 
+if(isset($_SESSION['loggedin'])){
+    $loggedin=true;
+}else{
+    $loggedin=false;
+}
+
+
+
+if(empty($loggedin)){
+    $loggedin=FALSE;
+}
 
 ?>
 
@@ -13,7 +24,7 @@ require_once ('connection.php');
                 <h2>Inloggen</h2>
 
                 <?php
-                if($_SESSION['loggedin']==TRUE){
+                if($loggedin==TRUE){
 
                 ?>
                     <a href="pay.php"><button type="button" class="btn btn-info">Verder met mijn account</button></a>
