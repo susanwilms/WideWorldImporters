@@ -1,5 +1,15 @@
 <?php session_start();
 $productgroup="";
+
+if(isset($_SESSION['loggedin'])){
+    $loggedinH=true;
+}else{
+    $loggedinH=false;
+}
+
+if(empty($loggedin)){
+    $loggedinH=FALSE;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,9 +57,9 @@ $productgroup="";
 
                         for($i=0;$i<count($categories);$i++){
                             $productgroup++;
-                            ?>
-                            <a class="dropdown-item" href="<?php print("/WideWorldImporters/Categories.php?productgroup=".$productgroup); ?>"><?php print($categories[$i])?></a>
-                            <?php
+
+                            echo "<a class=\"dropdown-item\" href=\"/WideWorldImporters/Categories.php?productgroup=$productgroup\">$categories[$i]</a>";
+
                         }
                         ?>
                     </div>

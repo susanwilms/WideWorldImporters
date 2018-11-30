@@ -144,7 +144,7 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
-                header("location: login.php");
+                ?><meta http-equiv="refresh" content="0; url=/WideWorldImporters/login.php"><?php
             } else{
                 echo "Ik kon je niet naar de login.php pagina sturen";
             }

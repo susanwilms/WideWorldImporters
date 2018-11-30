@@ -9,8 +9,6 @@ if(isset($_SESSION['loggedin'])){
     $loggedin=false;
 }
 
-
-
 if(empty($loggedin)){
     $loggedin=FALSE;
 }

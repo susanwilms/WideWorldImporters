@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $email;
 
                             // Redirect user to welcome page
-                            header("location: index.php");
+                            ?><meta http-equiv="refresh" content="0; url=/WideWorldImporters/index.php"><?php
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "Deze wachtwoord klopt niet!";
