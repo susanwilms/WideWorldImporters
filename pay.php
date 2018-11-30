@@ -44,7 +44,6 @@ $stmt = $conn->prepare("SELECT CustomerID FROM customers WHERE Email = :email;")
 $stmt->bindParam(":email", $email);
 $stmt->execute();
 $result = $stmt->fetch();
-print_r($result);
 $_SESSION["id"] = $result["CustomerID"];
 $conn = NULL;
 }
