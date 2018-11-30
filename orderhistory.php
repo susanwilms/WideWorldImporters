@@ -14,7 +14,7 @@ $order="";
 $order=(int)filter_input(INPUT_GET, "order", FILTER_SANITIZE_STRING);
 
 if(!empty($order)){
-    $stmt = $conn->prepare("SELECT   FROM orders WHERE CustomerID = $id;");
+    $stmt = $conn->prepare("SELECT   FROM orderlines WHERE CustomerID = $id;");
     $stmt->execute();
     $orders = $stmt->fetchAll();
 }
@@ -107,7 +107,7 @@ if(!empty($order)){
         <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
         <ul class="navbar-primary-menu">
             <li>
-                <a class="" href=""><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Mijn Account</span></a>
+                <a class="" href="myaccount.php"><span class="glyphicon glyphicon-list-alt"></span><span class="nav-label">Mijn Account</span></a>
                 <a class="activenav" href="orderhistory.php"><span class="glyphicon glyphicon-envelope"></span><span class="nav-label">Mijn bestellingen</span></a>
                 <a class="" href="addressinfo.php"><span class="glyphicon glyphicon-cog"></span><span class="nav-label">Adresgegevens wijzigen</span></a>
             </li>
@@ -118,6 +118,7 @@ if(!empty($order)){
         <div class="col-md-6 pt-5 pr-5">
 
             <?php
+            if(empty($order)){
             if(!empty($orders)){
                 ?>
             <table>
@@ -151,6 +152,9 @@ if(!empty($order)){
                 echo "<h5>U hebt geen geregistreerde bestelling<h5>";
                 echo "<a href='Categories.php'><button>Naar de winkel</button></a>";
                 echo "Je klantnummer is: $id";
+            }}else{
+                echo "Here wil you see the specific order $order";
+                echo "<br> PD: You are a little bitch";
             }
             ?>
         </div>

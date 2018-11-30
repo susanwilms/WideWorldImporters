@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 //                            session_start();
 
                             // Store data in session variables
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["loggedin"] = true;Z
                             $_SESSION["id"] = $customerid;
                             $_SESSION["username"] = $email;
 
