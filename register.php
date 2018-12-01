@@ -1,15 +1,13 @@
 <?php
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
+
 
 require_once "connection.php";
 require_once 'header.php';
 
 // Define variables and initialize with empty values
 $email = $customername = $password = $confirm_password = $address = $postcode = $city = $country = $phonenumber = "";
+
+// Define variable for error display.
 $username_err = $customername_err = $password_err = $confirm_password_err = $address_err = $postcode_err = $city_err = $country_err = $phonenumber_err = "";
  
 // Processing form data when form is submitted
@@ -168,7 +166,7 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
         padding: 20px;
         margin-left: auto;
         margin-right: auto;
-        margin-top: -7%;
+        margin-top: 1%;
         margin-bottom: 10%;
         /*height: 100%;*/
         box-shadow: 3px 4px 6px rgba(0, 0, 0,0.5);
@@ -179,6 +177,8 @@ PostalAddressLine1,PostalPostalCode,LastEditedby,ValidFrom,ValidTo,Password) SEL
     <div class="outer">
         <div class="middle">
             <div class="wrapper">
+
+                <!-- FORM TO SIGN UP! -->
                 <h2>Account aanmaken</h2>
                 <p>Vul dit formulier in om een account aan te maken. Alle velden zijn verplicht!</p>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

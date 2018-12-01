@@ -45,20 +45,20 @@ if(!empty($order)){
                 ?>
             <table>
                 <tr>
-                    <th>Ordernumber</th>
+                    <th>Ordernummer</th>
                     <th>Orderdatum</th>
                     <th>Verwachte aankomst</th>
                 </tr>
 
                 <?php
                 foreach ($orders as $r) {
-                    $ordernummer = $r[0];
+                    $ordernumber = $r[0];
                     $orderdate = $r[1];
                     $expecteddeleverydate = $r[2];
  ?>
 
                         <tr>
-                            <td><?php echo "<a href='orderhistory.php?order=$ordernummer'>$ordernummer</a>";?></td>
+                            <td><?php echo "<a href='orderhistory.php?order=$ordernumber'>$ordernumber</a>";?></td>
                             <td><?php echo "$orderdate";?></td>
                             <td><?php echo "$expecteddeleverydate";?></td>
                         </tr>
@@ -71,9 +71,8 @@ if(!empty($order)){
                 </table>
                 <?php
             }else{
-                echo "<h5>U hebt geen geregistreerde bestelling<h5>";
-                echo "<a href='Categories.php'><button>Naar de winkel</button></a>";
-                echo "Je klantnummer is: $id";
+                echo "<h5>U hebt geen geregistreerde bestellingen<h5><br>";
+                echo "<a href='Categories.php'><button type=\"button\" class=\"btn btn-info\">Naar de winkel</button></a>";
             }}else{
                 ?>
             <table>
