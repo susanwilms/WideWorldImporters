@@ -10,11 +10,11 @@ require_once 'header.php';
     <form action="contact.php" method="POST">
         <div class="form-group">
             <label for="name">Volledige naam:</label>
-            <input style="border: 1px;" type="text" class="form-control" id="name" name="name" required autofocus>
+            <input style="border: 1px solid lightgrey;" type="text" class="form-control" id="name" name="name" required autofocus>
         </div>
         <div class="form-group">
             <label for="email">E-mailadres:</label>
-            <input style="border: 1px;" type="text" class="form-control" id="email" name="sender" required>
+            <input style="border: 1px solid lightgrey;" type="text" class="form-control" id="email" name="sender" required>
         </div>
         <div class="form-group">
             <label for="comment">Bericht:</label>
