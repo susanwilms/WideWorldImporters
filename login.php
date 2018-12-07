@@ -68,12 +68,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             ?><meta http-equiv="refresh" content="0; url=/WideWorldImporters/index.php"><?php
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "Deze wachtwoord klopt niet!";
+                            $password_err = "Dit wachtwoord klopt niet!";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "Er bestaat geen account met die email";
+                    $username_err = "Er bestaat geen account met dit emailadres";
                 }
             } else{
                 echo "Iets ging mis! Probeer later!";
