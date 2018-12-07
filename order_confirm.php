@@ -89,7 +89,6 @@ $total_price = 0;
             $stmt->execute();
             $result2 = $stmt->fetch();
             ?>
-            <!-- TODO: use real information from session/database -->
             <br><br>
             <h5>Je gegevens</h5>
             <h6>Naam</h6>
@@ -182,13 +181,13 @@ $orderlineid = $orderlines[0]["MaxOrderLineID"];
 // the order id is the highest orderid in the database + 1
 $orderid = $orders[0]["MaxOrderID"] + 1;
 $customerid = $id; // uses the id from the sessions
-$salespersonpersonID = 1; // 1. because we don't actually track the salesperson for the order TODO: ask the productowner
-$contactpersonid = 1001; // 1001, because we don't actually track the contact person for the customer TODO: ask the productowner
+$salespersonpersonID = 1; // 1. because we don't actually track the salesperson for the order
+$contactpersonid = 1001; // 1001, because we don't actually track the contact person for the customer
 $orderdate =  date("Y-m-d", time()); // current date
 $expecteddeliverydate = date("Y-m-d", strtotime("+14 day")); // current date + 14 days TODO: get the delivery time from the item with the largest delivery time
-$isundersupplybackordered = 1; // "If items cannot be supplied are they backordered?" TODO: ????? TODO: ask the productowner
+$isundersupplybackordered = 1; // "If items cannot be supplied are they backordered?"
 $pickingcompletedwhen = "0000-00-00 00:00:00"; // because picking is not completed yet (see rest of database)
-$lasteditedby = 10; // 10 ???? TODO??? TODO: ask the productowner
+$lasteditedby = 10; // 10
 $lasteditedwhen = date("Y-m-d H:i:s", time()); // current time
 // we didn't use bindParam here because it didn't work
 $insert_order = $conn->prepare("INSERT INTO orders (OrderId, CustomerID, SalespersonPersonID, ContactPersonID, OrderDate, ExpectedDeliveryDate, IsUnderSupplyBackordered, PickingCompletedWhen, LastEditedBy, LastEditedWhen) 

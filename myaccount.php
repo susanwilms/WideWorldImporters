@@ -25,7 +25,6 @@ $result2 = $stmt->fetch();
     <div class="main-content">
         <h1> Mijn gegevens</h1>
         <div class="col-md-6">
-            <!-- TODO: use real information from session/database -->
             <h6>Naam</h6>
             <?php
             echo $result2["CustomerName"];
