@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `img_path` (
   `pathID` int(11) NOT NULL,
   `productID` int(11) NOT NULL,
-  `img_path` varchar(45) NOT NULL
+  `img_path` varchar(45) NOT NULL,
+  FOREIGN KEY (productID) REFERENCES stockitems (StockItemID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
