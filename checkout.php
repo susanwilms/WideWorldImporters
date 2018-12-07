@@ -81,15 +81,15 @@ if(empty($loggedin)){
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-4 control-label">Email</label>
+                                            <label class="col-md-4 control-label">E-mail</label>
                                             <div class="col-md-8 inputGroupContainer">
-                                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
+                                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input id="email" name="email" placeholder="E-mail" class="form-control" required="true" value="" type="text"></div>
                                             </div>
                                         </div>
                                         <div class="form-group" >
-                                            <label class="col-md-4 control-label">Phone Number</label>
+                                            <label class="col-md-4 control-label">Telefoon nummer</label>
                                             <div class="col-md-8 inputGroupContainer">
-                                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Phone Number" class="form-control" required="true" value="" type="text"></div>
+                                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span><input id="phoneNumber" name="phoneNumber" placeholder="Telefoon nummer" class="form-control" required="true" value="" type="text"></div>
                                             </div>
                                         </div>
                                         <div>
