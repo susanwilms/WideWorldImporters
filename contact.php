@@ -9,18 +9,18 @@ require_once 'header.php';
     <h2 class="py-4">Contact</h2>
     <form action="contact.php" method="POST">
         <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required autofocus>
+            <label for="name">Volledige naam:</label>
+            <input style="border: 1px solid lightgrey;" type="text" class="form-control" id="name" name="name" required autofocus>
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" id="email" name="sender" required>
+            <label for="email">E-mailadres:</label>
+            <input style="border: 1px solid lightgrey;" type="text" class="form-control" id="email" name="sender" required>
         </div>
         <div class="form-group">
-            <label for="comment">Comment:</label>
+            <label for="comment">Bericht:</label>
             <textarea class="form-control" rows="5" id="comment" name="text" required></textarea>
         </div>
-        <button type="submit" value="1" class="btn large-button">Submit</button>
+        <button type="submit" value="1" class="btn large-button">Verzenden</button>
 
         <?php
         // checks if text has a value and sends a mail if it has
