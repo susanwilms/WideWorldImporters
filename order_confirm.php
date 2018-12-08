@@ -231,9 +231,9 @@ foreach ($_SESSION["order"] as $item => $value) {
 }
 
 
-// TODO: uncomment when done with development
+
 // unsets the order sessions when the order is processed
-//unset($_SESSION["order"];
+unset($_SESSION["order"]);
 
 
 require_once "./footer.php";

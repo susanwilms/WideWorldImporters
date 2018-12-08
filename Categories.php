@@ -71,19 +71,6 @@ $array = array($threestar, $fourstar, $fivestar);
     function gridView(){
         $('#Categories > div').addClass('col-md-3').removeClass('col-md-10');
     }
-
-    // doesn't work
-    // TODO: delete or fix
-    // /* Optional: Add active class to the current button (highlight it) */
-    // var container = document.getElementById("btnContainer");
-    // var btns = container.getElementsByClassName("btn");
-    // for (var i = 0; i < btns.length; i++) {
-    //     btns[i].addEventListener("click", function(){
-    //         var current = document.getElementsByClassName("active");
-    //         current[0].className = current[0].className.replace(" active", "");
-    //         this.className += " active";
-    //     });
-    // }
 </script>
 
 <div id="main_container">
